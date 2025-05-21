@@ -1,0 +1,9 @@
+:root {
+    --color-purple: #5c00d5;
+    --color-blue-5: rgba(26, 25, 136, 0.05);
+    --color-cyan: #72f8ff;
+
+    --screen-max: 1280px;
+    --screen-gutter: 2.5rem;
+    --screen-padding: 2rem;
+}

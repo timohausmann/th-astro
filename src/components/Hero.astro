@@ -1,0 +1,94 @@
+---
+import { IconArrowsRightLeft, IconMapPin } from "@tabler/icons-react";
+---
+
+<section class="hero row">
+    <div class="row-inner">
+        <div class="content">
+            <h1 class="headline">
+                <span class="marker">Hi, ich bin Timo –</span>
+                <span class="marker"
+                    >Frontend-Entwickler und Interface-Designer</span
+                >
+                <span class="marker"
+                    >mit Fokus auf nutzerzentrierte Lösungen.</span
+                >
+            </h1>
+            <p class="note">
+                <span class="note-row"
+                    >Ich suche eine Festanstellung in
+                    <span class="icon-wrapper">
+                        <IconMapPin size={20} stroke={1.5} />
+                        Hannover
+                    </span>
+                </span>
+                <span class="note-row"
+                    >im Bereich Webentwicklung <IconArrowsRightLeft
+                        size={16}
+                        stroke={1.5}
+                    />
+                    Interface-Design.</span
+                >
+                <span class="note-row">
+                    <em>Du hast da was?</em>
+                    <a href="mailto:timo@hausmann.design">Schreib mir gerne!</a>
+                </span>
+            </p>
+        </div>
+    </div>
+</section>
+<style>
+    .hero {
+        background: linear-gradient(to bottom, #6361ff 0%, #3c3a99 100%);
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        height: 90dvh;
+        padding-top: 8rem;
+    }
+    .content {
+        display: flex;
+        flex-direction: column;
+        gap: 6rem;
+    }
+    .headline {
+        font-size: 28px;
+        font-style: italic;
+        line-height: 1.4;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.25rem;
+    }
+    .marker {
+        position: relative;
+        padding: 0.125rem 1rem;
+        z-index: 0;
+    }
+    .marker::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: var(--color-cyan);
+        border-radius: 0.25rem;
+        z-index: -1;
+    }
+
+    .note {
+        font-size: 20px;
+        line-height: 1.66;
+        color: white;
+    }
+    .note-row {
+        display: block;
+    }
+    .note a {
+        color: white;
+        text-decoration: underline;
+    }
+    .icon-wrapper {
+        display: inline-flex;
+        align-items: baseline;
+        gap: 0.375rem;
+    }
+</style>

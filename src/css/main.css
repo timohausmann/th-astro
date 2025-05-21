@@ -1,0 +1,34 @@
+@import "./reset.css";
+@import "./variables.css";
+@import "./font-ibm-plex-mono.css";
+
+/* Global styles */
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    height: 100vh;
+    background-color: #f9f9f9;
+    color: black;
+    font-family: "IBM Plex Mono", monospace;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    line-height: 1.5;
+}
+
+.row {
+    width: 100%;
+    padding-left: var(--screen-gutter);
+    padding-right: var(--screen-gutter);
+}
+
+.row-inner {
+    width: 100%;
+    max-width: var(--screen-max);
+    padding-left: var(--screen-padding);
+    padding-right: var(--screen-padding);
+    margin-left: auto;
+    margin-right: auto;
+}
