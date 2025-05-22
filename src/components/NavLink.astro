@@ -12,7 +12,9 @@ const { href, text }: Props = Astro.props;
     <div class="icon">
         <slot />
     </div>
-    <span class="text">{text}</span>
+    <div class="text-container">
+        <span class="text">{text}</span>
+    </div>
 </a>
 <style>
     .link {
@@ -31,8 +33,11 @@ const { href, text }: Props = Astro.props;
         align-items: center;
         justify-content: center;
     }
+    .text-container {
+        display: flex;
+        flex-direction: column;
+    }
     .text {
-        font-size: 15px;
-        font-style: italic;
+        font-size: 14px;
     }
 </style>

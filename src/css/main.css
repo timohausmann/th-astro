@@ -1,6 +1,7 @@
 @import "./reset.css";
 @import "./variables.css";
 @import "./font-ibm-plex-mono.css";
+@import "./typo.css";
 
 /* Global styles */
 html {

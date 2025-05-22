@@ -1,0 +1,27 @@
+---
+interface Props {
+    class?: string;
+}
+
+const { class: className } = Astro.props;
+---
+
+<div class:list={["frost-bar", "row-inner", className]}>
+    <slot />
+</div>
+
+<style>
+    .frost-bar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        background: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-radius: 1rem;
+        box-shadow: 0 2px 16px rgba(0, 0, 0, 0.05);
+    }
+</style>
+

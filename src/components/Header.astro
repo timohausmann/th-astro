@@ -1,11 +1,16 @@
 ---
 import { IconMoodSmile, IconFlame, IconMessage } from "@tabler/icons-react";
-import NavItem from "./NavItem.astro";
+import NavLink from "./NavLink.astro";
+import FrostBar from "./FrostBar.astro";
+
+// import { IconFlame } from "@tabler/icons";
+// import IconFlame2 from "@tabler/icons/IconFlame";
+// import IconFlame from "@tabler/icons/icons/outline/flame.svg";
 ---
 
 <header class="header row">
-    <div class="inner row-inner">
-        <hgroup class="logo">
+    <FrostBar>
+        <hgroup class="logo caps-15">
             <h1>Timo Hausmann</h1>
             <span class="divider">//</span>
             <h2>Creative Coding</h2>
@@ -13,40 +18,31 @@ import NavItem from "./NavItem.astro";
         <nav>
             <ul class="nav-list">
                 <li>
-                    <NavItem href="#about" text="Über mich">
+                    <NavLink href="#about" text="Über mich">
                         <IconMoodSmile />
-                    </NavItem>
+                    </NavLink>
                 </li>
                 <li>
-                    <NavItem href="#showcase" text="Referenzen">
+                    <NavLink href="#showcase" text="Referenzen">
                         <IconFlame />
-                    </NavItem>
+                    </NavLink>
                 </li>
                 <li>
-                    <NavItem href="#contact" text="Kontakt">
+                    <NavLink href="#contact" text="Kontakt">
                         <IconMessage />
-                    </NavItem>
+                    </NavLink>
                 </li>
             </ul>
         </nav>
-    </div>
+    </FrostBar>
 </header>
 
 <style>
     .header {
-        position: absolute;
+        position: fixed;
         top: 2rem;
         left: 0;
-    }
-    .inner {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding-top: 1rem;
-        padding-bottom: 1rem;
-        background: white;
-        border-radius: 0.75rem;
-        box-shadow: 0 2px 16px rgba(0, 0, 0, 0.025);
+        z-index: 100;
     }
     .logo {
         display: flex;
@@ -56,10 +52,6 @@ import NavItem from "./NavItem.astro";
     h1,
     h2,
     .divider {
-        font-size: 15px;
-        font-weight: 400;
-        letter-spacing: 0.075em;
-        text-transform: uppercase;
         color: var(--color-purple);
         line-height: 1;
     }

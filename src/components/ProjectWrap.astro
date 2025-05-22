@@ -1,0 +1,130 @@
+---
+// ProjectWrap.astro - Wrapper component with cursor tracking functionality
+// import ProjectCanvas from "./ProjectCanvas.astro";
+---
+
+<div id="project-wrap">
+    <!-- <ProjectCanvas /> -->
+    <slot />
+</div>
+
+<script>
+    // Get the canvas element
+    const projectCanvas = document.getElementById("project-wrap");
+    const items = document.querySelectorAll(".item");
+
+    // Configuration for the rotation effect
+    const config = {
+        rotationIntensity: 15, // Max rotation in degrees
+        perspective: 1000, // Perspective value for 3D effect
+        easing: 0.05, // Easing factor (lower = smoother)
+    };
+
+    // Store current rotation values for each item
+    const itemStates = Array.from(items).map(() => ({
+        currentRotateX: 0,
+        currentRotateY: 0,
+        targetRotateX: 0,
+        targetRotateY: 0,
+    }));
+
+    // Store last mouse event
+    let lastMouseEvent: MouseEvent | null = null;
+
+    // Function to update rotations based on mouse position and scroll
+    function updateRotations(event: MouseEvent) {
+        // Get the viewport dimensions
+        const viewportWidth = window.innerWidth;
+        const viewportHeight = window.innerHeight;
+
+        // Get scroll position
+        const scrollX = window.scrollX;
+        const scrollY = window.scrollY;
+
+        // Calculate absolute mouse position including scroll
+        const absoluteX = event.clientX + scrollX;
+        const absoluteY = event.clientY + scrollY;
+
+        // Update target rotation for each item
+        items.forEach((item, index) => {
+            // Get item's position within viewport
+            const itemRect = item.getBoundingClientRect();
+            const itemCenterX = itemRect.left + itemRect.width / 2 + scrollX;
+            const itemCenterY = itemRect.top + itemRect.height / 2 + scrollY;
+
+            // Calculate distance from cursor to item center
+            const dx = absoluteX - itemCenterX;
+            const dy = absoluteY - itemCenterY;
+
+            // Set rotation targets (invert Y for natural feeling)
+            itemStates[index].targetRotateY =
+                (dx / viewportWidth) * config.rotationIntensity;
+            itemStates[index].targetRotateX =
+                (-dy / viewportHeight) * config.rotationIntensity;
+        });
+    }
+
+    // Add mousemove event listener to the entire document
+    document.addEventListener("mousemove", (event) => {
+        lastMouseEvent = event;
+        updateRotations(event);
+    });
+
+    // Add scroll event listener
+    window.addEventListener("scroll", () => {
+        if (lastMouseEvent) {
+            updateRotations(lastMouseEvent);
+        }
+    });
+
+    // Animation loop for smooth transitions
+    function animate() {
+        items.forEach((item, index) => {
+            const state = itemStates[index];
+
+            // Apply easing
+            const newX =
+                state.currentRotateX +
+                (state.targetRotateX - state.currentRotateX) * config.easing;
+            const newY =
+                state.currentRotateY +
+                (state.targetRotateY - state.currentRotateY) * config.easing;
+
+            // Apply rotation
+            if (Math.abs(newX - state.currentRotateX) > 0.01) {
+                state.currentRotateX = newX;
+            }
+            if (Math.abs(newY - state.currentRotateY) > 0.01) {
+                state.currentRotateY = newY;
+            }
+            (item as HTMLElement).style.transform =
+                `perspective(${config.perspective}px) rotateX(${state.currentRotateX}deg) rotateY(${state.currentRotateY}deg)`;
+        });
+
+        requestAnimationFrame(animate);
+    }
+
+    // Start animation loop
+    animate();
+
+    // Reset rotations when mouse leaves the viewport
+    document.addEventListener("mouseleave", () => {
+        itemStates.forEach((state) => {
+            state.targetRotateX = 0;
+            state.targetRotateY = 0;
+        });
+    });
+</script>
+
+<style>
+    #project-wrap {
+        position: relative;
+        padding-top: 5vw;
+        padding-bottom: 5vw;
+        box-shadow: inset 0 0 64px 64px rgba(0, 0, 0, 0.11);
+    }
+    #project-wrap :global(.item) {
+        transform-style: preserve-3d;
+        will-change: transform;
+    }
+</style>

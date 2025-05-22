@@ -1,0 +1,124 @@
+---
+import NavLink from "./NavLink.astro";
+import FrostBar from "./FrostBar.astro";
+import {
+    IconBrandGithub,
+    IconBrandLinkedin,
+    IconMail,
+} from "@tabler/icons-react";
+---
+
+<footer class="footer row">
+    <div class="footer-wrap">
+        <FrostBar class="footer-frost-bar">
+            <div class="footer-content">
+                <div class="footer-links">
+                    <a
+                        class="footer-link"
+                        href="mailto:hello.timohausmann@gmail.com"
+                    >
+                        <IconMail size={20} />
+                        hello.timohausmann@gmail.com
+                    </a>
+
+                    <a
+                        class="footer-link"
+                        href="https://linkedin.com/in/your-profile"
+                    >
+                        <IconBrandLinkedin />
+                        LinkedIn
+                    </a>
+
+                    <a
+                        class="footer-link"
+                        href="https://github.com/your-username"
+                    >
+                        <IconBrandGithub />
+                        GitHub
+                    </a>
+
+                    <a class="footer-link" href="/imprint"> Impressum </a>
+                </div>
+            </div>
+        </FrostBar>
+    </div>
+</footer>
+
+<style>
+    .footer {
+        /* background: linear-gradient(to bottom, #6361ff 0%, #3c3a99 100%); */
+        background: rgba(0, 0, 0, 0.11);
+    }
+
+    .footer-wrap {
+        padding-top: 4rem;
+        padding-bottom: 4rem;
+        opacity: 0;
+        animation: fadeInUp 0.6s ease forwards;
+        animation-timeline: view();
+        animation-range: entry;
+    }
+
+    .footer-frost-bar {
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(25%);
+            filter: blur(16px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0%);
+            filter: blur(0px);
+        }
+    }
+
+    .footer-content {
+        width: 100%;
+    }
+
+    .footer-links {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        align-items: center;
+        width: 100%;
+        gap: 2rem;
+    }
+
+    .footer-link {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 0.65rem;
+        text-decoration: underline;
+        text-decoration-color: transparent;
+        font-size: 14px;
+        padding: 0.25rem 1rem;
+        transition: all 0.2s ease;
+        color: rgba(0, 0, 0, 0.85);
+    }
+    .footer-link:hover {
+        color: black;
+        text-decoration-color: black;
+    }
+
+    .icon {
+        width: 16px;
+        height: 16px;
+        color: black;
+        margin-right: 0.5rem;
+        vertical-align: middle;
+    }
+
+    @media (max-width: 768px) {
+        .footer-links {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+    }
+</style>

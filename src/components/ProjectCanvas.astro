@@ -1,0 +1,72 @@
+---
+// Import required for client-side script
+---
+
+<div id="project-canvas"></div>
+
+<script>
+  import { SVG } from '@svgdotjs/svg.js';
+
+  // Initialize SVG when the component is mounted
+  document.addEventListener('DOMContentLoaded', () => {
+    const canvasElement = document.getElementById('project-canvas');
+    if (!canvasElement) return;
+
+    // Create SVG canvas using the full width and height of the container
+    const width = canvasElement.clientWidth;
+    const height = canvasElement.clientHeight;
+    const draw = SVG().addTo('#project-canvas').size(width, height);
+
+    // Create circle
+    const centerX = width / 2;
+    const centerY = height / 2;
+    const radius = Math.min(width, height) * 0.4; // 40% of the smaller dimension
+    
+    const circle = draw.circle(radius * 2)
+      .center(centerX, centerY)
+      .fill('none')
+      .stroke({ 
+        color: '#666666',
+        width: 2,
+        dasharray: '10, 10' // Creates dashed stroke
+      });
+
+    let rotation = 0;
+
+    // Animation loop
+    function animate() {
+      rotation = (rotation + 0.001) % 360; // Rotate 0.5 degrees per frame
+      circle.rotate(0.1, centerX, centerY);
+      requestAnimationFrame(animate);
+    }
+
+    // Start animation
+    animate();
+
+    // Handle window resize
+    window.addEventListener('resize', () => {
+      const newWidth = canvasElement.clientWidth;
+      const newHeight = canvasElement.clientHeight;
+      draw.size(newWidth, newHeight);
+      
+      // Update circle position and size
+      const newCenterX = newWidth / 2;
+      const newCenterY = newHeight / 2;
+      const newRadius = Math.min(newWidth, newHeight) * 0.4;
+      
+      circle
+        .center(newCenterX, newCenterY)
+        .radius(newRadius);
+    });
+  });
+</script>
+
+<style>
+  #project-canvas {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    overflow: hidden;
+    pointer-events: none;
+  }
+</style>

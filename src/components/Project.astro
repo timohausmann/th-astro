@@ -1,0 +1,79 @@
+---
+import stock_basel from "../assets/stock_basel.png";
+import stock_brom from "../assets/stock_brom.png";
+import stock_cori from "../assets/stock_cori.png";
+import stock_leon from "../assets/stock_leon.png";
+import ProjectCard from "./ProjectCard.astro";
+import ProjectWrap from "./ProjectWrap.astro";
+---
+
+<ProjectWrap>
+    <section class="projects row">
+        <ul class="list row-inner">
+            <ProjectCard
+                img={stock_basel}
+                alt="Kunstmuseum Basel Audioguide"
+                href="/project/1"
+                title="Audioguide Web-App"
+                suptitle="Kunstmuseum Basel"
+            />
+            <ProjectCard
+                img={stock_leon}
+                alt="Leonkoro Quartet Website"
+                href="/project/4"
+                title="Ensemble Website"
+                suptitle="Leonkoro Quartet"
+            />
+            <ProjectCard
+                img={stock_brom}
+                alt="Bromacker Website"
+                href="/project/2"
+                title="Bromacker: grabungsstelle 3D"
+                suptitle="Museum für Naturkunde Berlin"
+            />
+            <ProjectCard
+                img={stock_cori}
+                alt="Coriolis Character Sheets Website"
+                href="/project/3"
+                title="Character Sheets"
+                suptitle="Open Source"
+            />
+        </ul>
+    </section>
+</ProjectWrap>
+
+<style>
+    .projects {
+        position: relative;
+        z-index: 2;
+    }
+    .list {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        row-gap: 0;
+        column-gap: 6rem;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .item {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+    .card {
+        padding: 1rem;
+        background-color: white;
+        border-radius: 1.5rem;
+        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
+    }
+    .tall {
+        width: 320px;
+        height: auto;
+    }
+    .wide {
+        width: auto;
+        height: 320px;
+    }
+</style>

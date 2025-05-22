@@ -1,0 +1,27 @@
+.caps,
+.caps-11,
+.caps-12,
+.caps-14,
+.caps-15 {
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    letter-spacing: 0.075em;
+    text-transform: uppercase;
+}
+
+.caps-15 {
+    font-size: 15px;
+}
+
+.caps-14 {
+    font-size: 14px;
+}
+
+.caps-12 {
+    font-size: 12px;
+}
+
+.caps-11 {
+    font-size: 11px;
+}
