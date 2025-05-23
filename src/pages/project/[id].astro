@@ -1,0 +1,32 @@
+---
+import type { Project } from '../../types/projects';
+import ProjectDetail from '../../components/ProjectDetail.astro';
+import showcase from '../../data/showcase.json';
+import Layout from '../../layouts/Layout.astro';
+
+// Generate static paths for all projects
+export function getStaticPaths() {
+    // Type assertion for showcase data
+    const projects = showcase as Project[];
+    
+    return projects.map((project) => ({
+        params: { id: project.id.toString() },
+        props: { project }
+    }));
+}
+
+// Get the project data from props
+const { project } = Astro.props;
+---
+
+<Layout>
+    <div class="page row">
+        <div class="row-inner">
+            <ProjectDetail project={project} />
+        </div>
+    </div>
+</Layout>
+
+<style>
+    /* Add any page-specific styles here */
+</style>

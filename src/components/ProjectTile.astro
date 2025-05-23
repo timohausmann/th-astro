@@ -1,28 +1,43 @@
 ---
-interface Props {
-    img: ImageMetadata;
-    alt: string;
-    href: string;
-    title: string;
-    suptitle?: string;
-}
-
+import type { ImageMetadata } from "astro";
+import { Image } from "astro:assets";
+import type { Project } from "../types/projects";
 import { IconArrowUpRight } from "@tabler/icons-react";
 import ProjectLink from "./ProjectLink.astro";
 
-const { img, alt, href, title, suptitle } = Astro.props;
+interface Props {
+    project: Project;
+}
 
-// Determine image class based on aspect ratio
+const { project } = Astro.props;
+
+// Handle dynamic images
+const images = await import.meta.glob<{ default: ImageMetadata }>(
+    "/src/assets/*.{jpeg,jpg,png,gif}"
+);
+
+if (!images[project.img])
+    throw new Error(
+        `"${project.img}" does not exist (ProjectTile)`
+    );
+
+const img = await images[project.img]().then(img => img.default);
 const imageAspectRatio = img.width / img.height;
 const imageClass = imageAspectRatio < 1 ? "tall" : "wide";
 ---
 
 <li class="item">
-    <a class="link" href={href}>
+    <a class="link" href={`/project/${project.id}`}>
         <div class="card">
-            <img src={img.src} alt={alt} class={imageClass} />
+            <Image
+                src={img}
+                width={img.width}
+                height={img.height}
+                alt={project.alt}
+                class={imageClass}
+            />
         </div>
-        <ProjectLink text={title} suptitle={suptitle}>
+        <ProjectLink text={project.title} suptitle={project.suptitle}>
             <IconArrowUpRight />
         </ProjectLink>
     </a>

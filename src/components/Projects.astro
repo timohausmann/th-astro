@@ -1,10 +1,11 @@
 ---
-import stock_basel from "../assets/stock_basel.png";
-import stock_brom from "../assets/stock_brom.png";
-import stock_cori from "../assets/stock_cori.png";
-import stock_leon from "../assets/stock_leon.png";
+import type { Project } from "../types/projects";
 import ProjectTile from "./ProjectTile.astro";
 import ProjectsRotate from "./ProjectsRotate.astro";
+import showcase from "../data/showcase.json";
+
+// Type assertion for showcase data
+const projects = showcase as Project[];
 ---
 
 <ProjectsRotate>
@@ -12,34 +13,9 @@ import ProjectsRotate from "./ProjectsRotate.astro";
     <section class="projects row">
         <h1 class="title">Referenzen</h1>
         <ul class="list row-inner">
-            <ProjectTile
-                img={stock_basel}
-                alt="Kunstmuseum Basel Audioguide"
-                href="/project/1"
-                title="Audioguide Web-App"
-                suptitle="Kunstmuseum Basel"
-            />
-            <ProjectTile
-                img={stock_leon}
-                alt="Leonkoro Quartet Website"
-                href="/project/4"
-                title="Ensemble Website"
-                suptitle="Leonkoro Quartet"
-            />
-            <ProjectTile
-                img={stock_brom}
-                alt="Bromacker Website"
-                href="/project/2"
-                title="Bromacker: grabungsstelle 3D"
-                suptitle="Museum für Naturkunde Berlin"
-            />
-            <ProjectTile
-                img={stock_cori}
-                alt="Coriolis Character Sheets Website"
-                href="/project/3"
-                title="Character Sheets"
-                suptitle="Open Source"
-            />
+            {
+                projects.map((project) => <ProjectTile project={project} />)
+            }
         </ul>
     </section>
 </ProjectsRotate>

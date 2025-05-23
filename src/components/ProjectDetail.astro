@@ -1,0 +1,74 @@
+---
+import { IconX } from "@tabler/icons-react";
+import type { Project } from "../types/projects";
+import { Image } from "astro:assets";
+
+interface Props {
+    project: Project;
+}
+
+const { project } = Astro.props;
+
+// Handle dynamic images
+const images = await import.meta.glob<{ default: ImageMetadata }>(
+    "/src/assets/*.{jpeg,jpg,png,gif}"
+);
+
+if (!images[project.img])
+    throw new Error(`"${project.img}" does not exist (ProjectTile)`);
+
+const img = await images[project.img]().then((img) => img.default);
+---
+
+<article class="modal">
+    <header class="header">
+        <div>
+            <p class="client">{project.suptitle}</p>
+            <h1 class="title">{project.title}</h1>
+        </div>
+        <button class="close">
+            <IconX />
+        </button>
+    </header>
+
+    <Image
+        src={img}
+        width={img.width}
+        height={img.height}
+        alt={project.alt}
+        class="image"
+    />
+
+    <div class="content">
+        <p class="description">{project.description}</p>
+        <a class="button" href={project.link} target="_blank">
+            {project.link}
+        </a>
+        <ul class="dl">
+            <li>
+                <strong>Meine Rollen:</strong>
+                <ul class="tags">
+                    {
+                        project.roles.map((role: string) => (
+                            <li class="tag">{role}</li>
+                        ))
+                    }
+                </ul>
+            </li>
+            <li>
+                <strong>Technologien:</strong>
+                <ul class="tags">
+                    {
+                        (project.technologies || project.tech).map(
+                            (technology: string) => (
+                                <li class="tag">{technology}</li>
+                            )
+                        )
+                    }
+                </ul>
+            </li>
+        </ul>
+    </div>
+</article>
+
+<style></style>

@@ -33,3 +33,9 @@ body {
     margin-left: auto;
     margin-right: auto;
 }
+
+.page {
+    padding-top: 12rem;
+    min-height: calc(100dvh - 192px);
+    background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.11));
+}

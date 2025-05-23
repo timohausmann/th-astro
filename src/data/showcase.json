@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "title": "Audioguide Web-App",
+    "suptitle": "Kunstmuseum Basel",
+    "href": "/project/1",
+    "img": "/src/assets/stock_basel.png",
+    "alt": "Kunstmuseum Basel Audioguide",
+    "tech": ["Firebase", "Next.js", "CSS Modules", "Motion.js", "Dexie", "TypeScript"],
+    "roles": ["Design", "Programmierung"]
+  },
+  {
+    "id": 4,
+    "title": "Ensemble Website",
+    "suptitle": "Leonkoro Quartet",
+    "href": "/project/4",
+    "img": "/src/assets/stock_leon.png",
+    "alt": "Leonkoro Quartet Website",
+    "tech": ["ProcessWire", "Svelte", "Tailwind", "TypeScript"],
+    "roles": ["Konzept", "Design", "Programmierung", "Projektmanagement"]
+  },
+  {
+    "id": 2,
+    "title": "Bromacker: grabungsstelle 3D",
+    "suptitle": "Museum für Naturkunde Berlin",
+    "href": "/project/2",
+    "img": "/src/assets/stock_brom.png",
+    "alt": "Bromacker Website",
+    "tech": ["ProcessWire", "Next.js", "Three.js", "R3F", "Drei", "Theatre.js", "CSS Modules", "TypeScript"],
+    "roles": ["Programmierung"]
+  },
+  {
+    "id": 3,
+    "title": "Character Sheets",
+    "suptitle": "Open Source",
+    "href": "/project/3",
+    "img": "/src/assets/stock_cori.png",
+    "alt": "Coriolis Character Sheets Website",
+    "tech": ["Firebase", "Svelte", "Bulma"],
+    "roles": ["Konzept", "Design", "Programmierung", "Projektmanagement"]
+  }
+]
