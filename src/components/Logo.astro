@@ -1,0 +1,29 @@
+---
+// Logo component that displays the site title and subtitle
+---
+
+<hgroup>
+    <a class="logo caps-15" href="/">
+        <h1>Timo Hausmann</h1>
+        <span class="divider">//</span>
+        <h2>Creative Coding</h2>
+    </a>
+</hgroup>
+
+<style>
+    .logo {
+        display: flex;
+        align-items: baseline;
+        gap: 1rem;
+    }
+    h1,
+    h2,
+    .divider {
+        color: var(--color-purple);
+        line-height: 1;
+    }
+    .divider {
+        letter-spacing: 0;
+    }
+</style>
+

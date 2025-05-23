@@ -1,0 +1,8 @@
+/* Delight - Black */
+@font-face {
+    font-family: "Delight";
+    font-style: normal;
+    font-weight: 800;
+    src: local("Delight"),
+        url("/fonts/delight/Delight-Black.woff2") format("woff2");
+}

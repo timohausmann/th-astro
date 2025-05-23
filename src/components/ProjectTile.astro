@@ -34,36 +34,16 @@ const imageClass = imageAspectRatio < 1 ? "tall" : "wide";
         flex-direction: column;
         gap: 1rem;
         transition: transform 0.4s;
-        /* animation: projectCardIn 0.6s ease forwards;
-        animation-timeline: view();
-        animation-range: cover 0% 70%; */
     }
     .link:hover {
         transform: scale(1.05);
     }
-
-    /* @keyframes projectCardIn {
-        from {
-            opacity: 0;
-            transform: scale(0.8);
-            filter: blur(16px);
-        }
-        to {
-            opacity: 1;
-            transform: scale(1);
-            filter: blur(0px);
-        }
-    } */
     .card {
         padding: 1rem;
         background-color: white;
         border-radius: 1.5rem;
-        box-shadow: 0 4px 48px rgba(0, 0, 0, 0.1);
         position: relative;
-        transition: box-shadow 1s;
-    }
-    .link:hover .card {
-        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 4px 48px rgba(0, 0, 0, 0.1);
     }
     .tall {
         width: 320px;

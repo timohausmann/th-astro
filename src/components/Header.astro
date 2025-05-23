@@ -2,19 +2,12 @@
 import { IconMoodSmile, IconFlame, IconMessage } from "@tabler/icons-react";
 import NavLink from "./NavLink.astro";
 import FrostBar from "./FrostBar.astro";
-
-// import { IconFlame } from "@tabler/icons";
-// import IconFlame2 from "@tabler/icons/IconFlame";
-// import IconFlame from "@tabler/icons/icons/outline/flame.svg";
+import Logo from "./Logo.astro";
 ---
 
 <header class="header row">
     <FrostBar>
-        <hgroup class="logo caps-15">
-            <h1>Timo Hausmann</h1>
-            <span class="divider">//</span>
-            <h2>Creative Coding</h2>
-        </hgroup>
+        <Logo />
         <nav>
             <ul class="nav-list">
                 <li>
@@ -43,20 +36,6 @@ import FrostBar from "./FrostBar.astro";
         top: 2rem;
         left: 0;
         z-index: 100;
-    }
-    .logo {
-        display: flex;
-        align-items: baseline;
-        gap: 1rem;
-    }
-    h1,
-    h2,
-    .divider {
-        color: var(--color-purple);
-        line-height: 1;
-    }
-    .divider {
-        letter-spacing: 0;
     }
 
     .nav-list {

@@ -3,35 +3,37 @@ import stock_basel from "../assets/stock_basel.png";
 import stock_brom from "../assets/stock_brom.png";
 import stock_cori from "../assets/stock_cori.png";
 import stock_leon from "../assets/stock_leon.png";
-import ProjectCard from "./ProjectCard.astro";
-import ProjectWrap from "./ProjectWrap.astro";
+import ProjectTile from "./ProjectTile.astro";
+import ProjectsRotate from "./ProjectsRotate.astro";
 ---
 
-<ProjectWrap>
+<ProjectsRotate>
+    <a href="#" name="referenzen"></a>
     <section class="projects row">
+        <h1 class="title">Referenzen</h1>
         <ul class="list row-inner">
-            <ProjectCard
+            <ProjectTile
                 img={stock_basel}
                 alt="Kunstmuseum Basel Audioguide"
                 href="/project/1"
                 title="Audioguide Web-App"
                 suptitle="Kunstmuseum Basel"
             />
-            <ProjectCard
+            <ProjectTile
                 img={stock_leon}
                 alt="Leonkoro Quartet Website"
                 href="/project/4"
                 title="Ensemble Website"
                 suptitle="Leonkoro Quartet"
             />
-            <ProjectCard
+            <ProjectTile
                 img={stock_brom}
                 alt="Bromacker Website"
                 href="/project/2"
                 title="Bromacker: grabungsstelle 3D"
                 suptitle="Museum für Naturkunde Berlin"
             />
-            <ProjectCard
+            <ProjectTile
                 img={stock_cori}
                 alt="Coriolis Character Sheets Website"
                 href="/project/3"
@@ -40,13 +42,25 @@ import ProjectWrap from "./ProjectWrap.astro";
             />
         </ul>
     </section>
-</ProjectWrap>
+</ProjectsRotate>
 
 <style>
+    .title {
+        font-family: "Delight";
+        font-size: 3rem;
+        font-weight: 800;
+        text-align: center;
+        margin-bottom: 4rem;
+        text-align: center;
+        /* color: #6361fe; */
+        color: #3e3b9c;
+    }
+
     .projects {
         position: relative;
         z-index: 2;
     }
+
     .list {
         display: flex;
         flex-direction: row;
@@ -61,7 +75,9 @@ import ProjectWrap from "./ProjectWrap.astro";
         display: flex;
         flex-direction: column;
         gap: 1rem;
+        position: relative;
     }
+
     .card {
         padding: 1rem;
         background-color: white;

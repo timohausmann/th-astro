@@ -1,16 +1,16 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout title="Imprint">
-    <section class="row">
+    <section class="page row">
         <div class="row-inner">
             <div class="imprint-content">
                 <h1>Imprint</h1>
                 <div class="address">
                     <p>
                         Timo Hausmann<br />
-                        An der Tiefenriede 13<br /> 
+                        An der Tiefenriede 13<br />
                         30173 Hannover
                     </p>
                 </div>
@@ -20,6 +20,15 @@ import Layout from '../layouts/Layout.astro';
 </Layout>
 
 <style>
+    .page {
+        padding-top: 12rem;
+        min-height: calc(100dvh - 192px);
+        background: linear-gradient(
+            to bottom,
+            transparent,
+            rgba(0, 0, 0, 0.11)
+        );
+    }
     .imprint-content {
         font-size: 20px;
         line-height: 1.6;
@@ -34,4 +43,5 @@ import Layout from '../layouts/Layout.astro';
     .address {
         margin-top: 1rem;
     }
-</style> 
+</style>
+
