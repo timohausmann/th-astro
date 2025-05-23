@@ -1,0 +1,101 @@
+---
+interface Props {
+    text: string;
+}
+
+const { text } = Astro.props;
+---
+
+<span class="decoder-text">
+    {
+        text.split("").map((letter, index) => (
+            <span class="letter" data-original={letter}>
+                {letter === " " ? "\u00A0" : letter}
+            </span>
+        ))
+    }
+</span>
+
+<script>
+    const symbols = [
+        "$",
+        "#",
+        "&",
+        "/",
+        "<",
+        ">",
+        "!",
+        "?",
+        "@",
+        "{",
+        "}",
+        "[",
+        "]",
+        "|",
+        "~",
+        "^",
+        "*",
+        "+",
+        "=",
+        "%",
+    ];
+    const letters = document.querySelectorAll(
+        ".letter:not([data-original=' '])"
+    ) as NodeListOf<HTMLElement>;
+    const animationDuration = 1000; // 1 second in milliseconds
+
+    function getRandomSymbol() {
+        return symbols[Math.floor(Math.random() * symbols.length)];
+    }
+
+    function easeOutExpo(x: number) {
+        return x === 1 ? 1 : 1 - Math.pow(2, -10 * x);
+    }
+
+    letters.forEach((letter) => {
+        let lastMouseOver = 0;
+        let animationFrame: number | null = null;
+        const originalText = letter.dataset.original || "?";
+
+        function animate(timestamp: number) {
+            if (!lastMouseOver) return;
+
+            const elapsed = timestamp - lastMouseOver;
+            const progress = Math.min(elapsed / animationDuration, 1);
+            const easedProgress = easeOutExpo(progress);
+
+            // Update symbol more frequently at the start, less frequently at the end
+            const updateFrequency = Math.max(1 - easedProgress, 0.1);
+            if (Math.random() < updateFrequency) {
+                letter.textContent = getRandomSymbol();
+            }
+
+            if (progress < 1) {
+                animationFrame = requestAnimationFrame(animate);
+            } else {
+                letter.textContent =
+                    originalText === " " ? "\u00A0" : originalText;
+                lastMouseOver = 0;
+            }
+        }
+
+        letter.addEventListener("mouseenter", () => {
+            lastMouseOver = performance.now();
+            if (animationFrame) {
+                cancelAnimationFrame(animationFrame);
+            }
+            animationFrame = requestAnimationFrame(animate);
+        });
+    });
+</script>
+
+<style>
+    .decoder-text {
+        display: flex;
+        gap: 1px;
+    }
+
+    .letter {
+        display: inline-block;
+    }
+</style>
