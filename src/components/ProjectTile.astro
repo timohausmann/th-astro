@@ -1,42 +1,20 @@
 ---
 import type { ImageMetadata } from "astro";
-import { Image } from "astro:assets";
 import type { Project } from "../types/projects";
 import { IconArrowUpRight } from "@tabler/icons-react";
 import ProjectLink from "./ProjectLink.astro";
+import ProjectImageCard from "./ProjectImageCard.astro";
 
 interface Props {
     project: Project;
 }
 
 const { project } = Astro.props;
-
-// Handle dynamic images
-const images = await import.meta.glob<{ default: ImageMetadata }>(
-    "/src/assets/*.{jpeg,jpg,png,gif}"
-);
-
-if (!images[project.img])
-    throw new Error(
-        `"${project.img}" does not exist (ProjectTile)`
-    );
-
-const img = await images[project.img]().then(img => img.default);
-const imageAspectRatio = img.width / img.height;
-const imageClass = imageAspectRatio < 1 ? "tall" : "wide";
 ---
 
 <li class="item">
     <a class="link" href={`/project/${project.id}`}>
-        <div class="card">
-            <Image
-                src={img}
-                width={img.width}
-                height={img.height}
-                alt={project.alt}
-                class={imageClass}
-            />
-        </div>
+        <ProjectImageCard project={project} />
         <ProjectLink text={project.title} suptitle={project.suptitle}>
             <IconArrowUpRight />
         </ProjectLink>
@@ -53,18 +31,11 @@ const imageClass = imageAspectRatio < 1 ? "tall" : "wide";
     .link:hover {
         transform: scale(1.05);
     }
-    .card {
-        padding: 1rem;
-        background-color: white;
-        border-radius: 1.5rem;
-        position: relative;
-        box-shadow: 0 4px 48px rgba(0, 0, 0, 0.1);
-    }
-    .tall {
+    .item :global(.tall) {
         width: 320px;
         height: auto;
     }
-    .wide {
+    .item :global(.wide) {
         width: auto;
         height: 320px;
     }

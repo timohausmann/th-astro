@@ -3,40 +3,46 @@
     "id": 1,
     "title": "Audioguide Web-App",
     "suptitle": "Kunstmuseum Basel",
-    "href": "/project/1",
+    "href": "https://guide.kumu.swiss",
     "img": "/src/assets/stock_basel.png",
     "alt": "Kunstmuseum Basel Audioguide",
     "tech": ["Firebase", "Next.js", "CSS Modules", "Motion.js", "Dexie", "TypeScript"],
-    "roles": ["Design", "Programmierung"]
+    "roles": ["Design", "Programmierung"],
+    "description": "Mobiler Audioguide in drei Sprachen mit Audioplayer, Offline-Funktionalität, geführten Touren, Favoriten, animierten Seitenübergängen und mehr. Alle Inhalte können in einem CMS bearbeitet werden.",
+    "layout": "tall"
   },
   {
     "id": 4,
     "title": "Ensemble Website",
     "suptitle": "Leonkoro Quartet",
-    "href": "/project/4",
+    "href": "https://leonkoroquartet.com",
     "img": "/src/assets/stock_leon.png",
     "alt": "Leonkoro Quartet Website",
     "tech": ["ProcessWire", "Svelte", "Tailwind", "TypeScript"],
-    "roles": ["Konzept", "Design", "Programmierung", "Projektmanagement"]
+    "roles": ["Konzept", "Design", "Programmierung", "Projektmanagement"],
+    "description": "Mobile-first Künstler:innen-Portfolio in schlichten und elegantem Design mit Konzertkalender, News, Media und mehr. Viele Mikroanimationen und -interaktionen runden das Erlebnis ab. Die viersprachige Website unterstützt u.a. Japanisch.",
+    "layout": "wide"
   },
   {
     "id": 2,
     "title": "Bromacker: grabungsstelle 3D",
     "suptitle": "Museum für Naturkunde Berlin",
-    "href": "/project/2",
+    "href": "https://explore.bromacker.de",
     "img": "/src/assets/stock_brom.png",
     "alt": "Bromacker Website",
     "tech": ["ProcessWire", "Next.js", "Three.js", "R3F", "Drei", "Theatre.js", "CSS Modules", "TypeScript"],
-    "roles": ["Programmierung"]
+    "roles": ["Programmierung"],
+    "layout": "wide"
   },
   {
     "id": 3,
     "title": "Character Sheets",
     "suptitle": "Open Source",
-    "href": "/project/3",
+    "href": "https://coriolis-sheets.web.app/",
     "img": "/src/assets/stock_cori.png",
     "alt": "Coriolis Character Sheets Website",
     "tech": ["Firebase", "Svelte", "Bulma"],
-    "roles": ["Konzept", "Design", "Programmierung", "Projektmanagement"]
+    "roles": ["Konzept", "Design", "Programmierung", "Projektmanagement"],
+    "layout": "tall"
   }
 ]

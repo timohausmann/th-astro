@@ -17,9 +17,11 @@ export interface Project {
     /** Array of roles performed in the project */
     roles: string[];
     /** Full URL to the project */
-    link?: string;
+    href?: string;
     /** Detailed project description */
     description?: string;
     /** Array of technologies used in the project (alternative name) */
     technologies?: string[];
+    /** Layout of the project */
+    layout?: "tall" | "wide";
 }

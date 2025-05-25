@@ -1,0 +1,53 @@
+---
+import type { Project } from "../types/projects";
+import { IconX } from "@tabler/icons-react";
+
+interface Props {
+    project: Project;
+}
+
+const { project } = Astro.props;
+---
+
+<header class="header">
+    <div class="text-container">
+        <p class="suptitle">{project.suptitle}</p>
+        <h1 class="text">{project.title}</h1>
+    </div>
+    <a href="/#referenzen" class="close">
+        <IconX />
+    </a>
+</header>
+<style>
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .text-container {
+        display: flex;
+        flex-direction: column;
+        line-height: 1;
+        gap: 0.375rem;
+        color: var(--color-blue);
+    }
+    .suptitle {
+        font-size: 13px;
+        font-weight: 400;
+    }
+    .text {
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+    .close {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: none;
+        color: var(--color-blue);
+        width: 2.5rem;
+        height: 2.5rem;
+        border-radius: 0.5rem;
+        background-color: var(--color-blue-5);
+    }
+</style>

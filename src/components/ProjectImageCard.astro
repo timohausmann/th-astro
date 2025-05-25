@@ -1,0 +1,42 @@
+---
+import type { ImageMetadata } from "astro";
+import { Image } from "astro:assets";
+import type { Project } from "../types/projects";
+
+interface Props {
+    project: Project;
+}
+
+const { project } = Astro.props;
+
+// Handle dynamic images
+const images = await import.meta.glob<{ default: ImageMetadata }>(
+    "/src/assets/*.{jpeg,jpg,png,gif}"
+);
+
+if (!images[project.img])
+    throw new Error(`"${project.img}" does not exist (ProjectImageCard)`);
+
+const img = await images[project.img]().then((img) => img.default);
+const imageAspectRatio = img.width / img.height;
+const imageClass = imageAspectRatio < 1 ? "tall" : "wide";
+---
+
+<div class="card" transition:name={`project-image-${project.id}`}>
+    <Image
+        src={img}
+        width={img.width}
+        height={img.height}
+        alt={project.alt}
+        class={imageClass}
+    />
+</div>
+<style>
+    .card {
+        padding: 1rem;
+        background-color: white;
+        border-radius: 1.5rem;
+        position: relative;
+        box-shadow: 0 4px 48px rgba(0, 0, 0, 0.1);
+    }
+</style>
