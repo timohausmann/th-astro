@@ -47,7 +47,18 @@ const { project } = Astro.props;
         color: var(--color-blue);
         width: 2.5rem;
         height: 2.5rem;
+        position: relative;
+        z-index: 1;
+    }
+    .close::after {
+        content: "";
+        position: absolute;
+        inset: 0;
         border-radius: 0.5rem;
         background-color: var(--color-blue-5);
+        transition: scale 0.2s ease;
+    }
+    .close:hover::after {
+        scale: 1.1;
     }
 </style>

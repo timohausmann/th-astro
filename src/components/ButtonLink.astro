@@ -1,0 +1,65 @@
+---
+interface Props {
+    label: string;
+    href: string;
+    blank?: boolean;
+    class?: string;
+}
+
+const { label, href, blank = false, class: className } = Astro.props;
+---
+
+<a class={`button ${className}`} href={href} target={blank ? "_blank" : "_self"}>
+    <slot name="iconBefore" />
+    <span class="label">{label}</span>
+    <slot name="iconAfter" />
+</a>
+<style>
+    .button {
+        position: relative;
+        color: white;
+        display: inline-flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 0.75rem 1.5rem;
+        text-decoration: none; 
+        line-height: 1;
+        z-index: 1;
+        transition: letter-spacing 0.2s ease;
+    }
+
+    .button:has([slot="iconBefore"]) {
+        padding-left: 1.25rem;
+    }
+
+    .button:has([slot="iconAfter"]) {
+        padding-right: 1.25rem;
+    }
+
+    .button::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: var(--color-blue);
+        border-radius: 10rem;
+        z-index: -1;
+        transition: transform 0.2s ease;
+    }
+
+    .label {
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 500;
+        letter-spacing: 0.075em;
+        text-transform: uppercase;
+        transition: letter-spacing 0.2s ease;
+    }
+
+    .button:hover .label {
+        letter-spacing: 0.125em;
+    }
+
+    .button:hover::after {
+        transform: scaleX(1.025) scaleY(1.1);
+    }
+</style>

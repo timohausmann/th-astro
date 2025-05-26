@@ -6,21 +6,21 @@ interface Props {
 const { class: className } = Astro.props;
 ---
 
-<div class:list={["frost-bar", "row-inner", className]}>
+<div class:list={["frost-bg", "frost-bar", "row-inner", className]}>
     <slot />
 </div>
 
 <style>
     .frost-bar {
-        display: flex;
+        width: auto;
+        min-height: 4rem;
+        margin: 0 auto;
+        display: inline-flex;
         justify-content: space-between;
         align-items: center;
-        padding-top: 1rem;
-        padding-bottom: 1rem;
-        background: rgba(255, 255, 255, 0.8);
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
-        border-radius: 1rem;
+        gap: 2rem;
+        padding: 1rem 3rem;
+        border-radius: 1.75rem;
         box-shadow: 0 2px 16px rgba(0, 0, 0, 0.05);
     }
 </style>

@@ -1,5 +1,5 @@
 ---
-import { IconMoodSmile, IconFlame, IconMessage } from "@tabler/icons-react";
+import { IconMenu2 } from "@tabler/icons-react";
 import NavLink from "./NavLink.astro";
 import FrostBar from "./FrostBar.astro";
 import Logo from "./Logo.astro";
@@ -8,38 +8,32 @@ import Logo from "./Logo.astro";
 <header class="header row">
     <FrostBar>
         <Logo />
-        <nav>
-            <ul class="nav-list">
-                <li>
-                    <NavLink href="#about" text="Über mich">
-                        <IconMoodSmile />
-                    </NavLink>
-                </li>
-                <li>
-                    <NavLink href="#showcase" text="Referenzen">
-                        <IconFlame />
-                    </NavLink>
-                </li>
-                <li>
-                    <NavLink href="#contact" text="Kontakt">
-                        <IconMessage />
-                    </NavLink>
-                </li>
-            </ul>
-        </nav>
+        <button class="button">
+            <IconMenu2 />
+        </button>
     </FrostBar>
 </header>
 
 <style>
     .header {
         position: fixed;
+        display: flex;
         top: 2rem;
         left: 0;
         z-index: 100;
     }
 
-    .nav-list {
+    .button {
+        border: none; 
+        background: none;
         display: flex;
-        gap: 3rem;
+        justify-content: center;
+        align-items: center;
+        padding: 0;
+        margin: 0;
+        width: 2rem;
+        height: 2rem;
+        cursor: pointer;
+        color: var(--color-blue);
     }
 </style>

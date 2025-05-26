@@ -1,17 +1,18 @@
 ---
-import type { Project } from '../../types/projects';
-import ProjectDetail from '../../components/ProjectDetail.astro';
-import showcase from '../../data/showcase.json';
-import Layout from '../../layouts/Layout.astro';
+import Hero from "../../components/Hero.astro";
+import type { Project } from "../../types/projects";
+import ProjectDetail from "../../components/ProjectDetail.astro";
+import showcase from "../../data/showcase.json";
+import Layout from "../../layouts/Layout.astro";
 
 // Generate static paths for all projects
 export function getStaticPaths() {
     // Type assertion for showcase data
     const projects = showcase as Project[];
-    
+
     return projects.map((project) => ({
         params: { id: project.id.toString() },
-        props: { project }
+        props: { project },
     }));
 }
 

@@ -8,6 +8,14 @@ import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout>
-    <Hero />
-    <Projects />
+    <div class="page">
+        <Hero transition:name="hero" />
+        <Projects />
+    </div>
 </Layout>
+<style>
+    .page {
+        padding-top: 0;
+        background: none;
+    }
+</style>

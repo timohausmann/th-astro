@@ -6,6 +6,7 @@ import {
     IconBrandLinkedin,
     IconMail,
 } from "@tabler/icons-react";
+import ButtonLink from "./ButtonLink.astro";
 ---
 
 <footer class="footer row">
@@ -20,6 +21,13 @@ import {
                         <IconMail size={20} />
                         hello.timohausmann@gmail.com
                     </a>
+                    <ButtonLink
+                        href="mailto:hello.timohausmann@gmail.com"
+                        label="Kontakt"
+                        blank
+                    >
+                        <IconMail size={20} stroke={1.5} slot="iconBefore" />
+                    </ButtonLink>
 
                     <a
                         class="footer-link"
@@ -38,21 +46,27 @@ import {
                         <IconBrandGithub />
                         GitHub
                     </a>
-
-                    <a class="footer-link" href="/imprint"> Impressum </a>
                 </div>
             </div>
         </FrostBar>
     </div>
+
+    <a class="footer-link" href="/imprint"> Impressum </a>
 </footer>
 
 <style>
     .footer {
-        /* background: linear-gradient(to bottom, #6361ff 0%, #3c3a99 100%); */
-        background: rgba(0, 0, 0, 0.11);
+        background: linear-gradient(
+                to bottom,
+                rgba(0, 0, 0, 0.11) 0%,
+                rgba(0, 0, 0, 0.11) 100%
+            ),
+            linear-gradient(to bottom, #f9f9f9 0%, #f9f9f9 100%);
+        position: relative;
     }
 
     .footer-wrap {
+        display: flex;
         padding-top: 4rem;
         padding-bottom: 4rem;
         opacity: 0;
@@ -101,11 +115,11 @@ import {
         font-size: 14px;
         padding: 0.25rem 1rem;
         transition: all 0.2s ease;
-        color: rgba(0, 0, 0, 0.85);
+        color: var(--color-blue);
     }
     .footer-link:hover {
-        color: black;
-        text-decoration-color: black;
+        color: var(--color-blue);
+        text-decoration-color: var(--color-blue);
     }
 
     .icon {

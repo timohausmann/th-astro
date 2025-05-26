@@ -37,26 +37,32 @@ const { project } = Astro.props;
         flex-direction: column; 
         gap: 2rem;
     }
-/*
+
     .project.wide {
         max-width: 800px;
     }
-*/
+
     .project.tall {
-        /* max-width: 920px; */
         display: flex;
         gap: 2rem;
         align-items: center;
     }
-/*
-    .project.wide :global(.card) {
-        max-height: 320px;
-        width: auto;
+
+    .project.tall :global(.card) {
+        flex-grow: 1;
+        flex-shrink: 0;
     }
 
+    .project.tall :global(img) {
+        height: 100%;
+        max-height: 60vh;
+        width: auto;
+    }
+/*
     .project.tall :global(.card) {
         max-width: 320px;
         height: auto;
     }
-*/        
+*/
+   
 </style>

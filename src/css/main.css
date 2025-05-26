@@ -9,14 +9,21 @@ html {
 }
 
 body {
-    height: 100vh;
-    background-color: #f9f9f9;
+    min-height: 100dvh;
     color: black;
     font-family: "IBM Plex Mono", monospace;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
     line-height: 1.5;
+}
+
+.page::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background: black url(/anima_blue.gif);
 }
 
 .row {
@@ -35,7 +42,14 @@ body {
 }
 
 .page {
-    padding-top: 12rem;
+    padding-top: 9rem;
     min-height: calc(100dvh - 192px);
-    background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.11));
+    background: #f9f9f9
+        linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.11));
+}
+
+.frost-bg {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
 }

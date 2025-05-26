@@ -1,6 +1,7 @@
 ---
 import type { Project } from "../types/projects";
 import { IconExternalLink } from "@tabler/icons-react";
+import ButtonLink from "./ButtonLink.astro";
 
 interface Props {
     project: Project;
@@ -13,10 +14,9 @@ const { project } = Astro.props;
     <p class="description">{project.description}</p>
     {
         project.href && (
-            <a class="button" href={project.href} target="_blank">
-                <span class="caps-14">Besuchen</span>
-                <IconExternalLink size={20} stroke={1.5} />
-            </a>
+            <ButtonLink href={project.href} label="Besuchen" blank class="caps-14">
+                <IconExternalLink size={20} stroke={1.5} slot="iconAfter" />
+            </ButtonLink>
         )
     }
     <ul class="dl">
@@ -58,16 +58,14 @@ const { project } = Astro.props;
         font-size: 14px;
         /* max-width: 66%; */
     }
-    .button {
-        background: var(--color-blue);
-        color: white;
-        display: inline-flex;
-        align-items: center;
-        gap: 1rem;
-        padding: 0.75rem 1.25rem 0.75rem 1.5rem;
-        border-radius: 0.25rem;
-        text-decoration: none;
-        line-height: 1;
+    .content :global(.button) {
+        color: var(--color-blue);
+    }
+    .content :global(.label) {
+        font-weight: 400;
+    }
+    .content :global(.button::after) {
+        background: rgba(255,255,255,0.8);
     }
     .button .caps-14 {
         font-weight: 500;
@@ -87,7 +85,7 @@ const { project } = Astro.props;
     .tag {
         background-color: var(--color-blue-5);
         font-size: 13px;
-        padding: 0.25rem 0.75rem;
-        border-radius: 0.25rem;
+        padding: 0.5rem 1rem;
+        border-radius: 1rem;
     }
 </style>

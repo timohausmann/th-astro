@@ -36,13 +36,13 @@
   },
   {
     "id": 3,
-    "title": "KI Assistent",
-    "suptitle": "Versicherung",
-    "img": "/src/assets/stock_bot.png",
-    "alt": "Insurance Bot Conversational UI",
-    "tech": ["OpenAI API", "Azure Speech API", "Next.js", "Three.js", "R3F", "Drei", "CSS Modules", "TypeScript"],
-    "roles": ["Programmierung"],
-    "description": "Responsive AI Web-App mit 3D-Avatar zur Unterstützung des Vertriebs. Mithilfe der OpenAI Assistant API wurden Produktinformationen hinterlegt, die per Sprach- und Text-UI abgefragt werden können. Sprachausgabe und Lippenbewegung wurden über Azure Speech API integriert.",
+    "title": "Character Sheets",
+    "suptitle": "Open Source",
+    "href": "https://coriolis-sheets.web.app/",
+    "img": "/src/assets/stock_cori.png",
+    "alt": "Coriolis Character Sheets Website",
+    "tech": ["Firebase", "Svelte", "Bulma"],
+    "roles": ["Konzept", "Design", "Programmierung", "Projektmanagement"],
     "layout": "tall"
   }
 ]

@@ -3,6 +3,8 @@ import type { Project } from "../types/projects";
 import ProjectTile from "./ProjectTile.astro";
 import ProjectsRotate from "./ProjectsRotate.astro";
 import showcase from "../data/showcase.json";
+import { IconMail } from "@tabler/icons-react";
+import ButtonLink from "./ButtonLink.astro";
 
 // Type assertion for showcase data
 const projects = showcase as Project[];
@@ -13,10 +15,13 @@ const projects = showcase as Project[];
     <section class="projects row">
         <h1 class="title">Referenzen</h1>
         <ul class="list row-inner">
-            {
-                projects.map((project) => <ProjectTile project={project} />)
-            }
+            {projects.map((project) => <ProjectTile project={project} />)}
         </ul>
+        <!-- <div class="button-container">
+            <ButtonLink href="mailto:hello.timohausmann@gmail.com" label="Kontakt" blank>
+                <IconMail size={20} stroke={1.5} slot="iconBefore" />
+            </ButtonLink>
+        </div> -->
     </section>
 </ProjectsRotate>
 
@@ -47,25 +52,9 @@ const projects = showcase as Project[];
         justify-content: center;
     }
 
-    .item {
+    .button-container {
         display: flex;
-        flex-direction: column;
-        gap: 1rem;
-        position: relative;
-    }
-
-    .card {
-        padding: 1rem;
-        background-color: white;
-        border-radius: 1.5rem;
-        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
-    }
-    .tall {
-        width: 320px;
-        height: auto;
-    }
-    .wide {
-        width: auto;
-        height: 320px;
+        justify-content: center;
+        margin-top: 4rem;
     }
 </style>

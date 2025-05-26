@@ -1,0 +1,104 @@
+---
+// No props needed for this visual
+---
+
+<!-- SVG container for SVG.js to mount into -->
+<div id="synergy-svg-container"></div>
+
+<style>
+    #synergy-svg-container {
+        position: absolute;
+        display: flex;
+        align-items: stretch;
+        justify-content: center;
+        inset: 0;
+        padding-top: 6rem;
+    }
+    #synergy-svg-container :global(svg) {
+        width: 100%;
+        height: 100%;
+        display: block;
+        object-fit: contain;
+    }
+</style>
+
+<script>
+    // @ts-ignore
+    import { SVG } from "@svgdotjs/svg.js";
+    // @ts-ignore
+    import type { Line } from "@svgdotjs/svg.js";
+
+    // All SVG.js objects are always defined, so no null checks needed
+    window.addEventListener("DOMContentLoaded", () => {
+        const size = 480;
+
+        const leftCircle = { cx: size * 0.35, cy: size * 0.5, r: size * 0.33 };
+        const rightCircle = { cx: size * 0.65, cy: size * 0.5, r: size * 0.33 };
+
+        const intersectEllipse = {
+            cx: size * 0.5,
+            cy: size * 0.5,
+            rx: size * 0.2,
+            ry: size * 0.25,
+        };
+        const lineCount = 14;
+
+        const draw = SVG()
+            .addTo("#synergy-svg-container")
+            .size(size, size)
+            .viewbox(0, 0, size, size);
+        draw.circle(leftCircle.r * 2)
+            .center(leftCircle.cx, leftCircle.cy)
+            .fill("#000");
+        draw.circle(rightCircle.r * 2)
+            .center(rightCircle.cx, rightCircle.cy)
+            .fill("none")
+            .stroke({ color: "#000", width: size * 0.005 });
+
+        const linesGroup = draw.group();
+        const mask = draw
+            .ellipse(intersectEllipse.rx * 2, intersectEllipse.ry * 2)
+            .center(intersectEllipse.cx, intersectEllipse.cy)
+            .fill("#fff");
+        linesGroup.maskWith(mask);
+
+        const lines: Line[] = [];
+        for (let i = 0; i < lineCount; i++) {
+            const line = draw.line(0, 0, 0, 0).stroke({
+                color: "#fff",
+                width: size * 0.01,
+                linecap: "round",
+            });
+            linesGroup.add(line);
+            lines.push(line);
+        }
+
+        let offset = 0;
+        function animateLines() {
+            for (let i = 0; i < lineCount; i++) {
+                const t = ((i + offset) / lineCount) * Math.PI * 2;
+                const y =
+                    intersectEllipse.cy -
+                    intersectEllipse.ry +
+                    (2 * intersectEllipse.ry * i) / (lineCount - 1) +
+                    Math.sin(t + offset * 0.1) * (size * 0.015);
+                const dy = y - intersectEllipse.cy;
+                const rx =
+                    intersectEllipse.rx *
+                    Math.sqrt(
+                        1 -
+                            (dy * dy) /
+                                (intersectEllipse.ry * intersectEllipse.ry)
+                    );
+                const x1 = intersectEllipse.cx - rx;
+                const x2 = intersectEllipse.cx + rx;
+                lines[i].plot(x1, y, x2, y);
+            }
+            offset += 0.07;
+            requestAnimationFrame(animateLines);
+        }
+        animateLines();
+    });
+</script>
+
+<!-- No Tailwind or inline SVG styles used. -->
