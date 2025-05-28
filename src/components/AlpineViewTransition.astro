@@ -1,0 +1,91 @@
+<section class="row">
+    <div class="row-inner">
+        <div
+            class="box"
+            x-data="{
+            active: null,
+            activate(i) {
+
+                const toggle = () => {
+                    if (this.active === i) {
+                        this.active = null
+                    } else {
+                        this.active = i
+                    }
+                }
+
+                if('startViewTransition' in document) {
+                    document.startViewTransition(() => {
+                        toggle();
+                    })
+                } else {
+                    toggle();
+                }
+            }
+        }"
+        >
+            <img
+                src="https://picsum.photos/id/1/480/320"
+                class="img"
+                @click="activate(0)"
+                :class="{ active: active === 0 }"
+                x-show="active === null || active === 0"
+            />
+            <img
+                src="https://picsum.photos/id/2/480/320"
+                class="img"
+                @click="activate(1)"
+                :class="{ active: active === 1 }"
+                x-show="active === null || active === 1"
+            />
+            <img
+                src="https://picsum.photos/id/3/480/320"
+                class="img"
+                @click="activate(2)"
+                :class="{ active: active === 2 }"
+                x-show="active === null || active === 2"
+            />
+            <img
+                src="https://picsum.photos/id/4/480/320"
+                class="img"
+                @click="activate(3)"
+                :class="{ active: active === 3 }"
+                x-show="active === null || active === 3"
+            />
+        </div>
+    </div>
+</section>
+
+<style>
+    .box {
+        max-width: 600px;
+        margin: 2rem auto;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+        border: 1px solid hotpink;
+        padding: 2rem 0;
+    }
+
+    .img {
+        width: 200px;
+    }
+    .img.active {
+        width: 320px; 
+    }
+
+    .img:nth-child(1) {
+        view-transition-name: img1;
+    }
+    .img:nth-child(2) {
+        view-transition-name: img2;
+    }
+    .img:nth-child(3) {
+        view-transition-name: img3;
+    }
+    .img:nth-child(4) {
+        view-transition-name: img4;
+    }
+</style>

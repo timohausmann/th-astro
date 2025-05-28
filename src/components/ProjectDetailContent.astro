@@ -12,13 +12,6 @@ const { project } = Astro.props;
 
 <div class="content">
     <p class="description">{project.description}</p>
-    {
-        project.href && (
-            <ButtonLink href={project.href} label="Besuchen" blank class="caps-14">
-                <IconExternalLink size={20} stroke={1.5} slot="iconAfter" />
-            </ButtonLink>
-        )
-    }
     <ul class="dl">
         <li>
             <strong>Meine Rollen:</strong>
@@ -43,6 +36,18 @@ const { project } = Astro.props;
             </ul>
         </li>
     </ul>
+    <!-- {
+        project.href && (
+            <ButtonLink
+                href={project.href}
+                label="Besuchen"
+                blank
+                class="caps-14"
+            >
+                <IconExternalLink size={20} stroke={1.5} slot="iconAfter" />
+            </ButtonLink>
+        )
+    } -->
 </div>
 <style>
     .content,
@@ -65,7 +70,7 @@ const { project } = Astro.props;
         font-weight: 400;
     }
     .content :global(.button::after) {
-        background: rgba(255,255,255,0.8);
+        background: rgba(255, 255, 255, 0.8);
     }
     .button .caps-14 {
         font-weight: 500;

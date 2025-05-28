@@ -11,7 +11,7 @@ export function getStaticPaths() {
     const projects = showcase as Project[];
 
     return projects.map((project) => ({
-        params: { id: project.id.toString() },
+        params: { slug: project.slug },
         props: { project },
     }));
 }

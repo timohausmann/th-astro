@@ -14,8 +14,25 @@ const projects = showcase as Project[];
     <a href="#" name="referenzen"></a>
     <section class="projects row">
         <h1 class="title">Referenzen</h1>
-        <ul class="list row-inner">
-            {projects.map((project) => <ProjectTile project={project} />)}
+        <ul class="list row-inner" x-data="{ 
+            activeProject: null,
+            toggleProject(slug) {
+                const toggle = () => {
+                    this.activeProject = this.activeProject === slug ? null : slug;
+                }
+                
+                if ('startViewTransition' in document) {
+                    document.startViewTransition(() => {
+                        toggle();
+                    });
+                } else {
+                    toggle();
+                }
+            }
+        }">
+            {projects.slice(0, 4).map((project) => (
+                <ProjectTile project={project} />
+            ))}
         </ul>
         <!-- <div class="button-container">
             <ButtonLink href="mailto:hello.timohausmann@gmail.com" label="Kontakt" blank>
@@ -50,6 +67,8 @@ const projects = showcase as Project[];
         column-gap: 6rem;
         align-items: center;
         justify-content: center;
+
+        --max-size: 320px;
     }
 
     .button-container {

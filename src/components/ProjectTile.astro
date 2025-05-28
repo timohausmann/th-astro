@@ -1,9 +1,12 @@
 ---
 import type { ImageMetadata } from "astro";
 import type { Project } from "../types/projects";
-import { IconArrowUpRight } from "@tabler/icons-react";
+import { IconArrowUpRight, IconExternalLink } from "@tabler/icons-react";
 import ProjectLink from "./ProjectLink.astro";
 import ProjectImageCard from "./ProjectImageCard.astro";
+import ProjectDetailContent from "./ProjectDetailContent.astro";
+import ProjectDetailHeader from "./ProjectDetailHeader.astro";
+import ButtonLink from "./ButtonLink.astro";
 
 interface Props {
     project: Project;
@@ -12,31 +15,142 @@ interface Props {
 const { project } = Astro.props;
 ---
 
-<li class="item">
-    <a class="link" href={`/project/${project.id}`}>
+<li
+    class="item"
+    x-data
+    :class={`{ 
+    'is-open': activeProject === '${project.slug}',
+    'is-closed': activeProject && activeProject !== '${project.slug}' 
+    }`}
+    transition:name={`project-${project.id}`}
+>
+    <div
+        class="preview"
+        x-data
+        @click.prevent={`toggleProject('${project.slug}')`}
+    >
+        <!-- TODO: Add link to project -->
+        <!-- <a href={`/project/${project.slug}`}> -->
         <ProjectImageCard project={project} />
-        <ProjectLink text={project.title} suptitle={project.suptitle}>
-            <IconArrowUpRight />
-        </ProjectLink>
-    </a>
+        <div x-data x-show={`!activeProject`} x-transition:enter.delay.200ms>
+            <ProjectLink text={project.title} suptitle={project.suptitle}>
+                <IconArrowUpRight />
+            </ProjectLink>
+        </div>
+        <!-- </a> -->
+        {
+            project.href && (
+                <div
+                    x-data
+                    x-show={`activeProject === '${project.slug}'`}
+                    x-transition:enter.delay.200ms
+                >
+                    <ButtonLink
+                        href={project.href}
+                        label="Besuchen"
+                        blank
+                        class="caps-14"
+                        bgcolor="white"
+                    >
+                        <IconExternalLink
+                            size={20}
+                            stroke={1.5}
+                            slot="iconAfter"
+                        />
+                    </ButtonLink>
+                </div>
+            )
+        }
+    </div>
+    <div class="content">
+        <ProjectDetailHeader project={project} />
+        <ProjectDetailContent project={project} />
+    </div>
 </li>
 
 <style>
-    .link {
+    .preview {
         display: flex;
         flex-direction: column;
         gap: 1rem;
         transition: transform 0.4s;
     }
-    .link:hover {
+    .item:not(.is-open) .preview:hover {
         transform: scale(1.05);
+        cursor: pointer;
     }
     .item :global(.tall) {
-        width: 320px;
+        width: var(--max-size);
         height: auto;
     }
     .item :global(.wide) {
         width: auto;
-        height: 320px;
+        height: var(--max-size);
     }
+
+    .item {
+        transform-style: preserve-3d;
+        --translateX: 0vw;
+        display: flex;
+        gap: 4rem;
+        align-items: center;
+    }
+
+    .item.is-open {
+        opacity: 1;
+        z-index: 10;
+        transform: none !important;
+    }
+
+    .item.is-closed {
+        opacity: 0;
+        display: none;
+    }
+
+    /* .item.is-closed {
+        opacity: 0;
+        display: none;
+    } */
+
+    .content {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        width: 33vw;
+    }
+
+    .item:not(.is-open) .content {
+        display: none;
+    }
+
+    /* Custom transition classes */
+    /*
+    .content-transition-enter {
+        transition: all 300ms ease-out;
+    }
+
+    .content-transition-leave {
+        transition: all 300ms ease-in;
+    }
+
+    .content-enter-start {
+        opacity: 0;
+        transform: translateY(-50%) rotateY(-5deg) scale(0.9);
+    }
+
+    .content-enter-end {
+        opacity: 1;
+        transform: translateY(-50%) rotateY(-5deg) scale(1);
+    }
+
+    .content-leave-start {
+        opacity: 1;
+        transform: translateY(-50%) rotateY(-5deg) scale(1);
+    }
+
+    .content-leave-end {
+        opacity: 0;
+        transform: translateY(-50%) rotateY(-5deg) scale(0.9);
+    }
+        */
 </style>

@@ -4,6 +4,8 @@
 export interface Project {
     /** Unique identifier for the project */
     id: number;
+    /** URL-friendly slug for the project */
+    slug: string;
     /** Main title of the project */
     title: string;
     /** Subtitle or category of the project */

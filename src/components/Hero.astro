@@ -5,14 +5,17 @@ import {
     IconMapPin,
     IconSend,
 } from "@tabler/icons-react";
-import HeroVisual1 from "./HeroVisual1.astro";
+import HeroVisual2 from "./HeroVisual2.astro";
 import ButtonLink from "./ButtonLink.astro";
 import HeroLink from "./HeroLink.astro";
+import timo from "../assets/timohausmann.png";
+import { Image } from "astro:assets";
 ---
 
 <section class="hero row">
+    <!-- <Image src={timo} alt="Timo Hausmann" class="human" /> -->
     <div class="row-inner">
-        <!-- <HeroVisual1 /> -->
+        <HeroVisual2 />
         <div class="content">
             <!-- <h1 class="headline">
                 <span class="marker">Hallo, ich bin Timo –</span>
@@ -34,14 +37,12 @@ import HeroLink from "./HeroLink.astro";
                     />
                     Interface-Design
                 </span>
-                <span class="marker"
-                    >für ein besseres Internet für alle.</span
-                >
+                <span class="marker">für ein besseres Internet für alle.</span>
             </h1>
             <div class="note">
                 <p class="note-row">
-                    <IconTelescope size={24} stroke={1.25} />
-                    Sie suchen Mitarbeiter oder Freelancer?
+                    <!-- <IconTelescope size={24} stroke={1.25} /> -->
+                    Auf der Suche nach einem erfahrenen Entwickler mit Auge fürs Detail?
                 </p>
                 <HeroLink
                     href="mailto:hello.timohausmann@gmail.com"
@@ -56,22 +57,22 @@ import HeroLink from "./HeroLink.astro";
 <div class="hero-spacer"></div>
 <style>
     .hero {
-        position: fixed;
+        position: relative;
         background: linear-gradient(to bottom, #6361ff 0%, #3c3a99 100%);
         display: flex;
         align-items: flex-end;
         justify-content: flex-start;
-        height: 90dvh;
-        padding: 8rem 0 4rem;
+        min-height: 90dvh;
+        padding: 8rem 0 10dvh;
         z-index: 0;
     }
     .hero-spacer {
-        height: 90dvh;
+        /* height: 90dvh; */
     }
     .content {
         display: flex;
         flex-direction: column;
-        gap: 6rem;
+        gap: 15dvh;
     }
     .headline {
         font-size: 28px;
@@ -79,7 +80,7 @@ import HeroLink from "./HeroLink.astro";
         line-height: 1.4;
         display: flex;
         flex-direction: column;
-        align-items: flex-start;
+        align-items: center;
         gap: 0.25rem;
     }
     .marker {
@@ -99,7 +100,7 @@ import HeroLink from "./HeroLink.astro";
     .note {
         display: flex;
         flex-direction: column;
-        align-items: flex-start;
+        align-items: center;
         gap: 1.25rem;
         font-size: 19px;
         line-height: 1.66;
@@ -119,5 +120,14 @@ import HeroLink from "./HeroLink.astro";
         display: inline-flex;
         align-items: baseline;
         gap: 0.5rem;
+    }
+    .human {
+        position: absolute;
+        height: 90%;
+        top: 20%;
+        right: 20%;
+        width: auto;
+        z-index: 1;
+        mix-blend-mode: luminosity;
     }
 </style>

@@ -14,9 +14,13 @@ const { project } = Astro.props;
         <p class="suptitle">{project.suptitle}</p>
         <h1 class="text">{project.title}</h1>
     </div>
-    <a href="/#referenzen" class="close">
+    <button 
+        class="close" 
+        @click.prevent={`toggleProject('${project.slug}')`}
+        aria-label="Close project details"
+    >
         <IconX />
-    </a>
+    </button>
 </header>
 <style>
     .header {
@@ -49,6 +53,8 @@ const { project } = Astro.props;
         height: 2.5rem;
         position: relative;
         z-index: 1;
+        background: none;
+        cursor: pointer;
     }
     .close::after {
         content: "";

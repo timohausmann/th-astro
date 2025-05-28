@@ -22,7 +22,7 @@ const imageAspectRatio = img.width / img.height;
 const imageClass = imageAspectRatio < 1 ? "tall" : "wide";
 ---
 
-<div class="card" transition:name={`project-image-${project.id}`}>
+<div class="card" transition:name={`project-card-${project.id}`}>
     <Image
         src={img}
         width={img.width}

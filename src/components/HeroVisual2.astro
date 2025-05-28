@@ -1,0 +1,131 @@
+---
+// No props needed for this visual
+---
+
+<!-- SVG container for SVG.js to mount into -->
+<div id="synergy-svg-container"></div>
+
+<style>
+    #synergy-svg-container {
+        position: absolute;
+        display: flex;
+        align-items: stretch;
+        justify-content: center;
+        inset: 0;
+        pointer-events: none;
+    }
+    #synergy-svg-container :global(svg) {
+        width: 100%;
+        height: 100%;
+        display: block;
+        object-fit: cover;
+    }
+</style>
+
+<script>
+    // @ts-ignore
+    import { SVG } from "@svgdotjs/svg.js";
+    // @ts-ignore
+    import type { Circle } from "@svgdotjs/svg.js";
+
+    interface Ring {
+        element: Circle;
+        scale: number;
+        // opacity: number;
+    }
+
+    interface SpawnPoint {
+        x: number;
+        y: number;
+        rings: Ring[];
+        angle: number;
+        radius: number;
+    }
+
+    window.addEventListener("DOMContentLoaded", () => {
+        const size = 720;
+        const centerX = size / 2;
+        const centerY = size / 2;
+
+        // Define spawn points with initial positions and rotation properties
+        const spawnCount = 2;
+        const spawns: SpawnPoint[] = Array(spawnCount)
+            .fill(0)
+            .map((val, i) => ({
+                x: 0,
+                y: 0,
+                rings: [],
+                angle: - Math.PI/2 + ((Math.PI * 2 * i) / spawnCount),
+                radius: size * 0.3,
+            }));
+
+        // Configuration
+        const maxRings = 32; // Number of rings per spawn point
+        const ringGrowthRate = 0.1; // Slower growth rate for smoother animation
+        const maxRingSize = size * 0.95; // Increased to almost full size
+        // const ringStrokeWidth = 1;//size * 0.005;
+
+        const draw = SVG()
+            .addTo("#synergy-svg-container")
+            .size(size, size)
+            .viewbox(0, 0, size, size);
+
+        // Initialize rings for each spawn point
+        spawns.forEach((spawn) => {
+            for (let i = 0; i < maxRings; i++) {
+                spawn.angle += Math.PI / maxRings;
+                spawn.x = centerX + Math.cos(spawn.angle) * spawn.radius;
+                spawn.y = centerY + Math.sin(spawn.angle) * spawn.radius;
+                const ring = draw
+                    .circle(0)
+                    .center(spawn.x, spawn.y)
+                    .fill("none")
+                    .stroke({
+                        color: "rgba(255 255 255 / 0.1)",
+                        width: 1,
+                        opacity: 1,
+                    });
+                spawn.rings.push({
+                    element: ring,
+                    scale: (i / maxRings) * maxRingSize,
+                });
+            }
+        });
+
+        function animateRings() {
+            spawns.forEach((spawn) => {
+                spawn.rings.forEach((ring, i) => {
+                    // Update scale and opacity
+                    ring.scale += ringGrowthRate;
+
+                    // Update ring properties
+                    ring.element
+                        // .center(spawn.x, spawn.y) // Update ring center position
+                        .radius(ring.scale)
+                        .stroke({
+                            opacity: Math.sin(
+                                (ring.scale / maxRingSize) * Math.PI
+                            ),
+                        });
+
+                    // Reset ring if it reaches max size
+                    if (ring.scale >= maxRingSize) {
+                        ring.scale = 0;
+                        spawn.angle += Math.PI / maxRings;
+                        spawn.x =
+                            centerX + Math.cos(spawn.angle) * spawn.radius;
+                        spawn.y =
+                            centerY + Math.sin(spawn.angle) * spawn.radius;
+                        ring.element.center(spawn.x, spawn.y);
+                    }
+                });
+            });
+
+            requestAnimationFrame(animateRings);
+        }
+
+        animateRings();
+    });
+</script>
+
+<!-- No Tailwind or inline SVG styles used. -->

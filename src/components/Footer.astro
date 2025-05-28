@@ -51,7 +51,9 @@ import ButtonLink from "./ButtonLink.astro";
         </FrostBar>
     </div>
 
-    <a class="footer-link" href="/imprint"> Impressum </a>
+    <div class="imprint">
+        <a class="imprint-link caps caps-12" href="/imprint"> Impressum </a>
+    </div>
 </footer>
 
 <style>
@@ -68,7 +70,7 @@ import ButtonLink from "./ButtonLink.astro";
     .footer-wrap {
         display: flex;
         padding-top: 4rem;
-        padding-bottom: 4rem;
+        padding-bottom: 2rem;
         opacity: 0;
         animation: fadeInUp 0.6s ease forwards;
         animation-timeline: view();
@@ -91,6 +93,17 @@ import ButtonLink from "./ButtonLink.astro";
         }
     }
 
+    .imprint {
+        width: 100%;
+        padding-bottom: 2rem;
+        text-align: center;
+    }
+
+    .imprint-link {
+        color: rgba(0, 0, 0, 0.5);
+        text-decoration: none;
+    }
+
     .footer-content {
         width: 100%;
     }
@@ -110,16 +123,17 @@ import ButtonLink from "./ButtonLink.astro";
         flex-direction: row;
         align-items: center;
         gap: 0.65rem;
-        text-decoration: underline;
-        text-decoration-color: transparent;
         font-size: 14px;
-        padding: 0.25rem 1rem;
+        padding: 0.75rem 1.5rem;
         transition: all 0.2s ease;
         color: var(--color-blue);
+        border-radius: 9999px;
+        text-decoration: none;
     }
     .footer-link:hover {
         color: var(--color-blue);
-        text-decoration-color: var(--color-blue);
+        background-color: var(--color-blue-5);
+        letter-spacing: 0.025em;
     }
 
     .icon {
