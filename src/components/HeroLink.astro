@@ -25,12 +25,17 @@ const { label, href, blank = false, class: className } = Astro.props;
         display: inline-flex;
         align-items: center;
         gap: 1rem;
-        padding: 1.25rem 1.5rem;
-        padding-right: 2rem;
+        padding: 1.25rem 2rem;
         text-decoration: none;
         line-height: 1;
         z-index: 1;
         color: var(--color-blue);
+    }
+    .button:has([slot="iconBefore"]) {
+        padding-left: 1.5rem;
+    }
+    .button:has([slot="iconAfter"]) {
+        padding-right: 1.5rem;
     }
     .button::after {
         content: "";
@@ -46,11 +51,12 @@ const { label, href, blank = false, class: className } = Astro.props;
     }
     .label {
         text-transform: none;
-        font-style: italic;
+        /* font-style: italic; */
         font-weight: normal;
         /* font-size: 1.125rem; */
         font-size: inherit;
         letter-spacing: 0;
+        /* font-size: 18px; */
     }
 
     .button:hover::after {

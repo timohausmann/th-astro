@@ -1,0 +1,88 @@
+---
+import { IconTelescope } from "@tabler/icons-react";
+import HeroLink from "./HeroLink.astro";
+---
+
+<div class="note">
+    <p class="note-row">
+        <IconTelescope size={24} stroke={1.25} />
+        Auf der Suche nach einem erfahrenen Entwickler mit Auge fürs Detail?
+    </p>
+    <a class={`button`} href={`mailto:hello.timohausmann@gmail.com`}>
+        <span class="label">Kontakt aufnehmen</span>
+    </a>
+</div>
+<style>
+    .note {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1.25rem;
+        font-size: 18px;
+        line-height: 1.66;
+        color: white;
+    }
+    .note-row {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+        padding-left: 1.5rem;
+        opacity: 0;
+        animation: noteIn 1s 3.5s forwards;
+        animation-timing-function: var(--ease-out-back);
+    }
+    .icon-wrapper {
+        display: inline-flex;
+        align-items: baseline;
+        gap: 0.5rem;
+    }
+
+    .button {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 1.25rem 2rem;
+        text-decoration: none;
+        line-height: 1;
+        z-index: 1;
+        color: var(--color-blue);
+        opacity: 0;
+        animation: noteIn 1s 3.75s forwards;
+        animation-timing-function: var(--ease-out-back);
+    }
+    .button::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: var(--color-blue);
+        border-radius: 10rem;
+        z-index: -1;
+        transition: all 0.2s ease;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+    }
+    .label {
+        text-transform: none;
+        font-weight: normal;
+        font-size: inherit;
+        letter-spacing: 0;
+    }
+
+    .button:hover::after {
+        background: white;
+        transform: scaleX(1.025) scaleY(1.1);
+    }
+
+    @keyframes noteIn {
+        0% {
+            opacity: 0;
+            transform: scale(0.66);
+        }
+        100% {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+</style>

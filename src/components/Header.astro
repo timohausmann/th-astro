@@ -6,15 +6,15 @@ import Logo from "./Logo.astro";
 ---
 
 <header class="header row">
-    <FrostBar>
+    <FrostBar class="header-frost-bar">
         <!-- <IconCode stroke={1.5} />
         <IconBrush stroke={1.5} />
         <IconCat stroke={1.5} /> -->
 
         <Logo />
-        <button class="button">
+        <!-- <button class="button">
             <IconMenu2 stroke={1.5} />
-        </button>
+        </button> -->
     </FrostBar>
 </header>
 
@@ -26,6 +26,9 @@ import Logo from "./Logo.astro";
         left: 0;
         z-index: 100;
         color: var(--color-blue);
+    }
+    .header :global(.header-frost-bar) {
+        min-height: 4rem;
     }
 
     .button {

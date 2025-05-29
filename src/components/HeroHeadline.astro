@@ -1,0 +1,93 @@
+---
+import {
+    IconArrowsRightLeft,
+    IconTelescope,
+    IconMapPin,
+    IconSend,
+} from "@tabler/icons-react";
+import HeroVisual2 from "./HeroVisual2.astro";
+import ButtonLink from "./ButtonLink.astro";
+import HeroLink from "./HeroLink.astro";
+import timo from "../assets/timohausmann.png";
+import { Image } from "astro:assets";
+---
+
+<h1 class="headline">
+    <span class="marker">Unterwegs im Spannungsfeld</span>
+    <span class="marker">
+        Web-Entwicklung
+        <IconArrowsRightLeft
+            size={24}
+            stroke={1.5}
+            style={{ transform: "translateY(0.125em)" }}
+        />
+        Interface-Design
+    </span>
+    <span class="marker">für ein besseres Internet für alle.</span>
+</h1>
+<style>
+    .headline {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 28px;
+        font-style: italic;
+        line-height: 1.4;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.25rem;
+
+        --delay: 0.4s;
+        --duration: 1.5s;
+    }
+    .marker {
+        position: relative;
+        padding: 0.125rem 1rem;
+        z-index: 0;
+        opacity: 0;
+        animation: marker var(--duration) calc(var(--delay) * var(--index))
+            forwards;
+        animation-timing-function: var(--ease-out-back);
+    }
+    .marker:nth-child(1) {
+        --index: 1;
+    }
+    .marker:nth-child(2) {
+        --index: 2;
+    }
+    .marker:nth-child(3) {
+        --index: 3;
+    }
+    .marker::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: var(--color-cyan);
+        border-radius: 0.25rem;
+        z-index: -1;
+        transform-origin: center;
+        animation: markerBg var(--duration) ease forwards;
+        animation-delay: inherit;
+        animation-timing-function: var(--ease-out-back);
+    }
+    @keyframes marker {
+        0% {
+            opacity: 0;
+            transform: translateY(-100%) rotate(-8deg) scale(0.66);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0) rotate(0deg);
+        }
+    }
+    @keyframes markerBg {
+        0% {
+            transform: scaleX(0);
+        }
+        100% {
+            transform: scaleX(1);
+        }
+    }
+</style>

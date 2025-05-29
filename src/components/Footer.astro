@@ -51,8 +51,9 @@ import ButtonLink from "./ButtonLink.astro";
         </FrostBar>
     </div>
 
-    <div class="imprint">
-        <a class="imprint-link caps caps-12" href="/imprint"> Impressum </a>
+    <div class="secondary">
+        <span class="caps caps-12">Built with Astro & Vanilla JS</span>
+        <a class="imprint-link caps caps-12" href="/imprint">Impressum</a>
     </div>
 </footer>
 
@@ -93,15 +94,18 @@ import ButtonLink from "./ButtonLink.astro";
         }
     }
 
-    .imprint {
+    .secondary {
+        display: flex;
+        gap: 4rem;
+        justify-content: center;
         width: 100%;
         padding-bottom: 2rem;
         text-align: center;
+        color: rgba(0, 0, 0, 0.5);
     }
 
     .imprint-link {
-        color: rgba(0, 0, 0, 0.5);
-        text-decoration: none;
+        color: inherit;
     }
 
     .footer-content {

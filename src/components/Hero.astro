@@ -10,51 +10,18 @@ import ButtonLink from "./ButtonLink.astro";
 import HeroLink from "./HeroLink.astro";
 import timo from "../assets/timohausmann.png";
 import { Image } from "astro:assets";
+import HeroHeadline from "./HeroHeadline.astro";
+import HeroNote from "./HeroNote.astro";
 ---
 
 <section class="hero row">
-    <!-- <Image src={timo} alt="Timo Hausmann" class="human" /> -->
     <div class="row-inner">
         <HeroVisual2 />
-        <div class="content">
-            <!-- <h1 class="headline">
-                <span class="marker">Hallo, ich bin Timo –</span>
-                <span class="marker"
-                    >Web-Entwickler und Interface-Designer</span
-                >
-                <span class="marker"
-                    >mit Fokus auf nutzerzentrierte Lösungen.</span
-                >
-            </h1> -->
-            <h1 class="headline">
-                <span class="marker">Unterwegs im Spannungsfeld</span>
-                <span class="marker">
-                    Web-Entwicklung
-                    <IconArrowsRightLeft
-                        size={24}
-                        stroke={1.5}
-                        style={{ transform: "translateY(0.125em)" }}
-                    />
-                    Interface-Design
-                </span>
-                <span class="marker">für ein besseres Internet für alle.</span>
-            </h1>
-            <div class="note">
-                <p class="note-row">
-                    <!-- <IconTelescope size={24} stroke={1.25} /> -->
-                    Auf der Suche nach einem erfahrenen Entwickler mit Auge fürs Detail?
-                </p>
-                <HeroLink
-                    href="mailto:hello.timohausmann@gmail.com"
-                    label="Kontakt aufnehmen"
-                >
-                    <IconSend size={24} stroke={1.25} slot="iconBefore" />
-                </HeroLink>
-            </div>
-        </div>
+        <HeroHeadline />
+        <HeroNote />
     </div>
 </section>
-<div class="hero-spacer"></div>
+
 <style>
     .hero {
         position: relative;
@@ -63,71 +30,7 @@ import { Image } from "astro:assets";
         align-items: flex-end;
         justify-content: flex-start;
         min-height: 90dvh;
-        padding: 8rem 0 10dvh;
+        padding: 8rem 0 4rem;
         z-index: 0;
-    }
-    .hero-spacer {
-        /* height: 90dvh; */
-    }
-    .content {
-        display: flex;
-        flex-direction: column;
-        gap: 15dvh;
-    }
-    .headline {
-        font-size: 28px;
-        font-style: italic;
-        line-height: 1.4;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 0.25rem;
-    }
-    .marker {
-        position: relative;
-        padding: 0.125rem 1rem;
-        z-index: 0;
-    }
-    .marker::after {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background: var(--color-cyan);
-        border-radius: 0.25rem;
-        z-index: -1;
-    }
-
-    .note {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 1.25rem;
-        font-size: 19px;
-        line-height: 1.66;
-        color: white;
-    }
-    .note-row {
-        display: flex;
-        gap: 1rem;
-        align-items: center;
-        padding-left: 1.5rem;
-    }
-    .note a {
-        color: white;
-        text-decoration: underline;
-    }
-    .icon-wrapper {
-        display: inline-flex;
-        align-items: baseline;
-        gap: 0.5rem;
-    }
-    .human {
-        position: absolute;
-        height: 90%;
-        top: 20%;
-        right: 20%;
-        width: auto;
-        z-index: 1;
-        mix-blend-mode: luminosity;
     }
 </style>

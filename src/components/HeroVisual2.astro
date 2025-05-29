@@ -31,7 +31,6 @@
     interface Ring {
         element: Circle;
         scale: number;
-        // opacity: number;
     }
 
     interface SpawnPoint {
@@ -56,12 +55,12 @@
                 y: 0,
                 rings: [],
                 angle: - Math.PI/2 + ((Math.PI * 2 * i) / spawnCount),
-                radius: size * 0.3,
+                radius: size * 0.4,
             }));
 
         // Configuration
         const maxRings = 32; // Number of rings per spawn point
-        const ringGrowthRate = 0.1; // Slower growth rate for smoother animation
+        const ringGrowthRate = 10; // Pixels per second growth rate
         const maxRingSize = size * 0.95; // Increased to almost full size
         // const ringStrokeWidth = 1;//size * 0.005;
 
@@ -82,7 +81,7 @@
                     .fill("none")
                     .stroke({
                         color: "rgba(255 255 255 / 0.1)",
-                        width: 1,
+                        width: 2,
                         opacity: 1,
                     });
                 spawn.rings.push({
@@ -92,16 +91,19 @@
             }
         });
 
-        function animateRings() {
+        let lastTime = performance.now();
+        function animateRings(currentTime: number) {
+            const deltaTime = (currentTime - lastTime) / 1000; // Convert to seconds
+            lastTime = currentTime;
+
             spawns.forEach((spawn) => {
                 spawn.rings.forEach((ring, i) => {
-                    // Update scale and opacity
-                    ring.scale += ringGrowthRate;
+                    // Update scale based on delta time
+                    ring.scale += ringGrowthRate * deltaTime;
 
                     // Update ring properties
                     ring.element
-                        // .center(spawn.x, spawn.y) // Update ring center position
-                        .radius(ring.scale)
+                        .radius(Math.max(0, ring.scale))
                         .stroke({
                             opacity: Math.sin(
                                 (ring.scale / maxRingSize) * Math.PI
@@ -118,14 +120,15 @@
                             centerY + Math.sin(spawn.angle) * spawn.radius;
                         ring.element.center(spawn.x, spawn.y);
                     }
+
+                    // Ensure scale never goes negative
+                    ring.scale = Math.max(1, ring.scale);
                 });
             });
 
             requestAnimationFrame(animateRings);
         }
 
-        animateRings();
+        requestAnimationFrame(animateRings);
     });
 </script>
-
-<!-- No Tailwind or inline SVG styles used. -->
