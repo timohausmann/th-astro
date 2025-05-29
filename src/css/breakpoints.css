@@ -1,0 +1,7 @@
+/* Breakpoint definitions */
+@custom-media --xs (max-width: 480px);
+@custom-media --sm (min-width: 481px);
+@custom-media --md (min-width: 768px);
+@custom-media --lg (min-width: 1024px);
+@custom-media --xl (min-width: 1280px);
+@custom-media --xl2 (min-width: 1440px);

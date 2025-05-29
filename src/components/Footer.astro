@@ -1,6 +1,5 @@
 ---
 import NavLink from "./NavLink.astro";
-import FrostBar from "./FrostBar.astro";
 import {
     IconBrandGithub,
     IconBrandLinkedin,
@@ -11,11 +10,11 @@ import ButtonLink from "./ButtonLink.astro";
 
 <footer class="footer row">
     <div class="footer-wrap">
-        <FrostBar class="footer-frost-bar">
+        <div class="footer-bar">
             <div class="footer-content">
                 <div class="footer-links">
                     <a
-                        class="footer-link"
+                        class="footer-link mail"
                         href="mailto:hello.timohausmann@gmail.com"
                     >
                         <IconMail size={20} />
@@ -23,7 +22,7 @@ import ButtonLink from "./ButtonLink.astro";
                     </a>
                     <ButtonLink
                         href="mailto:hello.timohausmann@gmail.com"
-                        label="Kontakt"
+                        label="E-Mail schreiben"
                         blank
                     >
                         <IconMail size={20} stroke={1.5} slot="iconBefore" />
@@ -48,12 +47,13 @@ import ButtonLink from "./ButtonLink.astro";
                     </a>
                 </div>
             </div>
-        </FrostBar>
+        </div>
     </div>
 
     <div class="secondary">
         <span class="caps caps-12">Built with Astro & Vanilla JS</span>
         <a class="imprint-link caps caps-12" href="/imprint">Impressum</a>
+        <a class="imprint-link caps caps-12" href="/privacy">Datenschutzerklärung</a>
     </div>
 </footer>
 
@@ -78,7 +78,20 @@ import ButtonLink from "./ButtonLink.astro";
         animation-range: entry;
     }
 
-    .footer-frost-bar {
+    .footer-bar {
+        width: auto;
+        min-height: 3rem;
+        margin: 0 auto;
+        display: inline-flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 2rem;
+        padding: 0.75rem 3rem;
+        border-radius: 2rem;
+        box-shadow: 0 2px 16px rgba(0, 0, 0, 0.05);
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
     }
 
     @keyframes fadeInUp {
@@ -128,7 +141,7 @@ import ButtonLink from "./ButtonLink.astro";
         align-items: center;
         gap: 0.65rem;
         font-size: 14px;
-        padding: 0.75rem 1.5rem;
+        padding: 0.75rem 1.5rem 0.75rem 1.25rem;
         transition: all 0.2s ease;
         color: var(--color-blue);
         border-radius: 9999px;
@@ -148,10 +161,21 @@ import ButtonLink from "./ButtonLink.astro";
         vertical-align: middle;
     }
 
-    @media (max-width: 768px) {
+    @media (--xs) {
+        .footer-bar {
+            padding: 1rem 1.5rem;
+            width: 100%;
+        }
         .footer-links {
             flex-direction: column;
-            align-items: flex-start;
+            align-items: center;
+            gap: 1rem;
+        }
+        .mail {
+            display: none;
+        }
+        .secondary {
+            flex-direction: column;
             gap: 1rem;
         }
     }

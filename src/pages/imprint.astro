@@ -5,34 +5,52 @@ import Layout from "../layouts/Layout.astro";
 <Layout title="Imprint">
     <section class="page row">
         <div class="row-inner">
-            <div class="imprint-content">
-                <h1>Imprint</h1>
-                <div class="address">
-                    <p>
-                        Timo Hausmann<br />
-                        An der Tiefenriede 13<br />
-                        30173 Hannover
-                    </p>
-                </div>
+            <div class="imprint">
+                <h1 class="caps caps-14">Impressum</h1>
+                <p class="caps caps-12">Angaben gemäß § 5 TMG</p>
+                <p class="address">
+                    Timo Hausmann<br />
+                    An der Tiefenriede 13<br />
+                    30173 Hannover
+                </p>
+                <p>
+                    <a href="tel:+491775574990">+49 (0)177 557 4990</a><br />
+                    <a href="mailto:hello.timohausmann@gmail.com"
+                        >hello.timohausmann@gmail.com</a
+                    >
+                </p>
+                <p>USt-Nr.: DE401014678</p>
             </div>
         </div>
     </section>
 </Layout>
 
 <style>
-    .imprint-content {
-        font-size: 20px;
-        line-height: 1.6;
-        font-style: italic;
+    .page {
+        display: flex;
+        align-items: center;
+    }
+
+    .imprint {
         padding: 2rem 0;
+        text-align: center;
     }
 
     h1 {
-        margin-bottom: 2rem;
+        margin-bottom: 1rem;
     }
 
     .address {
-        margin-top: 1rem;
+        font-style: italic;
+    }
+
+    p {
+        margin-bottom: 1rem;
+        line-height: 1.6;
+    }
+    a {
+        display: inline-block;
+        text-decoration: underline;
+        margin: 0.25rem 0;
     }
 </style>
-

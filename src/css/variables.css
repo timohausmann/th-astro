@@ -9,4 +9,9 @@
     --screen-padding: 2rem;
 
     --ease-out-back: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+    @media (--xs) {
+        --screen-gutter: 1rem;
+        --screen-padding: 1rem;
+    }
 }

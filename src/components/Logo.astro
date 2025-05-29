@@ -5,27 +5,33 @@ import DecoderText from "./DecoderText.astro";
 
 <hgroup>
     <a class="logo" href="/">
-        <!-- <span class="divider">&gt;</span> -->
         <h1 class="caps caps-15"><DecoderText text="Timo Hausmann" /></h1>
         <span class="divider">//</span>
         <h2 class="caps caps-15"><DecoderText text="Creative Coding" /></h2>
     </a>
 </hgroup>
- 
+
 <style>
     .logo {
         display: flex;
         align-items: baseline;
+        justify-content: center;
         gap: 1rem;
     }
     h1,
     h2,
     .divider {
-        /* color: rgba(0 0 0 / 80%); */
         color: var(--color-blue);
         line-height: 1;
     }
     .divider {
         letter-spacing: 0;
+    }
+
+    @media (--xs) {
+        .divider,
+        h2 {
+            display: none;
+        }
     }
 </style>
