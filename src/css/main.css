@@ -53,3 +53,9 @@ body {
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
 }
+
+::view-transition-group(*),
+::view-transition-old(*),
+::view-transition-new(*) {
+    animation-duration: 0.4s;
+}

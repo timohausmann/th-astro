@@ -6,7 +6,9 @@ import HeroLink from "./HeroLink.astro";
 <div class="note">
     <p class="note-row">
         <IconTelescope size={24} stroke={1.25} />
-        Auf der Suche nach einem erfahrenen Entwickler mit Auge fürs Detail?
+        <span>
+            Auf der Suche nach einem erfahrenen Entwickler mit Auge fürs Detail?
+        </span>
     </p>
     <a class={`button`} href={`mailto:hello.timohausmann@gmail.com`}>
         <span class="label">Kontakt aufnehmen</span>
@@ -18,7 +20,8 @@ import HeroLink from "./HeroLink.astro";
         flex-direction: column;
         align-items: center;
         gap: 1.25rem;
-        font-size: 18px;
+        /* font-size: 18px; */
+        font-size: clamp(0.825rem, 2vw, 1.125rem);
         line-height: 1.66;
         color: white;
     }
@@ -26,15 +29,13 @@ import HeroLink from "./HeroLink.astro";
         display: flex;
         gap: 1rem;
         align-items: center;
-        padding-left: 1.5rem;
+        justify-content: center;
         opacity: 0;
-        animation: noteIn 1s 3.5s forwards;
+        animation: noteIn 1s 3s forwards;
         animation-timing-function: var(--ease-out-back);
     }
-    .icon-wrapper {
-        display: inline-flex;
-        align-items: baseline;
-        gap: 0.5rem;
+    .note-row svg {
+        flex-shrink: 0;
     }
 
     .button {
@@ -48,7 +49,7 @@ import HeroLink from "./HeroLink.astro";
         z-index: 1;
         color: var(--color-blue);
         opacity: 0;
-        animation: noteIn 1s 3.75s forwards;
+        animation: noteIn 1s 3.25s forwards;
         animation-timing-function: var(--ease-out-back);
     }
     .button::after {

@@ -13,17 +13,14 @@ import { Image } from "astro:assets";
 ---
 
 <h1 class="headline">
-    <span class="marker">Unterwegs im Spannungsfeld</span>
+    <span class="marker">Unterwegs im <wbr />Spannungs&shy;feld</span>
     <span class="marker">
         Web-Entwicklung
-        <IconArrowsRightLeft
-            size={24}
-            stroke={1.5}
-            style={{ transform: "translateY(0.125em)" }}
-        />
+        <IconArrowsRightLeft size={24} stroke={1.5} />
+        <wbr />
         Interface-Design
     </span>
-    <span class="marker">für ein besseres Internet für alle.</span>
+    <span class="marker">für ein besseres <wbr />Internet für alle.</span>
 </h1>
 <style>
     .headline {
@@ -31,13 +28,15 @@ import { Image } from "astro:assets";
         left: 50%;
         top: 50%;
         transform: translate(-50%, -50%);
-        font-size: 28px;
+        /* font-size: 28px; */
+        font-size: clamp(1rem, 4vw, 1.75rem);
         font-style: italic;
         line-height: 1.4;
         display: flex;
         flex-direction: column;
         align-items: center;
         gap: 0.25rem;
+        width: 90vw;
 
         --delay: 0.4s;
         --duration: 1.5s;
@@ -45,6 +44,8 @@ import { Image } from "astro:assets";
     .marker {
         position: relative;
         padding: 0.125rem 1rem;
+        text-align: center;
+        white-space: nowrap;
         z-index: 0;
         opacity: 0;
         animation: marker var(--duration) calc(var(--delay) * var(--index))
@@ -71,6 +72,11 @@ import { Image } from "astro:assets";
         animation: markerBg var(--duration) ease forwards;
         animation-delay: inherit;
         animation-timing-function: var(--ease-out-back);
+    }
+    .marker svg {
+        width: clamp(1rem, 4vw, 1.75rem);
+        height: auto;
+        transform: translateY(17.5%) scale(0.9);
     }
     @keyframes marker {
         0% {

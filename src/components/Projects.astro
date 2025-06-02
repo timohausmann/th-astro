@@ -14,7 +14,9 @@ const projects = showcase as Project[];
     <a href="#" name="referenzen"></a>
     <section class="projects row">
         <h1 class="title">Referenzen</h1>
-        <ul class="list row-inner" x-data="{ 
+        <ul
+            class="list row-inner"
+            x-data="{ 
             activeProject: null,
             toggleProject(slug) {
                 const toggle = () => {
@@ -29,10 +31,13 @@ const projects = showcase as Project[];
                     toggle();
                 }
             }
-        }">
-            {projects.slice(0, 4).map((project) => (
-                <ProjectTile project={project} />
-            ))}
+        }"
+        >
+            {
+                projects
+                    .slice(0, 4)
+                    .map((project) => <ProjectTile project={project} />)
+            }
         </ul>
         <!-- <div class="button-container">
             <ButtonLink href="mailto:hello.timohausmann@gmail.com" label="Kontakt" blank>
@@ -41,39 +46,68 @@ const projects = showcase as Project[];
         </div> -->
     </section>
 </ProjectsRotate>
+<script>
+    function equalizeSize() {
+        const projects = document.querySelector(".projects");
+        if (!projects) return;
+
+        const imgs = projects?.querySelectorAll(".project-image");
+        if (!imgs) return;
+
+        const minSize = Math.min(
+            ...Array.from(imgs).map((img: Element) => {
+                const element = img as HTMLElement;
+                if (element.classList.contains("tall")) {
+                    return element.clientWidth;
+                } else {
+                    return element.clientHeight;
+                }
+            })
+        );
+
+        (projects as HTMLElement).style.setProperty("--limit", `${minSize}px`);
+    }
+
+    // window.addEventListener("resize", equalizeSize);
+</script>
 
 <style>
     .title {
         font-family: "Delight";
-        font-size: 3rem;
+        font-size: clamp(1.75rem, 4vw, 3rem);
         font-weight: 800;
         text-align: center;
-        margin-bottom: 4rem;
+        margin-bottom: 2em;
         text-align: center;
-        /* color: #6361fe; */
         color: #3e3b9c;
     }
 
     .projects {
         position: relative;
         z-index: 2;
+        --limit: 320px;
     }
 
     .list {
         display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        row-gap: 0;
-        column-gap: 6rem;
-        align-items: center;
-        justify-content: center;
-
-        --max-size: 320px;
+        flex-direction: column;
+        gap: 4rem;
     }
 
     .button-container {
         display: flex;
         justify-content: center;
         margin-top: 4rem;
+    }
+
+    @media (--projects-large) {
+        .list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            row-gap: 0;
+            column-gap: 6rem;
+            align-items: center;
+            justify-content: center;
+        }
     }
 </style>

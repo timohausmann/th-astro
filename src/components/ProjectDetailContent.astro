@@ -36,18 +36,20 @@ const { project } = Astro.props;
             </ul>
         </li>
     </ul>
-    <!-- {
+    {
         project.href && (
-            <ButtonLink
-                href={project.href}
-                label="Besuchen"
-                blank
-                class="caps-14"
-            >
-                <IconExternalLink size={20} stroke={1.5} slot="iconAfter" />
-            </ButtonLink>
+            <div class="href-mobile">
+                <ButtonLink
+                    href={project.href}
+                    label="Besuchen"
+                    blank
+                    class="caps-14"
+                >
+                    <IconExternalLink size={20} stroke={1.5} slot="iconAfter" />
+                </ButtonLink>
+            </div>
         )
-    } -->
+    }
 </div>
 <style>
     .content,
@@ -61,7 +63,6 @@ const { project } = Astro.props;
     }
     .description {
         font-size: 14px;
-        /* max-width: 66%; */
     }
     .content :global(.button) {
         color: var(--color-blue);
@@ -92,5 +93,10 @@ const { project } = Astro.props;
         font-size: 13px;
         padding: 0.5rem 1rem;
         border-radius: 1rem;
+    }
+    @media (--projects-large) {
+        .href-mobile { 
+            display: none;
+        }
     }
 </style>
