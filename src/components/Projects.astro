@@ -3,8 +3,6 @@ import type { Project } from "../types/projects";
 import ProjectTile from "./ProjectTile.astro";
 import ProjectsRotate from "./ProjectsRotate.astro";
 import showcase from "../data/showcase.json";
-import { IconMail } from "@tabler/icons-react";
-import ButtonLink from "./ButtonLink.astro";
 
 // Type assertion for showcase data
 const projects = showcase as Project[];
@@ -14,62 +12,14 @@ const projects = showcase as Project[];
     <a href="#" name="referenzen"></a>
     <section class="projects row">
         <h1 class="title">Referenzen</h1>
-        <ul
-            class="list row-inner"
-            x-data="{ 
-            activeProject: null,
-            toggleProject(slug) {
-                const toggle = () => {
-                    this.activeProject = this.activeProject === slug ? null : slug;
-                }
-                
-                if ('startViewTransition' in document) {
-                    document.startViewTransition(() => {
-                        toggle();
-                    });
-                } else {
-                    toggle();
-                }
-            }
-        }"
-        >
+        <ul class="list row-inner">
             {
                 projects
-                    .slice(0, 4)
                     .map((project) => <ProjectTile project={project} />)
             }
         </ul>
-        <!-- <div class="button-container">
-            <ButtonLink href="mailto:hello.timohausmann@gmail.com" label="Kontakt" blank>
-                <IconMail size={20} stroke={1.5} slot="iconBefore" />
-            </ButtonLink>
-        </div> -->
     </section>
 </ProjectsRotate>
-<script>
-    function equalizeSize() {
-        const projects = document.querySelector(".projects");
-        if (!projects) return;
-
-        const imgs = projects?.querySelectorAll(".project-image");
-        if (!imgs) return;
-
-        const minSize = Math.min(
-            ...Array.from(imgs).map((img: Element) => {
-                const element = img as HTMLElement;
-                if (element.classList.contains("tall")) {
-                    return element.clientWidth;
-                } else {
-                    return element.clientHeight;
-                }
-            })
-        );
-
-        (projects as HTMLElement).style.setProperty("--limit", `${minSize}px`);
-    }
-
-    // window.addEventListener("resize", equalizeSize);
-</script>
 
 <style>
     .title {
@@ -78,7 +28,6 @@ const projects = showcase as Project[];
         font-weight: 800;
         text-align: center;
         margin-bottom: 2em;
-        text-align: center;
         color: #3e3b9c;
     }
 

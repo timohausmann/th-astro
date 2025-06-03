@@ -14,14 +14,24 @@ const { project } = Astro.props;
         <p class="suptitle">{project.suptitle}</p>
         <h1 class="text">{project.title}</h1>
     </div>
-    <button 
-        class="close" 
-        @click.prevent={`toggleProject('${project.slug}')`}
+    <button
+        class="close project-close"
         aria-label="Close project details"
     >
         <IconX />
     </button>
 </header>
+<script>
+    import { closeProject } from "../js/projects";
+
+    const close = document.querySelectorAll(".project-close");
+    close.forEach((c) => {
+        const button = c as HTMLElement;
+        button.addEventListener("click", () => {
+            closeProject();
+        });
+    });
+</script>
 <style>
     .header {
         display: flex;
