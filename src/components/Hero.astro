@@ -1,15 +1,5 @@
 ---
-import {
-    IconArrowsRightLeft,
-    IconTelescope,
-    IconMapPin,
-    IconSend,
-} from "@tabler/icons-react";
 import HeroVisual2 from "./HeroVisual2.astro";
-import ButtonLink from "./ButtonLink.astro";
-import HeroLink from "./HeroLink.astro";
-import timo from "../assets/timohausmann.png";
-import { Image } from "astro:assets";
 import HeroHeadline from "./HeroHeadline.astro";
 import HeroNote from "./HeroNote.astro";
 ---
@@ -17,7 +7,9 @@ import HeroNote from "./HeroNote.astro";
 <section class="hero row">
     <div class="row-inner">
         <HeroVisual2 />
-        <HeroHeadline />
+        <div class="headline-outer">
+            <HeroHeadline />
+        </div>
         <HeroNote />
     </div>
 </section>
@@ -26,12 +18,29 @@ import HeroNote from "./HeroNote.astro";
     .hero {
         position: relative;
         background: linear-gradient(to bottom, #6361ff 0%, #3c3a99 100%);
-        display: flex;
-        align-items: flex-end;
-        justify-content: flex-start;
         min-height: 90dvh;
-        padding: 8rem 0 4rem;
+        padding: 8rem 0 2rem;
         z-index: 0;
         overflow: hidden;
+        display: flex;
+        align-items: stretch;
+    }
+    @media (--md) {
+        .hero {
+            padding-bottom: 4rem;
+        }
+    }
+    .row-inner {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        gap: 4rem;
+    }
+    .headline-outer {
+        flex-grow: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding-top: 6vw;
     }
 </style>

@@ -35,6 +35,7 @@ const { project } = Astro.props;
     .content {
         display: flex;
         flex-direction: column; 
+        align-items: flex-start;
         gap: 2rem;
     }
 
@@ -46,6 +47,14 @@ const { project } = Astro.props;
         display: flex;
         gap: 2rem;
         align-items: center;
+    }
+
+    .project :global(.header) {
+        width: 100%;
+    }
+
+    .project :global(.href-mobile) {
+        display: block !important;
     }
 
     .project.tall :global(.card) {

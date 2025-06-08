@@ -27,7 +27,6 @@ imageClass += imageAspectRatio < 1 ? "tall" : "wide";
 <div
     class="card"
     transition:name={`project-card-${project.id}`}
-    data-clickable={project.slug}
 >
     <Image src={img} format="avif" alt={project.alt} class={imageClass} />
 </div>
@@ -40,8 +39,6 @@ imageClass += imageAspectRatio < 1 ? "tall" : "wide";
         box-shadow: 0 4px 48px rgba(0, 0, 0, 0.1);
     }
     img.tall {
-        /* max-width: min(100%, 320px); */
-        /* max-width: 320px; */
         max-width: var(--limit, 320px);
         max-height: 90vw;
         height: auto;
@@ -49,7 +46,6 @@ imageClass += imageAspectRatio < 1 ? "tall" : "wide";
         aspect-ratio: 4 / 7;
     }
     img.wide {
-        /* max-height: 320px; */
         max-height: var(--limit, 320px);
         width: auto;
         aspect-ratio: 7 / 4;
