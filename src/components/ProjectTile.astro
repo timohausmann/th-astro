@@ -18,6 +18,7 @@ const { project } = Astro.props;
     class="item"
     data-slug={project.slug}
     transition:name={`project-${project.id}`}
+    id={project.slug}
 >
     <div class="preview">
         <a
@@ -57,7 +58,8 @@ const { project } = Astro.props;
         <ProjectDetailContent project={project} />
     </div>
 </li>
-<script>
+{
+    /* <script>
     import { toggleProject } from "../js/projects";
 
     const clickables = document.querySelectorAll(".preview [data-clickable]");
@@ -71,7 +73,8 @@ const { project } = Astro.props;
             toggleProject(slug);
         });
     });
-</script>
+</script> */
+}
 <style>
     .preview {
         display: flex;

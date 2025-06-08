@@ -9,14 +9,10 @@ const projects = showcase as Project[];
 ---
 
 <ProjectsRotate>
-    <a href="#" name="referenzen"></a>
-    <section class="projects row">
+    <section class="projects row" id="referenzen">
         <h1 class="title">Referenzen</h1>
         <ul class="list row-inner">
-            {
-                projects
-                    .map((project) => <ProjectTile project={project} />)
-            }
+            {projects.map((project) => <ProjectTile project={project} />)}
         </ul>
     </section>
 </ProjectsRotate>

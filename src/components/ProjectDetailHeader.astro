@@ -14,17 +14,12 @@ const { project } = Astro.props;
         <p class="suptitle">{project.suptitle}</p>
         <h1 class="text">{project.title}</h1>
     </div>
-    <a
-        href="/"
-        class="close project-close"
-        aria-label="Close project details"
-    >
+    <a href={`/#${project.slug}`} class="close project-close" aria-label="Close project details">
         <IconX />
     </a>
 </header>
-<script>
+{/* <script>
     import { closeProject } from "../js/projects";
-
     const close = document.querySelectorAll(".project-close");
     close.forEach((c) => {
         const button = c as HTMLElement;
@@ -33,7 +28,7 @@ const { project } = Astro.props;
             closeProject();
         });
     });
-</script>
+</script> */}
 <style>
     .header {
         display: flex;
