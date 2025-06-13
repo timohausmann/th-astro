@@ -3,6 +3,19 @@ import { ClientRouter } from "astro:transitions";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import "../css/main.css";
+
+// Define props with default values
+interface Props {
+    title?: string;
+    ogUrl?: string;
+    ogImage?: string;
+}
+
+const { 
+    title = "Timo Hausmann – Creative Coding",
+    ogUrl = "/",
+    ogImage = "/preview.png"
+} = Astro.props;
 ---
 
 <!doctype html>
@@ -12,7 +25,14 @@ import "../css/main.css";
         <meta name="viewport" content="width=device-width" />
         <link rel="icon" type="image/svg+xml" href="/favicon.png" />
         <meta name="generator" content={Astro.generator} />
-        <title>Timo Hausmann // Creative Coding</title>
+        <title>{title}</title>
+
+        <meta name="description" content="Fullstack Web Development and Interface-Design Freelancer, Made in Germany" />
+        <meta property="og:title" content={title} />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={ogUrl} />
+        <meta property="og:image" content={ogImage} />
+        
         <ClientRouter />
     </head>
     <body>

@@ -3,6 +3,7 @@ import type { Project } from "../../types/projects";
 import ProjectDetail from "../../components/ProjectDetail.astro";
 import showcase from "../../data/showcase.json";
 import Layout from "../../layouts/Layout.astro";
+import { getImage } from "astro:assets";
 
 // Generate static paths for all projects
 export function getStaticPaths() {
@@ -17,9 +18,30 @@ export function getStaticPaths() {
 
 // Get the project data from props
 const { project } = Astro.props;
+const currentUrl = `/project/${project.slug}`;
+
+// Handle dynamic images
+const images = await import.meta.glob<{ default: ImageMetadata }>(
+    "/src/assets/*.{jpeg,jpg,png,gif}"
+);
+
+if (!images[project.img])
+    throw new Error(`"${project.img}" does not exist (ProjectImageCard)`);
+
+const img = await images[project.img]().then((img) => img.default);
+const optimized = await getImage({
+    src: img,
+    format: "jpg",
+    width: img.width,
+    height: img.height,
+});
 ---
 
-<Layout>
+<Layout
+    title={`${project.title} – Timo Hausmann`}
+    ogUrl={currentUrl}
+    ogImage={optimized.src}
+>
     <main class="page page--center row">
         <div class="row-inner">
             <ProjectDetail project={project} />
