@@ -1,22 +1,19 @@
 ---
 import {
-    IconArrowsRightLeft,
-    IconTelescope,
-    IconMapPin,
-    IconSend,
+    IconArrowsRightLeft
 } from "@tabler/icons-react";
-import HeroVisual2 from "./HeroVisual2.astro";
-import ButtonLink from "./ButtonLink.astro";
-import HeroLink from "./HeroLink.astro";
-import timo from "../assets/timohausmann.png";
-import { Image } from "astro:assets";
 ---
 
 <h1 class="headline">
     <span class="marker">Unterwegs im <wbr />Spannungs&shy;feld</span>
     <span class="marker">
         Web-Entwicklung
-        <IconArrowsRightLeft size={24} stroke={1.5} />
+        <IconArrowsRightLeft
+            size={24}
+            stroke={1.5}
+            aria-hidden="true"
+            role="presentation"
+        />
         <wbr />
         Interface-Design
     </span>

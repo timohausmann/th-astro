@@ -5,9 +5,15 @@ import DecoderText from "./DecoderText.astro";
 
 <hgroup>
     <a class="logo" href="/">
-        <h1 class="caps"><DecoderText text="Timo Hausmann" /></h1>
-        <span class="caps divider">//</span>
-        <h2 class="caps"><DecoderText text="Creative Coding" /></h2>
+        <h1 class="caps" aria-label="Timo Hausmann">
+            <DecoderText text="Timo Hausmann" />
+        </h1>
+        <span class="caps divider" aria-hidden="true" role="presentation"
+            >//</span
+        >
+        <h2 class="caps" aria-label="Creative Coding">
+            <DecoderText text="Creative Coding" />
+        </h2>
     </a>
 </hgroup>
 
