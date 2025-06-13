@@ -1,0 +1,54 @@
+---
+// No props needed for this visual
+---
+
+<div id="hero-canvas-container"></div>
+
+<style>
+    #hero-canvas-container {
+        position: absolute;
+        display: flex;
+        align-items: stretch;
+        justify-content: center;
+        inset: 0;
+        pointer-events: none;
+    }
+    #hero-canvas-container canvas {
+        width: 100%;
+        height: 100%;
+        display: block;
+        object-fit: cover;
+    }
+</style>
+
+<script>
+    import { SpiralEffect } from '../canvas/spiral';
+
+    window.addEventListener("DOMContentLoaded", () => {
+        const container = document.getElementById('hero-canvas-container');
+        if (!container) return;
+
+        // Create canvas element
+        const canvas = document.createElement('canvas');
+        container.appendChild(canvas);
+
+        // Initialize effect with custom color
+        const effect = new SpiralEffect();
+        effect.init(canvas);
+
+        // Handle resize
+        const resizeObserver = new ResizeObserver(entries => {
+            for (const entry of entries) {
+                const { width, height } = entry.contentRect;
+                effect.resize(width, height);
+            }
+        });
+        resizeObserver.observe(container);
+
+        // Cleanup on page unload
+        window.addEventListener('unload', () => {
+            resizeObserver.disconnect();
+            effect.destroy();
+        });
+    });
+</script>

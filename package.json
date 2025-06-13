@@ -10,7 +10,6 @@
   },
   "dependencies": {
     "@astrojs/react": "^4.2.7",
-    "@svgdotjs/svg.js": "^3.2.4",
     "@tabler/icons": "^3.33.0",
     "@tabler/icons-react": "^3.33.0",
     "@types/react": "^19.1.5",
