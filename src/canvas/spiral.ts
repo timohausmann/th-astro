@@ -37,12 +37,6 @@ export class SpiralEffect implements CanvasEffect {
     private ringColor: string = "255, 255, 255";
     private ringOpacity: number = 0.1;
 
-    constructor(options?: { ringColor?: string }) {
-        if (options?.ringColor) {
-            this.ringColor = options.ringColor;
-        }
-    }
-
     private updateDimensions(width: number, height: number) {
         if (!this.canvas) return;
 

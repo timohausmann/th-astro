@@ -24,10 +24,7 @@ let imageClass = "project-image ";
 imageClass += imageAspectRatio < 1 ? "tall" : "wide";
 ---
 
-<div
-    class="card"
-    transition:name={`project-card-${project.id}`}
->
+<div class="card" transition:name={`project-card-${project.id}`}>
     <Image src={img} format="avif" alt={project.alt} class={imageClass} />
 </div>
 <style>

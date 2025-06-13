@@ -7,8 +7,6 @@
 </div>
 
 <script>
-    const items = document.querySelectorAll(".item");
-
     // Configuration for the rotation effect
     const config = {
         rotationIntensity: 10, // Max rotation in degrees
@@ -16,16 +14,34 @@
         easing: 0.05, // Easing factor (lower = smoother)
     };
 
-    // Store current rotation values for each item
-    const itemStates = Array.from(items).map(() => ({
-        currentRotateX: 0,
-        currentRotateY: 0,
-        targetRotateX: 0,
-        targetRotateY: 0,
-    }));
-
     // Store last mouse event
     let lastMouseEvent: MouseEvent | null = null;
+    let items: NodeListOf<Element>;
+    let itemStates: Array<{
+        currentRotateX: number;
+        currentRotateY: number;
+        targetRotateX: number;
+        targetRotateY: number;
+    }>;
+
+    // Named event handler functions
+    function handleMouseMove(event: MouseEvent) {
+        lastMouseEvent = event;
+        updateRotations(event);
+    }
+
+    function handleScroll() {
+        if (lastMouseEvent) {
+            updateRotations(lastMouseEvent);
+        }
+    }
+
+    function handleMouseLeave() {
+        itemStates.forEach((state) => {
+            state.targetRotateX = 0;
+            state.targetRotateY = 0;
+        });
+    }
 
     // Function to update rotations based on mouse position and scroll
     function updateRotations(event: MouseEvent) {
@@ -60,19 +76,6 @@
         });
     }
 
-    // Add mousemove event listener to the entire document
-    document.addEventListener("mousemove", (event) => {
-        lastMouseEvent = event;
-        updateRotations(event);
-    });
-
-    // Add scroll event listener
-    window.addEventListener("scroll", () => {
-        if (lastMouseEvent) {
-            updateRotations(lastMouseEvent);
-        }
-    });
-
     // Animation loop for smooth transitions
     function animate() {
         items.forEach((item, index) => {
@@ -100,16 +103,39 @@
         requestAnimationFrame(animate);
     }
 
-    // Start animation loop
-    animate();
+    function initRotate() {
+        items = document.querySelectorAll(".projects .item");
+        if (!items.length) return;
+    
+        // Initialize item states
+        itemStates = Array.from(items).map(() => ({
+            currentRotateX: 0,
+            currentRotateY: 0,
+            targetRotateX: 0,
+            targetRotateY: 0,
+        }));
 
-    // Reset rotations when mouse leaves the viewport
-    document.addEventListener("mouseleave", () => {
-        itemStates.forEach((state) => {
-            state.targetRotateX = 0;
-            state.targetRotateY = 0;
-        });
-    });
+        // Add event listeners
+        document.addEventListener("mousemove", handleMouseMove);
+        window.addEventListener("scroll", handleScroll);
+        document.addEventListener("mouseleave", handleMouseLeave);
+
+        // Start animation loop
+        animate();
+    }
+
+    function cleanupRotate() {
+        if (!items.length) return;
+        
+        // Remove event listeners
+        document.removeEventListener("mousemove", handleMouseMove);
+        window.removeEventListener("scroll", handleScroll);
+        document.removeEventListener("mouseleave", handleMouseLeave);
+    }
+
+    // Initialize on page load and cleanup on page change
+    document.addEventListener("astro:page-load", initRotate);
+    document.addEventListener("astro:before-preparation", cleanupRotate);
 </script>
 
 <style>
