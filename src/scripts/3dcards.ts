@@ -4,8 +4,8 @@ const config = {
     easing: 0.05, // Easing factor (lower = smoother)
 };
 
-// Store last mouse event
-let lastMouseEvent: MouseEvent | null = null;
+// Store last interaction event (mouse or touch)
+let lastInteractionEvent: MouseEvent | TouchEvent | null = null;
 let items: Array<Element>;
 let animationFrame: number | null = null;
 let itemStates: Array<{
@@ -17,13 +17,42 @@ let itemStates: Array<{
 
 // Named event handler functions
 function handleMouseMove(event: MouseEvent) {
-    lastMouseEvent = event;
+    lastInteractionEvent = event;
     updateRotations(event);
 }
 
+function handleTouchMove(event: TouchEvent) {
+    lastInteractionEvent = event;
+    // Use the first touch point
+    const touch = event.touches[0];
+    if (touch) {
+        updateRotations(touch);
+    }
+}
+
 function handleScroll() {
-    if (lastMouseEvent) {
-        updateRotations(lastMouseEvent);
+    if (lastInteractionEvent) {
+        // If we have a previous interaction, use it
+        if (lastInteractionEvent instanceof MouseEvent) {
+            updateRotations(lastInteractionEvent);
+        } else if (
+            lastInteractionEvent instanceof TouchEvent &&
+            lastInteractionEvent.touches[0]
+        ) {
+            updateRotations(lastInteractionEvent.touches[0]);
+        }
+    } else {
+        // Fallback: use viewport center for mobile devices
+        const viewportCenterX = window.innerWidth / 2;
+        const viewportCenterY = window.innerHeight / 2;
+
+        // Create a synthetic event-like object with clientX and clientY
+        const syntheticEvent = {
+            clientX: viewportCenterX,
+            clientY: viewportCenterY,
+        };
+
+        updateRotations(syntheticEvent as MouseEvent);
     }
 }
 
@@ -34,8 +63,15 @@ function handleMouseLeave() {
     });
 }
 
-// Function to update rotations based on mouse position and scroll
-function updateRotations(event: MouseEvent) {
+function handleTouchEnd() {
+    itemStates.forEach((state) => {
+        state.targetRotateX = 0;
+        state.targetRotateY = 0;
+    });
+}
+
+// Function to update rotations based on interaction position and scroll
+function updateRotations(event: MouseEvent | Touch) {
     // Get the viewport dimensions
     const viewportWidth = window.innerWidth;
     const viewportHeight = window.innerHeight;
@@ -44,7 +80,7 @@ function updateRotations(event: MouseEvent) {
     const scrollX = window.scrollX;
     const scrollY = window.scrollY;
 
-    // Calculate absolute mouse position including scroll
+    // Calculate absolute interaction position including scroll
     const absoluteX = event.clientX + scrollX;
     const absoluteY = event.clientY + scrollY;
 
@@ -92,7 +128,6 @@ function animate() {
         ).style.transform = `perspective(${config.perspective}px) rotateX(${state.currentRotateX}deg) rotateY(${state.currentRotateY}deg)`;
     });
 
-    console.log("animate");
     animationFrame = requestAnimationFrame(animate);
 }
 
@@ -108,10 +143,12 @@ function initRotate() {
         targetRotateY: 0,
     }));
 
-    // Add event listeners
+    // Add event listeners for both mouse and touch
     document.addEventListener("mousemove", handleMouseMove);
+    document.addEventListener("touchmove", handleTouchMove, { passive: true });
     window.addEventListener("scroll", handleScroll);
     document.addEventListener("mouseleave", handleMouseLeave);
+    document.addEventListener("touchend", handleTouchEnd);
 
     // Start animation loop
     animate();
@@ -122,11 +159,14 @@ function cleanupRotate() {
 
     // Remove event listeners
     document.removeEventListener("mousemove", handleMouseMove);
+    document.removeEventListener("touchmove", handleTouchMove);
     window.removeEventListener("scroll", handleScroll);
     document.removeEventListener("mouseleave", handleMouseLeave);
+    document.removeEventListener("touchend", handleTouchEnd);
 
     items = [];
     itemStates = [];
+    lastInteractionEvent = null;
 
     if (animationFrame) {
         cancelAnimationFrame(animationFrame);
