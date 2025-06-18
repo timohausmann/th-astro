@@ -24,4 +24,4 @@ jobs:
           echo "${{ secrets.SERVER_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan ${{ secrets.SERVER_HOST }} >> ~/.ssh/known_hosts
-          rsync -az --delete --no-times -e "ssh -i ~/.ssh/id_rsa" ./dist/ ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:${{ secrets.APP_PATH }}
+          rsync -az --delete --no-times --no-perms -e "ssh -i ~/.ssh/id_rsa" ./dist/ ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:${{ secrets.APP_PATH }}
