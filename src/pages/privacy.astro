@@ -2,13 +2,10 @@
 import Layout from "../layouts/Layout.astro";
 ---
 
-<Layout 
-    title="Datenschutzerklärung – Timo Hausmann"
-    ogUrl="/privacy"
->
+<Layout title="Datenschutzerklärung – Timo Hausmann" ogUrl="/privacy">
     <main class="page row">
         <div class="row-inner">
-            <div class="privacy">
+            <div class="privacy richtext">
                 <h1 class="caps caps-14">Datenschutz&shy;erkl&auml;rung</h1>
                 <h2>1. Datenschutz auf einen Blick</h2>
                 <h3>Allgemeine Hinweise</h3>
@@ -463,55 +460,5 @@ import Layout from "../layouts/Layout.astro";
 
     .privacy {
         padding: 2rem 0;
-    }
-
-    h1 {
-        margin-bottom: 1rem;
-    }
-
-    h2,
-    h3,
-    h4 {
-        font-size: 16px;
-        font-style: normal;
-        font-weight: 500;
-        margin-bottom: 0.5rem;
-    }
-    p + h2,
-    p + h3,
-    p + h4 {
-        margin-top: 2rem;
-    }
-    h2 {
-        font-size: 16px;
-    }
-    h3 {
-        font-size: 14px;
-    }
-    h4 {
-        font-size: 13px;
-    }
-
-    p,
-    li {
-        font-size: 13px;
-        margin-bottom: 1rem;
-        line-height: 1.6;
-        max-width: 1024px;
-    }
-    a {
-        display: inline-block;
-        text-decoration: underline;
-        margin: 0.25rem 0;
-    }
-
-    ul {
-        list-style: disc;
-        padding-left: 1rem;
-        margin: 1.5rem 0;
-    }
-    li {
-        margin-bottom: 0.5rem;
-        max-width: 920px;
     }
 </style>

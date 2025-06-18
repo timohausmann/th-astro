@@ -14,6 +14,7 @@ const { project } = Astro.props;
 <li
     class="item"
     data-slug={project.slug}
+    data-module="3dcard"
     transition:name={`project-${project.id}`}
     id={project.slug}
 >
@@ -32,6 +33,9 @@ const { project } = Astro.props;
         </a>
     </div>
 </li>
+
+<script src="../scripts/3dcards.ts"></script>
+
 <style>
     .preview {
         display: flex;
@@ -54,6 +58,7 @@ const { project } = Astro.props;
 
     .item {
         transform-style: preserve-3d;
+        will-change: transform;
         display: flex;
         gap: 4rem;
         align-items: center;

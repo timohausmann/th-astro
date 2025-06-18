@@ -1,0 +1,51 @@
+.richtext {
+    h1 {
+        margin-bottom: 1rem;
+    }
+
+    h2,
+    h3,
+    h4 {
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 500;
+        margin-bottom: 0.5rem;
+    }
+    p + h2,
+    p + h3,
+    p + h4 {
+        margin-top: 2rem;
+    }
+    h2 {
+        font-size: 16px;
+    }
+    h3 {
+        font-size: 14px;
+    }
+    h4 {
+        font-size: 13px;
+    }
+
+    p,
+    li {
+        font-size: 13px;
+        margin-bottom: 1rem;
+        line-height: 1.6;
+        max-width: 1024px;
+    }
+    a {
+        display: inline-block;
+        text-decoration: underline;
+        margin: 0.25rem 0;
+    }
+
+    ul {
+        list-style: disc;
+        padding-left: 1rem;
+        margin: 1.5rem 0;
+    }
+    li {
+        margin-bottom: 0.5rem;
+        max-width: 920px;
+    }
+}

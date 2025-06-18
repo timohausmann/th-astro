@@ -11,10 +11,10 @@ interface Props {
     ogImage?: string;
 }
 
-const { 
+const {
     title = "Timo Hausmann – Creative Coding",
     ogUrl = "/",
-    ogImage = "/preview.png"
+    ogImage = "/preview.png",
 } = Astro.props;
 ---
 
@@ -27,12 +27,15 @@ const {
         <meta name="generator" content={Astro.generator} />
         <title>{title}</title>
 
-        <meta name="description" content="Fullstack Web Development and Interface-Design Freelancer, Made in Germany" />
+        <meta
+            name="description"
+            content="Fullstack Web Development and Interface-Design Freelancer, Made in Germany"
+        />
         <meta property="og:title" content={title} />
         <meta property="og:type" content="website" />
         <meta property="og:url" content={ogUrl} />
         <meta property="og:image" content={ogImage} />
-        
+
         <ClientRouter />
     </head>
     <body>

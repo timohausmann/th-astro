@@ -2,13 +2,10 @@
 import Layout from "../layouts/Layout.astro";
 ---
 
-<Layout 
-    title="Impressum – Timo Hausmann"
-    ogUrl="/imprint"
->
+<Layout title="Impressum – Timo Hausmann" ogUrl="/imprint">
     <main class="page row">
         <div class="row-inner">
-            <div class="imprint">
+            <div class="imprint richtext">
                 <h1 class="caps caps-14">Impressum</h1>
                 <p class="caps caps-12">Angaben gemäß § 5 TMG</p>
                 <p class="address">
@@ -31,23 +28,10 @@ import Layout from "../layouts/Layout.astro";
 <style>
     .imprint {
         padding: 2rem 0;
+        text-align: center;
     }
-
-    h1 {
-        margin-bottom: 1rem;
-    }
-
-    .address {
-        font-style: italic;
-    }
-
-    p {
-        margin-bottom: 1rem;
-        line-height: 1.6;
-    }
-    a {
-        display: inline-block;
-        text-decoration: underline;
-        margin: 0.25rem 0;
+    .imprint :global(p) {
+        margin-left: auto;
+        margin-right: auto;
     }
 </style>

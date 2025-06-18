@@ -14,31 +14,35 @@ const { project } = Astro.props;
 ---
 
 <article class="item is-open" data-slug={project.slug} id={project.slug}>
-    <div class="preview">
+    <div class="preview" data-module="3dcard">
         <ProjectImageCard project={project} />
-        {project.href && (
-            <div class="href-desktop">
-                <ButtonLink
-                    href={project.href}
-                    label="Besuchen"
-                    blank
-                    class="caps-14"
-                    bgcolor="white"
-                >
-                    <IconExternalLink
-                        size={20}
-                        stroke={1.5}
-                        slot="iconAfter"
-                    />
-                </ButtonLink>
-            </div>
-        )}
+        {
+            project.href && (
+                <div class="href-desktop">
+                    <ButtonLink
+                        href={project.href}
+                        label="Besuchen"
+                        blank
+                        class="caps-14"
+                        bgcolor="white"
+                    >
+                        <IconExternalLink
+                            size={20}
+                            stroke={1.5}
+                            slot="iconAfter"
+                        />
+                    </ButtonLink>
+                </div>
+            )
+        }
     </div>
     <div class="content">
         <ProjectDetailHeader project={project} />
         <ProjectDetailContent project={project} />
     </div>
 </article>
+
+<script src="../scripts/3dcards.ts"></script>
 
 <style>
     .item {
