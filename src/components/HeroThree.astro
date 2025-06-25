@@ -1,0 +1,22 @@
+---
+import HeroDonut from "./HeroDonut.tsx";
+---
+
+<div id="hero-three-container">
+    <HeroDonut client:load />
+</div>
+
+<style>
+    #hero-three-container {
+        position: absolute;
+        display: flex;
+        align-items: stretch;
+        justify-content: center;
+        inset: 0;
+        pointer-events: none;
+    }
+    #hero-three-container :global(.hero-donut) {
+        width: 100%;
+        height: 100%;
+    }
+</style> 

@@ -1,10 +1,4 @@
-// Standard interface for canvas effects
-export interface CanvasEffect {
-    init: (canvas: HTMLCanvasElement) => void;
-    resize: (width: number, height: number) => void;
-    loop: (deltaTime: number) => void;
-    destroy: () => void;
-}
+import type { CanvasEffect } from "../types/canvas";
 
 interface Ring {
     x: number;
