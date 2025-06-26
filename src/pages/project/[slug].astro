@@ -1,14 +1,13 @@
 ---
-import type { Project } from "../../types/projects";
 import ProjectDetail from "../../components/ProjectDetail.astro";
-import showcase from "../../data/showcase.json";
+import { getProjects } from "../../scripts/getProjects";
 import Layout from "../../layouts/Layout.astro";
 import { getImage } from "astro:assets";
 
 // Generate static paths for all projects
 export function getStaticPaths() {
     // Type assertion for showcase data
-    const projects = showcase as Project[];
+    const projects = getProjects();
 
     return projects.map((project) => ({
         params: { slug: project.slug },

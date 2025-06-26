@@ -1,6 +1,5 @@
 [
   {
-    "id": 1,
     "slug": "kunstmuseum-basel-audioguide",
     "title": "Audioguide Web-App",
     "suptitle": "Kunstmuseum Basel",
@@ -13,20 +12,18 @@
     "layout": "tall"
   },
   {
-    "id": 4,
     "slug": "leonkoro-quartet-website",
     "title": "Ensemble Website",
     "suptitle": "Leonkoro Quartet",
     "href": "https://leonkoroquartet.com",
     "img": "/src/assets/preview-leonkoro.png",
     "alt": "Leonkoro Quartet Website",
-    "tech": ["ProcessWire", "Svelte", "Tailwind", "TypeScript"],
+    "tech": ["ProcessWire", "Svelte", "Tailwind", "TypeScript", "GitHub Actions"],
     "roles": ["Konzept", "Design", "Programmierung", "Projektmanagement"],
-    "description": "Mobile-first Künstler:innen-Portfolio in schlichten und elegantem Design mit Konzertkalender, News, Media und mehr. Viele Mikroanimationen und -interaktionen runden das Erlebnis ab. Die viersprachige Website unterstützt u.a. Japanisch.",
+    "description": "Mobile-first Künstler:innen-Portfolio in schlichtem und elegantem Design mit Konzertkalender, News, Media und mehr. Viele Mikroanimationen und -interaktionen runden das Erlebnis ab. Die viersprachige Website unterstützt u.a. Japanisch.",
     "layout": "wide"
   },
   {
-    "id": 5,
     "slug": "collecto",
     "title": "Content Connect",
     "suptitle": "Collecto",
@@ -34,12 +31,11 @@
     "alt": "Art Collection Management",
     "tech": ["Firebase", "Next.js", "MUI", "TypeSense", "TypeScript"],
     "roles": ["Konzept", "Design", "Projektmanagement"],
-    "description": "Web App zur Verwaltung von umfangreichen Sammlungsinhalten für Museen und Privatsammler. Ermöglicht u.a. Medienmanagement (Bilder, Audio- und Videodateien), anpassbare Datenfelder, individuelle Gebäudepläne mit Standortangaben, Multi-User Accounts mit Rechtemanagement, Suche und Filter mit TypeSense. Die hinterlegten Daten werden über APIs an Web- und Flutter-Apps augespielt.",
+    "description": "Web App zur Verwaltung von umfangreichen Sammlungsinhalten für Museen und Privatsammler. Ermöglicht u.a. Medienmanagement (Bilder, Audio- und Videodateien), anpassbare Datenfelder, individuelle Gebäudepläne mit Standortangaben, Multi-User-Accounts mit Rechtemanagement, Suche und Filter mit TypeSense. Die hinterlegten Daten werden über APIs an Web- und Flutter-Apps augespielt.",
     "layout": "wide",
     "href": "https://www.collecto.art/portfolio/content-connect"
   },
   {
-    "id": 3,
     "slug": "ki-assistent-versicherung",
     "title": "KI Assistent",
     "suptitle": "Versicherung",
@@ -51,7 +47,6 @@
     "layout": "tall"
   },
   {
-    "id": 6,
     "slug": "quadtree",
     "title": "Quadtree.ts",
     "suptitle": "Open Source",
@@ -59,12 +54,11 @@
     "alt": "Quadtree.ts",
     "tech": ["Rekursiv", "Rollup", "Jest", "TypeDoc", "SemVer", "GitHub Pages", "TypeScript"],
     "roles": ["Programmierung"],
-    "description": "NPM Packages für Quadtrees. Diese rekursive Datenstruktur vereinfacht die Ermittlung von nahegelegenen Objekten in einer 2D-Fläche, z.B. für Kollisionserkennung. Die JS-Grundversion wurde von grundauf neu in TS implementiert: modularer, mit automatischen Tests und Docs. Beide Projekte zusammen haben über 750 GitHub Stars und 4500 weekly downloads.",
+    "description": "NPM-Pakete für Quadtrees. Diese rekursive Datenstruktur vereinfacht die Ermittlung von nahegelegenen Objekten in einer 2D-Fläche, z.B. für Kollisionserkennung. Die JS-Grundversion wurde von Grund auf neu in TS implementiert: modularer, mit automatischen Tests und Docs. Beide Projekte zusammen haben über 750 GitHub Stars und 4500 weekly downloads.",
     "layout": "tall",
     "href": "https://timohausmann.github.io/quadtree-ts/"
   },
   {
-    "id": 2,
     "slug": "bromacker-grabungsstelle-3d",
     "title": "Bromacker: grabungsstelle 3D",
     "suptitle": "Museum für Naturkunde Berlin",
@@ -73,7 +67,7 @@
     "alt": "Bromacker Website",
     "tech": ["ProcessWire", "Next.js", "Three.js", "R3F", "Drei", "Theatre.js", "CSS Modules", "TypeScript"],
     "roles": ["Programmierung"],
-    "description": "Erkundbarer 3D-Scan der Grabungsstelle Bromacker mit verschiedenen Stationen. Transparente Kurzvideos erwecken das 3D-Modell zum Leben. Die gesamte Szene samt Kamerafahrten kann in einem webbasierten 3D-Editor bearbeitet werden. U.a. mit Static Site Generation von CMS-Inhalten mit Next.js Path Revalidation und Custom Video-Player mit mehrsprachigen Untertiteln. ",
+    "description": "Erkundbarer 3D-Scan der Grabungsstelle Bromacker mit verschiedenen Stationen. Transparente Kurzvideos erwecken das 3D-Modell zum Leben. Die gesamte Szene samt Kamerafahrten kann in einem webbasierten 3D-Editor bearbeitet werden. U.a. mit Static Site Generation von CMS-Inhalten mit Next.js, Path Revalidation und Custom Video-Player mit mehrsprachigen Untertiteln. ",
     "layout": "wide"
   }
 ]

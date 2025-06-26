@@ -1,6 +1,6 @@
 ---
 import type { Project } from "../types/projects";
-import { IconArrowUpRight, IconExternalLink } from "@tabler/icons-react";
+import { IconArrowUpRight } from "@tabler/icons-react";
 import ProjectLink from "./ProjectLink.astro";
 import ProjectImageCard from "./ProjectImageCard.astro";
 
@@ -15,7 +15,6 @@ const { project } = Astro.props;
     class="item"
     data-slug={project.slug}
     data-module="3dcard"
-    transition:name={`project-${project.id}`}
     id={project.slug}
 >
     <div class="preview">

@@ -37,7 +37,8 @@ body {
 
 .page {
     padding-top: 9rem;
-    min-height: calc(100dvh - 218px);
+    padding-bottom: 6rem;
+    min-height: calc(100dvh - 154px);
     background: #f9f9f9
         linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.11));
 }

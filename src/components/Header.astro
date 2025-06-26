@@ -17,9 +17,11 @@ import Logo from "./Logo.astro";
         left: 0;
         z-index: 100;
         color: var(--color-blue);
+        pointer-events: none;
     }
     .header :global(.header-frost-bar) {
         min-height: 4rem;
+        pointer-events: all;
     }
 
     .button {

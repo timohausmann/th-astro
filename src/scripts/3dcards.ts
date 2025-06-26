@@ -143,15 +143,19 @@ function initRotate() {
         targetRotateY: 0,
     }));
 
-    // Add event listeners for both mouse and touch
-    document.addEventListener("mousemove", handleMouseMove);
-    document.addEventListener("touchmove", handleTouchMove, { passive: true });
-    window.addEventListener("scroll", handleScroll);
-    document.addEventListener("mouseleave", handleMouseLeave);
-    document.addEventListener("touchend", handleTouchEnd);
+    // mouse and touch event listeners
+    // use a timeout to prevent view-transition glitches
+    window.setTimeout(() => {
+        document.addEventListener("mousemove", handleMouseMove);
+        document.addEventListener("touchmove", handleTouchMove, { passive: true });
+        window.addEventListener("scroll", handleScroll);
+        document.addEventListener("mouseleave", handleMouseLeave);
+        document.addEventListener("touchend", handleTouchEnd);
 
-    // Start animation loop
-    animate();
+        // Start animation loop
+        animate();
+    }, 500);
+
 }
 
 function cleanupRotate() {
@@ -163,6 +167,11 @@ function cleanupRotate() {
     window.removeEventListener("scroll", handleScroll);
     document.removeEventListener("mouseleave", handleMouseLeave);
     document.removeEventListener("touchend", handleTouchEnd);
+
+    // reset transform to prevent view-transition glitches
+    items.forEach(elem => {
+        (elem as HTMLElement).style.transform = `translateZ(0)`;
+    });
 
     items = [];
     itemStates = [];
