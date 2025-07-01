@@ -1,12 +1,25 @@
 ---
 import type { Project } from "../types/projects";
-import { IconX } from "@tabler/icons-react";
+import { IconX, IconChevronLeft, IconChevronRight } from "@tabler/icons-react";
+import { getProjects } from "../scripts/getProjects";
 
 interface Props {
     project: Project;
 }
 
 const { project } = Astro.props;
+
+// Get all projects and find prev/next
+const allProjects = getProjects();
+const currentIndex = allProjects.findIndex((p) => p.slug === project.slug);
+const prevProject =
+    currentIndex > 0
+        ? allProjects[currentIndex - 1]
+        : allProjects[allProjects.length - 1];
+const nextProject =
+    currentIndex < allProjects.length - 1
+        ? allProjects[currentIndex + 1]
+        : allProjects[0];
 ---
 
 <header class="header">
@@ -14,15 +27,30 @@ const { project } = Astro.props;
         <p class="suptitle">{project.suptitle}</p>
         <h1 class="text">{project.title}</h1>
     </div>
-    <a href={`/#${project.slug}`} class="close project-close" aria-label="Close project details">
-        <IconX />
-    </a>
+    <div class="nav">
+        {
+            /* <a href={`/project/${prevProject.slug}`} class="nav-link" aria-label={`Vorheriges Projekt: ${prevProject.title}`}>
+            <IconChevronLeft />
+        </a>
+        <a href={`/project/${nextProject.slug}`} class="nav-link mr" aria-label={`Nächstes Projekt: ${nextProject.title}`}>
+            <IconChevronRight />
+        </a> */
+        }
+        <a
+            href={`/#${project.slug}`}
+            class="nav-link"
+            aria-label="Zurück zur Übersicht"
+        >
+            <IconX />
+        </a>
+    </div>
 </header>
 <style>
     .header {
         display: flex;
         justify-content: space-between;
         align-items: center;
+        gap: 1rem;
     }
     .text-container {
         display: flex;
@@ -39,7 +67,12 @@ const { project } = Astro.props;
         text-transform: uppercase;
         letter-spacing: 0.05em;
     }
-    .close {
+    .nav {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+    .nav-link {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -52,7 +85,7 @@ const { project } = Astro.props;
         background: none;
         cursor: pointer;
     }
-    .close::after {
+    .nav-link::after {
         content: "";
         position: absolute;
         inset: 0;
@@ -60,7 +93,10 @@ const { project } = Astro.props;
         background-color: var(--color-blue-5);
         transition: scale 0.2s ease;
     }
-    .close:hover::after {
+    .nav-link:hover::after {
         scale: 1.1;
+    }
+    .mr {
+        margin-right: 0.5rem;
     }
 </style>

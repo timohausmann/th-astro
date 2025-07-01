@@ -9,7 +9,12 @@
     "tech": ["Firebase", "Next.js", "CSS Modules", "Motion.js", "Dexie", "TypeScript"],
     "roles": ["Design", "Programmierung"],
     "description": "Mobiler Audioguide in drei Sprachen mit Audioplayer, Offline-Funktionalität, geführten Touren, Favoriten, animierten Seitenübergängen und mehr. Alle Inhalte können in einem CMS bearbeitet werden.",
-    "layout": "tall"
+    "layout": "tall",
+    "partner": {
+      "name": "Collecto",
+      "logo": "/src/assets/partner/logo-collecto.svg",
+      "href": "https://www.collecto.art/"
+    }
   },
   {
     "slug": "leonkoro-quartet-website",
@@ -33,7 +38,12 @@
     "roles": ["Konzept", "Design", "Projektmanagement"],
     "description": "Web App zur Verwaltung von umfangreichen Sammlungsinhalten für Museen und Privatsammler. Ermöglicht u.a. Medienmanagement (Bilder, Audio- und Videodateien), anpassbare Datenfelder, individuelle Gebäudepläne mit Standortangaben, Multi-User-Accounts mit Rechtemanagement, Suche und Filter mit TypeSense. Die hinterlegten Daten werden über APIs an Web- und Flutter-Apps augespielt.",
     "layout": "wide",
-    "href": "https://www.collecto.art/portfolio/content-connect"
+    "href": "https://www.collecto.art/portfolio/content-connect",
+    "partner": {
+      "name": "Collecto",
+      "logo": "/src/assets/partner/logo-collecto.svg",
+      "href": "https://www.collecto.art/"
+    }
   },
   {
     "slug": "ki-assistent-versicherung",
@@ -44,7 +54,12 @@
     "tech": ["OpenAI API", "Azure Speech API", "Next.js", "Three.js", "R3F", "Drei", "CSS Modules", "TypeScript"],
     "roles": ["Programmierung"],
     "description": "Responsive AI Web-App mit 3D-Avatar zur Unterstützung des Vertriebs. Mithilfe der OpenAI Assistant API wurden Produktinformationen hinterlegt, die per Sprach- und Text-UI abgefragt werden können. Die OpenAI Textantwort kann mithilfe der Azure Speech API als Sprache ausgegeben werden.",
-    "layout": "tall"
+    "layout": "tall",
+    "partner": {
+      "name": "Unframe",
+      "logo": "/src/assets/partner/logo-unframe.svg",
+      "href": "http://unframe.io/"
+    }
   },
   {
     "slug": "quadtree",
@@ -60,7 +75,7 @@
   },
   {
     "slug": "bromacker-grabungsstelle-3d",
-    "title": "Bromacker: grabungsstelle 3D",
+    "title": "Bromacker: Grabungsstelle 3D",
     "suptitle": "Museum für Naturkunde Berlin",
     "href": "https://explore.bromacker.de",
     "img": "/src/assets/preview-bromacker.png",
@@ -68,6 +83,11 @@
     "tech": ["ProcessWire", "Next.js", "Three.js", "R3F", "Drei", "Theatre.js", "CSS Modules", "TypeScript"],
     "roles": ["Programmierung"],
     "description": "Erkundbarer 3D-Scan der Grabungsstelle Bromacker mit verschiedenen Stationen. Transparente Kurzvideos erwecken das 3D-Modell zum Leben. Die gesamte Szene samt Kamerafahrten kann in einem webbasierten 3D-Editor bearbeitet werden. U.a. mit Static Site Generation von CMS-Inhalten mit Next.js, Path Revalidation und Custom Video-Player mit mehrsprachigen Untertiteln. ",
-    "layout": "wide"
+    "layout": "wide",
+    "partner": {
+      "name": "Museum für Naturkunde Berlin",
+      "logo": "/src/assets/partner/logo-mfn.svg",
+      "href": "https://www.museumfuernaturkunde.berlin/"
+    }
   }
 ]

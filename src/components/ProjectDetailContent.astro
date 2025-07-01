@@ -35,6 +35,21 @@ const { project } = Astro.props;
                 }
             </ul>
         </li>
+        {
+            project.partner && (
+                <li>
+                    <strong>
+                        {project.partner.title || "In Zusammenarbeit mit"}:
+                    </strong>
+                    <a href={project.partner.href} target="_blank" class="partner-logo">
+                        <img
+                            src={project.partner.logo}
+                            alt={project.partner.name}
+                        />
+                    </a>
+                </li>
+            )
+        }
     </ul>
     {
         project.href && (
@@ -95,8 +110,16 @@ const { project } = Astro.props;
         padding: 0.5rem 1rem;
         border-radius: 1rem;
     }
+    .partner-logo {
+        display: inline-block;
+        margin: 0.5rem;
+        transition: transform 0.3s;
+    }
+    .partner-logo:hover {
+        transform: scale(1.05);
+    }
     @media (--projects-large) {
-        .href-mobile { 
+        .href-mobile {
             display: none;
         }
     }
