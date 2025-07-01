@@ -2,12 +2,27 @@
 import type { Project } from "../types/projects";
 import { IconExternalLink } from "@tabler/icons-react";
 import ButtonLink from "./ButtonLink.astro";
+import { Image } from "astro:assets";
 
 interface Props {
     project: Project;
 }
 
 const { project } = Astro.props;
+
+// Handle dynamic images
+const images = await import.meta.glob<{ default: ImageMetadata }>(
+    "/src/assets/partner/*.{jpeg,jpg,png,gif,svg}"
+);
+
+if (project.partner && !images[project.partner.logo])
+    throw new Error(
+        `"${project.partner.logo}" does not exist (ProjectDetailContent)`
+    );
+
+const partnerImg = project.partner
+    ? await images[project.partner.logo]().then((img) => img.default)
+    : null;
 ---
 
 <div class="content">
@@ -36,15 +51,21 @@ const { project } = Astro.props;
             </ul>
         </li>
         {
-            project.partner && (
+            project.partner && partnerImg && (
                 <li>
                     <strong>
                         {project.partner.title || "In Zusammenarbeit mit"}:
                     </strong>
-                    <a href={project.partner.href} target="_blank" class="partner-logo">
-                        <img
-                            src={project.partner.logo}
-                            alt={project.partner.name}
+                    <a
+                        href={project.partner.href}
+                        target="_blank"
+                        class="partner-logo"
+                    >
+                        <Image
+                            src={partnerImg}
+                            alt={`${project.partner.name} Logo`}
+                            width={partnerImg.width}
+                            height={partnerImg.height}
                         />
                     </a>
                 </li>
