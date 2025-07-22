@@ -21,7 +21,7 @@ const currentUrl = `/project/${project.slug}`;
 
 // Handle dynamic images
 const images = await import.meta.glob<{ default: ImageMetadata }>(
-    "/src/assets/*.{jpeg,jpg,png,gif}"
+    "/src/assets/projects/*.{jpeg,jpg,png,gif}"
 );
 
 if (!images[project.img])
@@ -41,8 +41,8 @@ const optimized = await getImage({
     ogUrl={currentUrl}
     ogImage={optimized.src}
 >
-    <main class="page page--center row">
-        <div class="row-inner">
+    <main class="page row">
+        <div class="row-inner row-inner--full">
             <ProjectDetail project={project} />
         </div>
     </main>

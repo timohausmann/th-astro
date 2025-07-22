@@ -28,14 +28,12 @@ const nextProject =
         <h1 class="text">{project.title}</h1>
     </div>
     <div class="nav">
-        {
-            /* <a href={`/project/${prevProject.slug}`} class="nav-link" aria-label={`Vorheriges Projekt: ${prevProject.title}`}>
+        <a href={`/project/${prevProject.slug}`} class="nav-link" aria-label={`Vorheriges Projekt: ${prevProject.title}`}>
             <IconChevronLeft />
         </a>
         <a href={`/project/${nextProject.slug}`} class="nav-link mr" aria-label={`Nächstes Projekt: ${nextProject.title}`}>
             <IconChevronRight />
-        </a> */
-        }
+        </a>
         <a
             href={`/#${project.slug}`}
             class="nav-link"

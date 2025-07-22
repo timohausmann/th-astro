@@ -3,6 +3,7 @@ import type { Project } from "../types/projects";
 import { IconExternalLink } from "@tabler/icons-react";
 import ButtonLink from "./ButtonLink.astro";
 import { Image } from "astro:assets";
+import Tags from "./Tags.astro";
 
 interface Props {
     project: Project;
@@ -30,25 +31,11 @@ const partnerImg = project.partner
     <ul class="dl">
         <li>
             <strong>Meine Rollen:</strong>
-            <ul class="tags">
-                {
-                    project.roles.map((role: string) => (
-                        <li class="tag">{role}</li>
-                    ))
-                }
-            </ul>
+            <Tags tags={project.roles} />
         </li>
         <li>
             <strong>Technologien:</strong>
-            <ul class="tags">
-                {
-                    (project.technologies || project.tech).map(
-                        (technology: string) => (
-                            <li class="tag">{technology}</li>
-                        )
-                    )
-                }
-            </ul>
+            <Tags tags={project.tech} />
         </li>
         {
             project.partner && partnerImg && (
@@ -118,18 +105,6 @@ const partnerImg = project.partner
         font-size: 14px;
         font-weight: 500;
         color: var(--color-blue);
-    }
-    .tags {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.75rem;
-    }
-    .tag {
-        display: block;
-        background-color: var(--color-blue-5);
-        font-size: 13px;
-        padding: 0.5rem 1rem;
-        border-radius: 1rem;
     }
     .partner-logo {
         display: inline-block;

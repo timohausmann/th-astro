@@ -12,8 +12,8 @@ export interface Project {
     roles: string[];
     href?: string;
     description?: string;
-    technologies?: string[];
     layout?: "tall" | "wide";
+    year?: number;
     partner?: {
         logo: string;
         name: string;

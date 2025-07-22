@@ -35,6 +35,10 @@ body {
     margin-right: auto;
 }
 
+.row-inner--full {
+    max-width: 100%;
+}
+
 .page {
     padding-top: 9rem;
     padding-bottom: 6rem;

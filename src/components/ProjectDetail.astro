@@ -13,7 +13,7 @@ interface Props {
 const { project } = Astro.props;
 ---
 
-<article class="item is-open" data-slug={project.slug} id={project.slug}>
+<article class="wrap" data-slug={project.slug} id={project.slug}>
     <div class="preview" data-module="3dcard">
         <ProjectImageCard project={project} />
         {
@@ -45,20 +45,23 @@ const { project } = Astro.props;
 <script src="../scripts/3dcards.ts"></script>
 
 <style>
-    .item {
+    .wrap {
         transform-style: preserve-3d;
         display: flex;
         gap: 4rem;
         align-items: center;
-        justify-content: center;
-        scroll-margin-top: 12rem;
+        justify-content: flex-start;
+        width: 100%;
+        flex-direction: column;
+        gap: 2rem;
     }
 
     .preview {
         display: flex;
         flex-direction: column;
         align-items: flex-start;
-        gap: 1rem;
+        justify-content: center;
+        gap: 1rem; 
     }
 
     .content {
@@ -71,20 +74,27 @@ const { project } = Astro.props;
         display: none;
     }
 
-    @media (--projects-small) {
-        .item {
-            flex-direction: column;
-            gap: 2rem;
-            scroll-margin-top: 8rem;
+    @media (--projects-large) {
+        .href-desktop {
+            display: block;
+        }
+        .wrap {
+            flex-direction: row;
+            align-items: flex-start;
+            justify-content: center;
+            gap: clamp(2rem, 4vw, 6rem);
+            padding-top: 5vh; 
+        }
+        .content {
+            max-width: 640px;
+        }
+        .preview {
         }
     }
 
-    @media (--projects-large) {
+    @media (--xl2) {
         .content {
-            width: 33vw;
-        }
-        .href-desktop {
-            display: block;
+            /* width: 40vw; */
         }
     }
 </style>

@@ -2,6 +2,7 @@
 import { ClientRouter } from "astro:transitions";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+import FAB from "../components/FAB.astro";
 import "../css/main.css";
 
 // Define props with default values
@@ -42,5 +43,6 @@ const {
         <Header />
         <slot />
         <Footer />
+        <FAB />
     </body>
 </html>

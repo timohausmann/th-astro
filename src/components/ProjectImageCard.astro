@@ -11,7 +11,7 @@ const { project } = Astro.props;
 
 // Handle dynamic images
 const images = await import.meta.glob<{ default: ImageMetadata }>(
-    "/src/assets/*.{jpeg,jpg,png,gif}"
+    "/src/assets/projects/*.{jpeg,jpg,png,gif}"
 );
 
 if (!images[project.img])
@@ -30,6 +30,8 @@ imageClass += imageAspectRatio < 1 ? "tall" : "wide";
 <style>
     .card {
         padding: 1rem;
+        /* this needs to hug the img */
+        width: auto;
         background-color: white;
         border-radius: 1.5rem;
         position: relative;

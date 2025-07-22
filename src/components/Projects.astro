@@ -8,7 +8,7 @@ const projects = getProjects();
 <div id="project-wrap">
     <section class="projects row" id="referenzen">
         <h1 class="title">Referenzen</h1>
-        <ul class="list row-inner">
+        <ul class="list row-inner row-inner--full">
             {projects.map((project) => <ProjectTile project={project} />)}
         </ul>
     </section>
@@ -40,6 +40,7 @@ const projects = getProjects();
         display: flex;
         flex-direction: column;
         gap: 4rem;
+        align-items: center;
     }
 
     .button-container {
@@ -52,10 +53,13 @@ const projects = getProjects();
         .list {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            row-gap: 0;
-            column-gap: 6rem;
-            align-items: center;
+            align-items: start;
             justify-content: center;
+        }
+    }
+    @media (--xl3) {
+        .list {
+            grid-template-columns: repeat(3, 1fr);
         }
     }
 </style>
