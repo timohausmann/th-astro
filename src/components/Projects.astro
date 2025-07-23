@@ -1,19 +1,25 @@
 ---
 import { getProjects } from "../scripts/getProjects";
 import ProjectTile from "./ProjectTile.astro";
-
+import ProjectFilter from "./ProjectFilter.astro";
 const projects = getProjects();
 ---
 
 <div id="project-wrap">
+    <h1 class="title">Referenzen</h1>
+    <div class="filter-container">
+        <ProjectFilter />
+    </div>
     <section class="projects row" id="referenzen">
-        <h1 class="title">Referenzen</h1>
         <ul class="list row-inner row-inner--full">
             {projects.map((project) => <ProjectTile project={project} />)}
         </ul>
     </section>
 </div>
 <style>
+    .filter-container {
+        margin: 1.5rem 0 3rem; 
+    }
     #project-wrap {
         position: relative;
         padding-top: max(5vw, 2rem);
@@ -26,7 +32,6 @@ const projects = getProjects();
         font-size: clamp(1.75rem, 4vw, 3rem);
         font-weight: 800;
         text-align: center;
-        margin-bottom: 2em;
         color: #3e3b9c;
     }
 

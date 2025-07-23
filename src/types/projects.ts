@@ -1,3 +1,20 @@
+export type ProjectCategory =
+    | "spotlight"
+    | "solutions"
+    | "arts & culture"
+    | "datavis"
+    | "experimental"
+    | "open source";
+
+export const projectCategories: ProjectCategory[] = [
+    "spotlight",
+    "solutions",
+    "arts & culture",
+    "datavis",
+    "experimental",
+    "open source",
+];
+
 /**
  * Represents a single project in the showcase
  */
@@ -10,6 +27,7 @@ export interface Project {
     alt: string;
     tech: string[];
     roles: string[];
+    categories: ProjectCategory[];
     href?: string;
     description?: string;
     layout?: "tall" | "wide";

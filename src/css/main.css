@@ -2,6 +2,7 @@
 @import "./variables.css";
 @import "./font-ibm-plex-mono.css";
 @import "./font-delight.css";
+@import "./visually-hidden.css";
 @import "./typo.css";
 @import "./richtext.css";
 
@@ -64,6 +65,14 @@ body {
     background: rgba(255, 255, 255, 0.8);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
 }
 
 ::view-transition-group(*),

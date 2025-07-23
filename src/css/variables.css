@@ -1,6 +1,8 @@
 :root {
     --color-purple: #5c00d5;
     --color-blue-5: rgba(26, 25, 136, 0.05);
+    --color-blue-10: rgba(26, 25, 136, 0.1);
+    --color-blue-20: rgba(26, 25, 136, 0.2);
     --color-cyan: #72f8ff;
     --color-blue: #04008f;
 

@@ -4,6 +4,7 @@ import { IconArrowUpRight } from "@tabler/icons-react";
 import ProjectLink from "./ProjectLink.astro";
 import ProjectImageCard from "./ProjectImageCard.astro";
 import Tags from "./Tags.astro";
+import { slugify } from "../utils/slugify";
 
 interface Props {
     project: Project;
@@ -14,12 +15,17 @@ const tags = project.tech.slice(0, 3);
 if (tags.length < project.tech.length) {
     tags.push(`+${project.tech.length - 3}`);
 }
+
+const categories = project.categories.map((category) => {
+    return slugify(category)
+});
 ---
 
 <li
     class="item"
     data-slug={project.slug}
     data-module="3dcard"
+    data-categories={categories.join(",")}
     id={project.slug}
 >
     <div class="preview">

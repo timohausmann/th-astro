@@ -1,0 +1,47 @@
+---
+import ProjectFilterTag from "./ProjectFilterTag.astro";
+import { projectCategories } from "../types/projects";
+import { getProjects } from "../scripts/getProjects";
+
+const projects = getProjects();
+
+// Create array with slugified category names and counts
+const categoryData = projectCategories.map((category) => {
+    const count = projects.filter(project => 
+        project.categories.includes(category)
+    ).length;
+    
+    return {
+        category,
+        count
+    };
+});
+---
+
+<section class="row">
+    <div class="row-inner">
+        <h1 class="visually-hidden">Filter</h1>
+        <ul class="filter-list">
+            {
+                categoryData.map(({ category, count }, i) => (
+                    <li>
+                        <ProjectFilterTag
+                            category={category}
+                            count={count}
+                            checked={i === 0}
+                        />
+                    </li>
+                ))
+            }
+        </ul>
+    </div>
+</section>
+
+<style>
+    .filter-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        justify-content: center;
+    }
+</style>
