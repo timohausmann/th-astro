@@ -60,7 +60,7 @@
     "alt": "Insurance Bot Conversational UI",
     "tech": ["OpenAI API", "Azure Speech API", "Next.js", "Three.js", "R3F", "Drei", "CSS Modules", "TypeScript", "JWT"],
     "roles": ["Programmierung"],
-    "categories": ["spotlight", "solutions", "experimental"],
+    "categories": ["spotlight", "solutions"],
     "description": "Responsive AI Web-App mit 3D-Avatar zur Unterstützung des Vertriebs. Mithilfe der OpenAI Assistant API wurden Produktinformationen hinterlegt, die per Sprach- und Text-UI abgefragt werden können. Die OpenAI Textantwort kann mithilfe der Azure Speech API als Sprache ausgegeben werden.",
     "layout": "wide",
     "partner": {
@@ -77,7 +77,7 @@
     "alt": "Quadtree.ts",
     "tech": ["Rekursiv", "Rollup", "Jest", "TypeDoc", "SemVer", "GitHub Pages", "TypeScript"],
     "roles": ["Programmierung"],
-    "categories": ["spotlight", "open source"],
+    "categories": ["spotlight", "studies"],
     "description": "NPM-Pakete für Quadtrees. Diese rekursive Datenstruktur vereinfacht die Ermittlung von nahegelegenen Objekten in einer 2D-Fläche, z.B. für Kollisionserkennung. Die JS-Grundversion wurde von Grund auf neu in TS implementiert: modularer, mit automatischen Tests und Docs. Beide Projekte zusammen haben über 750 GitHub Stars und 4500 weekly downloads.",
     "layout": "wide",
     "href": "https://timohausmann.github.io/quadtree-ts/"
@@ -92,7 +92,7 @@
     "alt": "Bromacker Website",
     "tech": ["ProcessWire", "Next.js", "Three.js", "R3F", "Drei", "Theatre.js", "CSS Modules", "TypeScript"],
     "roles": ["Programmierung"],
-    "categories": ["spotlight", "arts & culture", "experimental"],
+    "categories": ["spotlight", "arts & culture", "studies"],
     "description": "Erkundbarer 3D-Scan der Grabungsstelle Bromacker mit verschiedenen Stationen. Transparente Kurzvideos erwecken das 3D-Modell zum Leben. Die gesamte Szene samt Kamerafahrten kann in einem webbasierten 3D-Editor bearbeitet werden. U.a. mit Static Site Generation von CMS-Inhalten mit Next.js, Path Revalidation und Custom Video-Player mit mehrsprachigen Untertiteln. ",
     "layout": "wide",
     "partner": {
@@ -111,7 +111,7 @@
     "alt": "16 zufällig generierte, schwarz-weiße Pixelmatrixen",
     "tech": ["PHP", "MySQL", "HTML5", "Javascript", "Canvas"],
     "roles": ["Konzept", "Design", "Programmierung"],
-    "categories": ["experimental", "datavis"],
+    "categories": ["studies", "data vis"],
     "description": "Mit einer Sammlung jeder möglichen Pixelkombination würde man über jedes denkbare Bild, sowie aller Photos der Geschichte und sogar der Zukunft verfügen. 16x16 geht dieser Theorie nach, indem es zufällige schwarz-weiß Bilder in einer Auflösung von 16x16 Pixel erzeugt. Besucher können ihre Funde in einer öffentlichen Datenbank mit anderen teilen.",
     "layout": "wide"
   },
@@ -125,7 +125,7 @@
     "alt": "Browsergame Screenshot, eine Figur steht in einem Gang mit einer Barrikade",
     "tech": ["HTML5", "Javascript", "Canvas"],
     "roles": ["Konzept", "Design", "Programmierung"],
-    "categories": ["experimental", "open source"],
+    "categories": ["studies"],
     "description": "Dieses Browserspiel wurde für JS13k 2015 entwickelt – ein Wettbewerb, mit eine Dateigrößenbeschränkung von maximal 13 Kilobyte. Ziel des Spiels ist es, die mit Fallen und Monstern gespickten Labyrinthe lebendig zu durchqueren.",
     "layout": "wide"
   },
@@ -139,7 +139,7 @@
     "alt": "Irisiderende 3D-Sphäre, in der sich ein Park spiegelt",
     "tech": ["Three.js", "JSDoc", "Webpack"],
     "roles": ["Programmierung"],
-    "categories": ["solutions", "experimental"],
+    "categories": ["solutions", "studies"],
     "description": "Im Büro für Weltgestaltung entstand diese einzigartige Keyvisual-Idee: ein metallischer 3D-Körper, der ständig im Wandel ist und seine Umgebung reflektiert. In enger Zusammenarbeit und iterativen Schritten entstand eine hoch-konfigurierbare 3D-Szene, die auf der Website und in Printmedien das Wiedererkennungsmerkmal der Designagentur wurde.",
     "layout": "wide"
   },
@@ -153,7 +153,7 @@
     "alt": "Website-Screenshot: Team up with your party",
     "tech": ["Svelte", "Firebase", "Rollup"],
     "roles": ["Konzept", "Design", "Programmierung"],
-    "categories": ["open source"],
+    "categories": ["studies"],
     "description": "Web-App zur Verwaltung von Charakterbögen für das Pen-and-Paper Rollenspiel Coriolis. Jeder, der schon einmal ein Pen-and-Paper gespielt hat, kennt Charakterbögen: ein DIN-A4 Blatt, auf dem alle Informationen einer Spielfigur gesammelt werden. Über viele Sitzungen hinweg wird ergänzt, radiert, der Platz ist begrenzt, vielleicht landet ein Fleck auf dem Zettel oder man findet ihn einfach nicht mehr wieder. Die Digitalisierung verschafft Abhilfe und bietet weitere Möglichkeiten, wie z.B. das Teilen von Informationen mit Mitspielern. Dem Open-Source-Projekt wurden bereits Übersetzungen aus der Community hinzugefügt.",
     "layout": "wide"
   },
@@ -198,7 +198,7 @@
     "alt": "Datenvisualisierung tausender Portraits, sortiert nach erkannter Emotion",
     "tech": ["Svelte", "Node.js", "Azure Face Recognition", "MongoDB", "TypeScript", "Pixi.js", "GSAP", "D3.js", "Snowpack"],
     "roles": ["Programmierung"],
-    "categories": ["datavis", "arts & culture", "experimental"],
+    "categories": ["data vis", "arts & culture", "studies"],
     "description": "Datenanalyse (Facial Expression Recognition (FER)) und Datenvisualisierung von 1749 Portraits der National Portrait Gallery Australia. Die Künstlerin Melita Dahl untersucht Deadpans in der Fotografie und hinterfragt \"FER\"-Software, die Photos durch Gesichtserkennung Emotionen zuschreibt. In einem iterativen Prozess haben wir gemeinsam verschiedene Interfaces zur Darstellung und Erkundung der Daten entwickelt.",
     "layout": "wide",
     "partner": {
@@ -217,7 +217,7 @@
     "alt": "3D-Raum mit Kunstwerken der Sammlung des Franz Marc Museums",
     "tech": ["React", "Webpack", "Three.js", "OpenSeadragon"],
     "roles": ["Programmierung"],
-    "categories": ["arts & culture", "datavis", "experimental"],
+    "categories": ["arts & culture", "data vis", "studies"],
     "description": "3D-Raum zur Erkundung der Sammlung des Franz Marc Museums in verschiedenen Anordnungen: Zufall, Zeit, Farbe, Künstler. Inspiriert von \"Scrollytelling\" können sich Besucher via Mausrad durch einen endlosen, virtuellen Raum bewegen. Eine Detailansicht mit Zoomfunktion und Textinformationen bieten tiefe Einsichten in die Sammlung. Forschungsprojekt der FH Potsdam in Zusammenarbeit mit Collecto und dem Franz Marc Museum",
     "layout": "wide",
     "partner": {
@@ -253,7 +253,7 @@
     "alt": "Screenshot der Dashnet Web App zeigt den AI-Channel mit Kommentaren und Bildern",
     "tech": ["React", "Gulp", "Express", "Node.js", "MongoDB", "GraphlQL", "Apollo", "JWT", "Postfix"],
     "roles": ["Konzept", "Design", "Programmierung"],
-    "categories": ["experimental"],
+    "categories": ["studies"],
     "description": "Mein erstes React-Projekt: ein Social Network für unseren Freundeskreis, in dem man sich verabreden und zu unterschiedlichen Themen austauschen kann. Text- und Bildbeiträge können kommentiert und geliked werden. Es gibt eine integrierte Notiz-App sowie ein E-Mail-Postfach. Das Backend ist ein selfhosted Express Server mit Thumbnailgenerierung, Webscraper, GraphQL-API und einem automatischen, wöchentlichen Newsletter. Die erste Version entstand bereits 2007 mit PHP und jQuery.",
     "layout": "wide"
   }

@@ -2,17 +2,15 @@ export type ProjectCategory =
     | "spotlight"
     | "solutions"
     | "arts & culture"
-    | "datavis"
-    | "experimental"
-    | "open source";
+    | "data vis"
+    | "studies";
 
 export const projectCategories: ProjectCategory[] = [
     "spotlight",
     "solutions",
     "arts & culture",
-    "datavis",
-    "experimental",
-    "open source",
+    "data vis",
+    "studies",
 ];
 
 /**

@@ -132,7 +132,7 @@ function animate() {
 }
 
 function initRotate() {
-    items = Array.from(document.querySelectorAll("[data-module='3dcard']"));
+    items = Array.from(document.querySelectorAll("[data-module*='3dcard']"));
     if (!items.length) return;
 
     // Initialize item states

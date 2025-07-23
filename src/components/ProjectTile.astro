@@ -17,14 +17,14 @@ if (tags.length < project.tech.length) {
 }
 
 const categories = project.categories.map((category) => {
-    return slugify(category)
+    return slugify(category);
 });
 ---
 
 <li
     class="item"
     data-slug={project.slug}
-    data-module="3dcard"
+    data-module="3dcard, project-filter"
     data-categories={categories.join(",")}
     id={project.slug}
 >
@@ -48,6 +48,7 @@ const categories = project.categories.map((category) => {
 </li>
 
 <script src="../scripts/3dcards.ts"></script>
+<script src="../scripts/projectFilter.ts"></script>
 
 <style>
     .preview {
@@ -70,6 +71,8 @@ const categories = project.categories.map((category) => {
         flex-direction: column;
         align-items: flex-start;
         gap: 1rem;
+        /* link is 3d for in/out filter animations */
+        transform: perspective(1000px) scale(1);
     }
 
     .item {
@@ -80,6 +83,19 @@ const categories = project.categories.map((category) => {
         align-items: center;
         justify-content: center;
         scroll-margin-top: 12rem;
+        transition:
+            opacity 0.3s ease,
+            transform 0.3s ease;
+    }
+
+    /* Filter visibility states */
+    .item[data-visibility="in"],
+    .item[data-visibility="out"],
+    .item[data-visibility="hidden"] {
+        pointer-events: none;
+    }
+    .item[data-visibility="hidden"] {
+        display: none;
     }
 
     @media (--projects-small) {
