@@ -20,7 +20,7 @@ const id = slugify(category);
         name="project-filter"
         checked={checked}
     />
-    <label class="label" for={id}>
+    <label class="label frost-bg" for={id}>
         <IconEye className="icon" />
         {category}
         <span class="count">{count}</span>
@@ -49,9 +49,8 @@ const id = slugify(category);
         cursor: pointer;
         width: 100%;
         white-space: nowrap;
-        backdrop-filter: blur(10px);
-        background-color: rgba(255, 255, 255, 0.1);
-    }
+        box-shadow: 0 2px 16px rgba(0, 0, 0, 0.05);
+    }/*
     .label::after {
         content: "";
         position: absolute;
@@ -63,6 +62,7 @@ const id = slugify(category);
         border-radius: inherit;
         background-color: var(--color-blue-5);
     }
+        */
     .icon {
         color: var(--color-blue);
         transition: all 0.3s;

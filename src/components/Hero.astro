@@ -1,46 +1,17 @@
 ---
 import HeroCanvas from "./HeroCanvas.astro";
-import HeroHeadline from "./HeroHeadline.astro";
-import HeroNote from "./HeroNote.astro";
 ---
 
-<section class="hero row">
-    <div class="row-inner">
-        <HeroCanvas />
-        <div class="headline-outer">
-            <HeroHeadline />
-        </div>
-        <!-- <HeroNote /> -->
-    </div>
+<section class="hero">
+    <HeroCanvas />
 </section>
 
 <style>
     .hero {
-        position: relative;
-        background: linear-gradient(to bottom, #6361ff 0%, #3c3a99 100%); 
-        min-height: 90vh;
-        padding: 8rem 0 2rem;
+        position: fixed;
+        inset: 0;
         z-index: 0;
+        background: linear-gradient(to bottom, #fff 0%, #eee 100%);
         overflow: hidden;
-        display: flex;
-        align-items: stretch;
-    }
-    @media (--md) {
-        .hero {
-            padding-bottom: 4rem;
-        }
-    }
-    .row-inner {
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-end;
-        gap: 4rem;
-    }
-    .headline-outer {
-        flex-grow: 1;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding-top: 6vw;
     }
 </style>

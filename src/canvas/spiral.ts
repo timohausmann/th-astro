@@ -28,8 +28,8 @@ export class SpiralEffect implements CanvasEffect {
     private size: number = 0;
     private maxRingSize: number = 0;
     private pixelRatio: number = 1;
-    private ringColor: string = "255, 255, 255";
-    private ringOpacity: number = 0.1;
+    private ringColor: string = "0, 64, 255";
+    private ringOpacity: number = 0.05;
 
     private updateDimensions(width: number, height: number) {
         if (!this.canvas) return;

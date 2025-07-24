@@ -1,18 +1,29 @@
 ---
 import Hero from "../components/Hero.astro";
+import HeroHeadline from "../components/HeroHeadline.astro";
 import Projects from "../components/Projects.astro";
 import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout>
     <main class="page">
-        <!-- <Hero /> -->
+        <Hero />
+        <div class="row">
+            <div class="row-inner row-inner--full headline">
+                <HeroHeadline />
+            </div>
+        </div>
+
         <Projects />
     </main>
 </Layout>
 <style>
     .page {
-        padding-top: 0;
+        padding-top: max(5vw, 7rem);
         padding-bottom: 0;
+    }
+    .headline {
+        padding-top: 4rem;
+        padding-bottom: 4rem; 
     }
 </style>

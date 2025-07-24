@@ -23,6 +23,9 @@ const getDefaultVisibility = (
 };
 ---
 
+<div class="filter-container">
+    <ProjectFilter />
+</div>
 <div id="project-wrap">
     <section class="projects row" id="referenzen">
         <ul class="list row-inner row-inner--full">
@@ -45,14 +48,15 @@ const getDefaultVisibility = (
 </div>
 <style>
     .filter-container {
-        margin: 1.5rem 0 3rem;
+        position: fixed;
+        top: 2rem;
+        right: var(--screen-gutter); 
+        z-index: 100;
     }
     #project-wrap {
         position: relative;
-        padding-top: max(5vw, 10rem);
+        padding-top: 2rem;
         padding-bottom: 6rem;
-        background: #f9f9f9;
-        box-shadow: inset 0 0 64px 64px rgba(0, 0, 0, 0.11);
     }
     .title {
         font-family: "Delight";

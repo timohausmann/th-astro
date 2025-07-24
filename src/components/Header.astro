@@ -3,14 +3,8 @@ import Logo from "./Logo.astro";
 import ProjectFilter from "./ProjectFilter.astro";
 ---
 
-<header class="header row">
-    <div class="logo interactive">
-        <Logo />
-    </div>
-
-    <div class="filter interactive">
-        <ProjectFilter />
-    </div>
+<header class="header">
+    <Logo />
 </header>
 
 <style>
@@ -21,15 +15,10 @@ import ProjectFilter from "./ProjectFilter.astro";
         align-items: center;
         gap: 2rem;
         top: 2rem;
-        left: 0;
+        left: var(--screen-gutter); 
         z-index: 100;
         color: var(--color-blue);
-        pointer-events: none;
     }
-    .interactive {
-        pointer-events: all;
-    }
-
     .button {
         border: none;
         background: none;
