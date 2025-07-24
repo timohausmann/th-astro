@@ -1,4 +1,12 @@
-import { animate, scroll } from "motion";
+import {
+    animate,
+    scroll,
+    type AnimationPlaybackControlsWithThen,
+} from "motion";
+import { getState, setState, subscribe } from "./projectStore";
+import type { ProjectCategory } from "../types/projects";
+
+// TODO: when tiles fade in and others fade out, there can be a timing mismatch
 
 const filterConfig = {
     visibleValue: "visible",
@@ -9,7 +17,12 @@ const filterConfig = {
 
 let projectTiles: Array<HTMLElement>;
 let filterInputs: Array<HTMLInputElement>;
-let currentFilter: string | null = null;
+let unsubscribe: (() => void) | null = null;
+let currentFilterId: string | null = null; // Track current filter state
+const tileAnimations = new WeakMap<
+    HTMLElement,
+    AnimationPlaybackControlsWithThen
+>();
 
 // Initialize filtering functionality
 function initProjectFilter() {
@@ -28,13 +41,21 @@ function initProjectFilter() {
         input.addEventListener("change", handleFilterChange);
     });
 
-    // Apply initial filter (first checked input or "all")
-    const checkedInput = filterInputs.find((input) => input.checked);
-    if (checkedInput) {
-        currentFilter = checkedInput.id;
+    // Subscribe to store changes for reactive updates
+    unsubscribe = subscribe((state) => {
+        // Apply filter whenever the store's currentFilter changes
+        if (state.currentFilter) {
+            applyFilter(state.currentFilter);
+        } else {
+            showAllProjects();
+        }
+    });
+
+    // Apply initial filter from store
+    const { currentFilter } = getState();
+    if (currentFilter) {
         applyFilter(currentFilter);
     } else {
-        // If no filter is checked, show all projects
         showAllProjects();
     }
 }
@@ -43,13 +64,17 @@ function initProjectFilter() {
 function handleFilterChange(event: Event) {
     const target = event.target as HTMLInputElement;
     if (target.checked) {
-        currentFilter = target.id;
-        applyFilter(currentFilter);
+        const filterId = target.id;
+        // Use setState to update the currentFilter
+        setState({ currentFilter: filterId as ProjectCategory });
+        // Note: We don't need to call applyFilter here anymore
+        // because the subscribe callback will handle it reactively
     }
 }
 
 // Apply filter to show/hide projects
 function applyFilter(filterId: string) {
+    currentFilterId = filterId; // Update current filter state
     projectTiles.forEach((tile) => {
         const categories = tile.getAttribute("data-categories");
         const shouldShow = shouldShowProject(categories, filterId);
@@ -82,37 +107,63 @@ function shouldShowProject(
 // Show a project tile
 function showProject(tile: HTMLElement) {
     // Set visibility to visible
-    tile.setAttribute("data-visibility", filterConfig.inValue);
+    if (tile.getAttribute("data-visibility") === filterConfig.hiddenValue) {
+        tile.setAttribute("data-visibility", filterConfig.inValue);
+    }
+    if (tileAnimations.has(tile)) {
+        console.log("cancelling animation");
+        tileAnimations.get(tile)?.cancel();
+    }
     const preview = tile.querySelector(".link") as HTMLElement;
     if (preview) {
-        animate(
+        // Capture the filter state when animation starts
+        const animationFilterId = currentFilterId;
+
+        const animation = animate(
             preview,
             {
-                opacity: 1,
-                transform: "perspective(1000px) scale(1) rotateX(0deg)",
+                opacity: [0, 1],
+                transform: [
+                    "perspective(1000px) scale(0.9) rotateX(7.5deg)",
+                    "perspective(1000px) scale(1) rotateX(0deg)",
+                ],
             },
             { type: "spring", stiffness: 200 }
-        ).then(() => {
-            tile.setAttribute("data-visibility", filterConfig.visibleValue);
+        );
+
+        animation.then(() => {
+            console.log("animation complete");
+            // Only set to visible if the filter hasn't changed during animation
+            if (currentFilterId === animationFilterId) {
+                tile.setAttribute("data-visibility", filterConfig.visibleValue);
+            }
         });
+
+        tileAnimations.set(tile, animation);
     }
 }
 
 function hideProject(tile: HTMLElement) {
     // Set visibility to hidden
-    tile.setAttribute("data-visibility", filterConfig.outValue);
+    if (tile.getAttribute("data-visibility") === filterConfig.visibleValue) {
+        tile.setAttribute("data-visibility", filterConfig.outValue);
+    }
     const preview = tile.querySelector(".link") as HTMLElement;
     if (preview) {
-        animate(
+        /*animate(
             preview,
             {
-                transform: "perspective(1000px) scale(0.9) rotateX(7.5deg)",
-                opacity: 0,
+                opacity: [1, 0],
+                transform: [
+                    "perspective(1000px) scale(1) rotateX(0deg)",
+                    "perspective(1000px) scale(0.9) rotateX(7.5deg)",
+                ],
             },
             { duration: 0.3, ease: "circOut" }
         ).then(() => {
             tile.setAttribute("data-visibility", filterConfig.hiddenValue);
-        });
+        });*/
+        tile.setAttribute("data-visibility", filterConfig.hiddenValue);
     }
 }
 
@@ -132,15 +183,15 @@ function cleanupProjectFilter() {
         input.removeEventListener("change", handleFilterChange);
     });
 
-    // Reset all projects to visible state
-    projectTiles.forEach((tile) => {
-        tile.removeAttribute("data-visibility");
-    });
+    // Unsubscribe from store changes
+    if (unsubscribe) {
+        unsubscribe();
+        unsubscribe = null;
+    }
 
     // Reset variables
     projectTiles = [];
     filterInputs = [];
-    currentFilter = null;
 }
 
 // Initialize on page load and cleanup on page change

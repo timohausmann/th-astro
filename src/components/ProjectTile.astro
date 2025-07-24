@@ -1,5 +1,5 @@
 ---
-import type { Project } from "../types/projects";
+import type { Project, ProjectTileVisibility } from "../types/projects";
 import { IconArrowUpRight } from "@tabler/icons-react";
 import ProjectLink from "./ProjectLink.astro";
 import ProjectImageCard from "./ProjectImageCard.astro";
@@ -8,9 +8,10 @@ import { slugify } from "../utils/slugify";
 
 interface Props {
     project: Project;
+    defaultVisibility?: ProjectTileVisibility;
 }
 
-const { project } = Astro.props;
+const { project, defaultVisibility = "visible" } = Astro.props;
 const tags = project.tech.slice(0, 3);
 if (tags.length < project.tech.length) {
     tags.push(`+${project.tech.length - 3}`);
@@ -26,6 +27,7 @@ const categories = project.categories.map((category) => {
     data-slug={project.slug}
     data-module="3dcard, project-filter"
     data-categories={categories.join(",")}
+    data-visibility={defaultVisibility}
     id={project.slug}
 >
     <div class="preview">

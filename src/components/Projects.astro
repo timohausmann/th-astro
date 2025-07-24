@@ -1,28 +1,55 @@
 ---
 import { getProjects } from "../scripts/getProjects";
+import { getState } from "../scripts/projectStore";
+import { slugify } from "../utils/slugify";
 import ProjectTile from "./ProjectTile.astro";
 import ProjectFilter from "./ProjectFilter.astro";
+import type { ProjectTileVisibility } from "../types/projects";
+
 const projects = getProjects();
+const { currentFilter } = getState();
+
+// Determine default visibility based on current filter
+const getDefaultVisibility = (
+    projectCategories: string[],
+    filter: string | null
+): ProjectTileVisibility => {
+    if (!filter || filter === "all") {
+        return "visible";
+    }
+
+    const categorySlugs = projectCategories.map((cat) => slugify(cat));
+    return categorySlugs.includes(filter) ? "visible" : "hidden";
+};
 ---
 
 <div id="project-wrap">
-    <h1 class="title">Referenzen</h1>
-    <div class="filter-container">
-        <ProjectFilter />
-    </div>
     <section class="projects row" id="referenzen">
         <ul class="list row-inner row-inner--full">
-            {projects.map((project) => <ProjectTile project={project} />)}
+            {
+                projects.map((project) => {
+                    const defaultVisibility = getDefaultVisibility(
+                        project.categories,
+                        currentFilter
+                    );
+                    return (
+                        <ProjectTile
+                            project={project}
+                            defaultVisibility={defaultVisibility}
+                        />
+                    );
+                })
+            }
         </ul>
     </section>
 </div>
 <style>
     .filter-container {
-        margin: 1.5rem 0 3rem; 
+        margin: 1.5rem 0 3rem;
     }
     #project-wrap {
         position: relative;
-        padding-top: max(5vw, 2rem);
+        padding-top: max(5vw, 10rem);
         padding-bottom: 6rem;
         background: #f9f9f9;
         box-shadow: inset 0 0 64px 64px rgba(0, 0, 0, 0.11);

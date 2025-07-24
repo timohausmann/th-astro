@@ -41,7 +41,7 @@ body {
 }
 
 .page {
-    padding-top: 9rem;
+    padding-top: 7rem;
     padding-bottom: 6rem;
     min-height: calc(100dvh - 154px);
     background: #f9f9f9

@@ -1,26 +1,32 @@
 ---
-import FrostBar from "./FrostBar.astro";
 import Logo from "./Logo.astro";
+import ProjectFilter from "./ProjectFilter.astro";
 ---
 
 <header class="header row">
-    <FrostBar class="header-frost-bar">
+    <div class="logo interactive">
         <Logo />
-    </FrostBar>
+    </div>
+
+    <div class="filter interactive">
+        <ProjectFilter />
+    </div>
 </header>
 
 <style>
     .header {
         position: fixed;
         display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 2rem;
         top: 2rem;
         left: 0;
         z-index: 100;
         color: var(--color-blue);
         pointer-events: none;
     }
-    .header :global(.header-frost-bar) {
-        min-height: 4rem;
+    .interactive {
         pointer-events: all;
     }
 

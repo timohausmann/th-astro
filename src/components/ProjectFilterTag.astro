@@ -40,15 +40,17 @@ const id = slugify(category);
         display: flex;
         align-items: baseline;
         gap: 0.5rem;
-        /* background-color: var(--color-blue-5); */
         border: 1px solid transparent;
         font-size: 14px;
         padding: 0.5rem 1rem 0.5rem 0.75rem;
-        border-radius: 1rem;
+        border-radius: 999px;
         transition: all 0.3s;
         color: var(--color-blue);
         cursor: pointer;
         width: 100%;
+        white-space: nowrap;
+        backdrop-filter: blur(10px);
+        background-color: rgba(255, 255, 255, 0.1);
     }
     .label::after {
         content: "";
@@ -70,11 +72,9 @@ const id = slugify(category);
     }
     .label:hover::after {
         background-color: var(--color-blue-10);
-        transform: scale(1.1);
     }
     .input:checked + .label::after {
         background-color: var(--color-blue-10);
-        transform: scale(1.066);
     }
     .input:checked + .label:hover::after {
     }
