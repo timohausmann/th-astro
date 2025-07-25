@@ -5,11 +5,13 @@ import { getProjects } from "./getProjects";
 interface ProjectStore {
     projects: Project[];
     currentFilter: ProjectCategory;
+    visibleCount: number;
 }
 
 export const projectStore = createStore<ProjectStore>((set) => ({
     projects: getProjects(),
-    currentFilter: "spotlight",
+    currentFilter: "all",
+    visibleCount: 6,
 }));
 
 // Export store methods for easy access

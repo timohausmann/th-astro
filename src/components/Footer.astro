@@ -4,41 +4,44 @@ import {
     IconBrandLinkedin,
     IconMail,
 } from "@tabler/icons-react";
+import Button from "./Button.astro";
 ---
 
 <footer class="footer row">
     <div class="footer-content">
         <div class="footer-bar">
             <div class="footer-links">
-                <a
-                    class="footer-link frost-bg"
+                <Button
+                    class="footer-link"
                     href="https://linkedin.com/in/timohausmann"
-                    target="_blank"
+                    blank
+                    label="LinkedIn"
                 >
-                    <IconBrandLinkedin />
-                    LinkedIn
-                </a>
-                <a
+                    <IconBrandLinkedin size={24} stroke={1.25} slot="iconBefore" />
+                </Button>
+                <Button
                     class="footer-link frost-bg"
                     href="https://github.com/timohausmann"
-                    target="_blank"
+                    blank
+                    label="GitHub"
                 >
-                    <IconBrandGithub />
-                    GitHub
-                </a>
-                <a
+                    <IconBrandGithub size={24} stroke={1.25} slot="iconBefore" />
+                </Button>
+                <Button
                     class="footer-link frost-bg"
                     href="mailto:hello.timohausmann@gmail.com"
-                    target="_blank"
+                    blank
+                    label="E-Mail"
                 >
-                    <IconMail />
-                    E-Mail
-                </a>
+                    <IconMail size={24} stroke={1.25} slot="iconBefore" />
+                </Button>
             </div>
         </div>
         <div class="secondary">
-            <a class="imprint-link caps caps-12" href="/imprint">Impressum</a>
-            <a class="imprint-link caps caps-12" href="/privacy">Datenschutz</a>
+            <a class="secondary-link caps caps-12" href="/imprint">Impressum</a>
+            <a class="secondary-link caps caps-12" href="/privacy"
+                >Datenschutz</a
+            >
         </div>
     </div>
 </footer>
@@ -69,8 +72,13 @@ import {
         color: rgba(0, 0, 0, 0.5);
     }
 
-    .imprint-link {
+    .secondary-link {
         color: inherit;
+        transition: all 0.3s ease;
+    }
+
+    .secondary-link:hover {
+        color: var(--color-blue);
     }
 
     .footer-links {

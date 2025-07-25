@@ -4,63 +4,86 @@ import { getState } from "../scripts/projectStore";
 import { slugify } from "../utils/slugify";
 import ProjectTile from "./ProjectTile.astro";
 import ProjectFilter from "./ProjectFilter.astro";
+import Button from "./Button.astro";
 import type { ProjectTileVisibility } from "../types/projects";
 
 const projects = getProjects();
-const { currentFilter } = getState();
+const { currentFilter, visibleCount } = getState();
 
-// Determine default visibility based on current filter
+// Determine default visibility based on current filter and visible count
 const getDefaultVisibility = (
     projectCategories: string[],
-    filter: string | null
+    filter: string | null,
+    index: number
 ): ProjectTileVisibility => {
-    if (!filter || filter === "all") {
-        return "visible";
+    // First check if project should be visible based on filter
+    if (filter && filter !== "all") {
+        const categorySlugs = projectCategories.map((cat) => slugify(cat));
+        if (!categorySlugs.includes(filter)) {
+            return "hidden";
+        }
     }
-
-    const categorySlugs = projectCategories.map((cat) => slugify(cat));
-    return categorySlugs.includes(filter) ? "visible" : "hidden";
+    
+    // Then check if project should be visible based on visible count
+    if (index >= visibleCount) {
+        return "hidden";
+    }
+    
+    return "visible";
 };
 ---
 
-<div class="filter-container">
-    <ProjectFilter />
-</div>
 <div id="project-wrap">
     <section class="projects row" id="referenzen">
-        <ul class="list row-inner row-inner--full">
-            {
-                projects.map((project) => {
-                    const defaultVisibility = getDefaultVisibility(
-                        project.categories,
-                        currentFilter
-                    );
-                    return (
-                        <ProjectTile
-                            project={project}
-                            defaultVisibility={defaultVisibility}
-                        />
-                    );
-                })
-            }
-        </ul>
+        <div class="row-inner row-inner--full">
+            <!-- <div class="list-header">
+                <h2 class="title">Portfolio</h2>
+                <ProjectFilter />
+            </div> -->
+            <ul class="list">
+                {
+                    projects.map((project, index) => {
+                        const defaultVisibility = getDefaultVisibility(
+                            project.categories,
+                            currentFilter,
+                            index
+                        );
+                        return (
+                            <ProjectTile
+                                project={project}
+                                defaultVisibility={defaultVisibility}
+                            />
+                        );
+                    })
+                }
+            </ul>
+            <div class="button-container">
+                <Button 
+                    label="Mehr laden"
+                    module="load-more"
+                />
+            </div>
+        </div>
     </section>
 </div>
+
+<script src="../scripts/loadMore.ts"></script>
+
 <style>
-    .filter-container {
-        position: fixed;
-        top: 2rem;
-        right: var(--screen-gutter); 
-        z-index: 100;
+    .list-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        padding: 2rem 0;
     }
     #project-wrap {
         position: relative;
-        padding-top: 2rem;
+        padding-top: 4rem;
         padding-bottom: 6rem;
     }
     .title {
         font-family: "Delight";
-        font-size: clamp(1.75rem, 4vw, 3rem);
+        font-size: clamp(1.75rem, 4vw, 2.75rem);
         font-weight: 800;
         text-align: center;
         color: #3e3b9c;

@@ -1,7 +1,7 @@
 ---
 import type { Project } from "../types/projects";
 import { IconExternalLink } from "@tabler/icons-react";
-import ButtonLink from "./ButtonLink.astro";
+import Button from "./Button.astro";
 import { Image } from "astro:assets";
 import Tags from "./Tags.astro";
 
@@ -62,14 +62,13 @@ const partnerImg = project.partner
     {
         project.href && (
             <div class="href-mobile">
-                <ButtonLink
+                <Button
                     href={project.href}
                     label="Besuchen"
                     blank
-                    class="caps-14"
                 >
                     <IconExternalLink size={20} stroke={1.5} slot="iconAfter" />
-                </ButtonLink>
+                </Button>
             </div>
         )
     }

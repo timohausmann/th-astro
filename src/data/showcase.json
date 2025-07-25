@@ -33,23 +33,18 @@
     "layout": "wide"
   },
   {
-    "slug": "collecto",
-    "title": "Content Connect",
-    "suptitle": "Collecto",
+    "slug": "coriolis-character-sheets",
+    "title": "Coriolis Character Sheets",
+    "suptitle": "Open Source",
     "year": 2020,
-    "img": "/src/assets/projects/preview-collecto.png",
-    "alt": "Art Collection Management",
-    "tech": ["Firebase", "Next.js", "MUI", "TypeSense", "TypeScript"],
-    "roles": ["Konzept", "Design", "Projektmanagement"],
-    "categories": ["spotlight", "solutions", "arts & culture"],
-    "description": "Web App zur Verwaltung von umfangreichen Sammlungsinhalten für Museen und Privatsammler. Ermöglicht u.a. Medienmanagement (Bilder, Audio- und Videodateien), anpassbare Datenfelder, individuelle Gebäudepläne mit Standortangaben, Multi-User-Accounts mit Rechtemanagement, Suche und Filter mit TypeSense. Die hinterlegten Daten werden über APIs an Web- und Flutter-Apps augespielt.",
-    "layout": "wide",
-    "href": "https://www.collecto.art/portfolio/content-connect",
-    "partner": {
-      "name": "Collecto",
-      "logo": "/src/assets/partner/logo-collecto.svg",
-      "href": "https://www.collecto.art/"
-    }
+    "href": "https://coriolis-sheets.web.app/",
+    "img": "/src/assets/projects/preview-coriolis.png",
+    "alt": "Website-Screenshot: Team up with your party",
+    "tech": ["Svelte", "Firebase", "Rollup"],
+    "roles": ["Konzept", "Design", "Programmierung"],
+    "categories": ["studies"],
+    "description": "Web-App zur Verwaltung von Charakterbögen für das Pen-and-Paper Rollenspiel Coriolis. Jeder, der schon einmal ein Pen-and-Paper gespielt hat, kennt Charakterbögen: ein DIN-A4 Blatt, auf dem alle Informationen einer Spielfigur gesammelt werden. Über viele Sitzungen hinweg wird ergänzt, radiert, der Platz ist begrenzt, vielleicht landet ein Fleck auf dem Zettel oder man findet ihn einfach nicht mehr wieder. Die Digitalisierung verschafft Abhilfe und bietet weitere Möglichkeiten, wie z.B. das Teilen von Informationen mit Mitspielern. Dem Open-Source-Projekt wurden bereits Übersetzungen aus der Community hinzugefügt.",
+    "layout": "wide"
   },
   {
     "slug": "ki-assistent-versicherung",
@@ -70,17 +65,42 @@
     }
   },
   {
-    "slug": "quadtree",
-    "title": "Quadtree.ts",
-    "suptitle": "Open Source",
-    "img": "/src/assets/projects/preview-quadtree.png",
-    "alt": "Quadtree.ts",
-    "tech": ["Rekursiv", "Rollup", "Jest", "TypeDoc", "SemVer", "GitHub Pages", "TypeScript"],
+    "slug": "franz-marc-digitale-sammlung",
+    "title": "Franz Marc Museum",
+    "suptitle": "Digitale Sammlung",
+    "year": 2019,
+    "href": "https://franz-marc-museum.de/viz/",
+    "img": "/src/assets/projects/preview-franz-marc.png",
+    "alt": "3D-Raum mit Kunstwerken der Sammlung des Franz Marc Museums",
+    "tech": ["React", "Webpack", "Three.js", "OpenSeadragon"],
     "roles": ["Programmierung"],
-    "categories": ["spotlight", "studies"],
-    "description": "NPM-Pakete für Quadtrees. Diese rekursive Datenstruktur vereinfacht die Ermittlung von nahegelegenen Objekten in einer 2D-Fläche, z.B. für Kollisionserkennung. Die JS-Grundversion wurde von Grund auf neu in TS implementiert: modularer, mit automatischen Tests und Docs. Beide Projekte zusammen haben über 750 GitHub Stars und 4500 weekly downloads.",
+    "categories": ["arts & culture", "data vis", "studies"],
+    "description": "3D-Raum zur Erkundung der Sammlung des Franz Marc Museums in verschiedenen Anordnungen: Zufall, Zeit, Farbe, Künstler. Inspiriert von \"Scrollytelling\" können sich Besucher via Mausrad durch einen endlosen, virtuellen Raum bewegen. Eine Detailansicht mit Zoomfunktion und Textinformationen bieten tiefe Einsichten in die Sammlung. Forschungsprojekt der FH Potsdam in Zusammenarbeit mit Collecto und dem Franz Marc Museum",
     "layout": "wide",
-    "href": "https://timohausmann.github.io/quadtree-ts/"
+    "partner": {
+      "name": "FHP",
+      "logo": "/src/assets/partner/logo-fhp.svg",
+      "href": "https://www.fh-potsdam.de/"
+    }
+  },
+  {
+    "slug": "swiss-ventures-group",
+    "title": "Swiss Ventures Group",
+    "suptitle": "Unternehmenswebsiten",
+    "year": 2022,
+    "href": "https://www.swissventuresgroup.com/",
+    "img": "/src/assets/projects/preview-swiss.png",
+    "alt": "Website-Screenshot Swiss Ventures Group: Invested in people, commited to ideas",
+    "tech": ["ProcessWire", "Node.js", "Tailwind", "PostCSS", "Webpack"],
+    "roles": ["Programmierung"],
+    "categories": ["solutions"],
+    "description": "Gemeinsam mit Cee Cee Creative habe ich die Websites und Landingpages der Unternehmensgruppe realisiert (Code Law, BV4, GetGoing). Im Hintergrund agiert ProcessWire als CMS, in dem man aus den vordefinierten Contentblöcken Seiten zusammenstellen kann. Zum Relaunch gehörte auch eine Datenmigration des alten Blogs, welcher mittels eines Node.js Webscrapers ausgelesen wurde.",
+    "layout": "wide",
+    "partner": {
+      "name": "Cee Cee Creative",
+      "logo": "/src/assets/partner/logo-ceecee.svg",
+      "href": "https://www.ceeceecreative.com/de"
+    }
   },
   {
     "slug": "bromacker-grabungsstelle-3d",
@@ -99,6 +119,25 @@
       "name": "Museum für Naturkunde Berlin",
       "logo": "/src/assets/partner/logo-mfn.svg",
       "href": "https://www.museumfuernaturkunde.berlin/"
+    }
+  },
+  {
+    "slug": "collecto",
+    "title": "Content Connect",
+    "suptitle": "Collecto",
+    "year": 2020,
+    "img": "/src/assets/projects/preview-collecto.png",
+    "alt": "Art Collection Management",
+    "tech": ["Firebase", "Next.js", "MUI", "TypeSense", "TypeScript"],
+    "roles": ["Konzept", "Design", "Projektmanagement"],
+    "categories": ["spotlight", "solutions", "arts & culture"],
+    "description": "Web App zur Verwaltung von umfangreichen Sammlungsinhalten für Museen und Privatsammler. Ermöglicht u.a. Medienmanagement (Bilder, Audio- und Videodateien), anpassbare Datenfelder, individuelle Gebäudepläne mit Standortangaben, Multi-User-Accounts mit Rechtemanagement, Suche und Filter mit TypeSense. Die hinterlegten Daten werden über APIs an Web- und Flutter-Apps augespielt.",
+    "layout": "wide",
+    "href": "https://www.collecto.art/portfolio/content-connect",
+    "partner": {
+      "name": "Collecto",
+      "logo": "/src/assets/partner/logo-collecto.svg",
+      "href": "https://www.collecto.art/"
     }
   },
   {
@@ -144,39 +183,6 @@
     "layout": "wide"
   },
   {
-    "slug": "coriolis-character-sheets",
-    "title": "Coriolis Character Sheets",
-    "suptitle": "Open Source",
-    "year": 2020,
-    "href": "https://coriolis-sheets.web.app/",
-    "img": "/src/assets/projects/preview-coriolis.png",
-    "alt": "Website-Screenshot: Team up with your party",
-    "tech": ["Svelte", "Firebase", "Rollup"],
-    "roles": ["Konzept", "Design", "Programmierung"],
-    "categories": ["studies"],
-    "description": "Web-App zur Verwaltung von Charakterbögen für das Pen-and-Paper Rollenspiel Coriolis. Jeder, der schon einmal ein Pen-and-Paper gespielt hat, kennt Charakterbögen: ein DIN-A4 Blatt, auf dem alle Informationen einer Spielfigur gesammelt werden. Über viele Sitzungen hinweg wird ergänzt, radiert, der Platz ist begrenzt, vielleicht landet ein Fleck auf dem Zettel oder man findet ihn einfach nicht mehr wieder. Die Digitalisierung verschafft Abhilfe und bietet weitere Möglichkeiten, wie z.B. das Teilen von Informationen mit Mitspielern. Dem Open-Source-Projekt wurden bereits Übersetzungen aus der Community hinzugefügt.",
-    "layout": "wide"
-  },
-  {
-    "slug": "swiss-ventures-group",
-    "title": "Swiss Ventures Group",
-    "suptitle": "Unternehmenswebsiten",
-    "year": 2022,
-    "href": "https://www.swissventuresgroup.com/",
-    "img": "/src/assets/projects/preview-swiss.png",
-    "alt": "Website-Screenshot Swiss Ventures Group: Invested in people, commited to ideas",
-    "tech": ["ProcessWire", "Node.js", "Tailwind", "PostCSS", "Webpack"],
-    "roles": ["Programmierung"],
-    "categories": ["solutions"],
-    "description": "Gemeinsam mit Cee Cee Creative habe ich die Websites und Landingpages der Unternehmensgruppe realisiert (Code Law, BV4, GetGoing). Im Hintergrund agiert ProcessWire als CMS, in dem man aus den vordefinierten Contentblöcken Seiten zusammenstellen kann. Zum Relaunch gehörte auch eine Datenmigration des alten Blogs, welcher mittels eines Node.js Webscrapers ausgelesen wurde.",
-    "layout": "wide",
-    "partner": {
-      "name": "Cee Cee Creative",
-      "logo": "/src/assets/partner/logo-ceecee.svg",
-      "href": "https://www.ceeceecreative.com/de"
-    }
-  },
-  {
     "slug": "invoice-app",
     "title": "Invoice App",
     "suptitle": "Web App",
@@ -208,23 +214,17 @@
     }
   },
   {
-    "slug": "franz-marc-digitale-sammlung",
-    "title": "Franz Marc Museum",
-    "suptitle": "Digitale Sammlung",
-    "year": 2019,
-    "href": "https://franz-marc-museum.de/viz/",
-    "img": "/src/assets/projects/preview-franz-marc.png",
-    "alt": "3D-Raum mit Kunstwerken der Sammlung des Franz Marc Museums",
-    "tech": ["React", "Webpack", "Three.js", "OpenSeadragon"],
+    "slug": "quadtree",
+    "title": "Quadtree.ts",
+    "suptitle": "Open Source",
+    "img": "/src/assets/projects/preview-quadtree.png",
+    "alt": "Quadtree.ts",
+    "tech": ["Rekursiv", "Rollup", "Jest", "TypeDoc", "SemVer", "GitHub Pages", "TypeScript"],
     "roles": ["Programmierung"],
-    "categories": ["arts & culture", "data vis", "studies"],
-    "description": "3D-Raum zur Erkundung der Sammlung des Franz Marc Museums in verschiedenen Anordnungen: Zufall, Zeit, Farbe, Künstler. Inspiriert von \"Scrollytelling\" können sich Besucher via Mausrad durch einen endlosen, virtuellen Raum bewegen. Eine Detailansicht mit Zoomfunktion und Textinformationen bieten tiefe Einsichten in die Sammlung. Forschungsprojekt der FH Potsdam in Zusammenarbeit mit Collecto und dem Franz Marc Museum",
+    "categories": ["spotlight", "studies"],
+    "description": "NPM-Pakete für Quadtrees. Diese rekursive Datenstruktur vereinfacht die Ermittlung von nahegelegenen Objekten in einer 2D-Fläche, z.B. für Kollisionserkennung. Die JS-Grundversion wurde von Grund auf neu in TS implementiert: modularer, mit automatischen Tests und Docs. Beide Projekte zusammen haben über 750 GitHub Stars und 4500 weekly downloads.",
     "layout": "wide",
-    "partner": {
-      "name": "FHP",
-      "logo": "/src/assets/partner/logo-fhp.svg",
-      "href": "https://www.fh-potsdam.de/"
-    }
+    "href": "https://timohausmann.github.io/quadtree-ts/"
   },
   {
     "slug": "collecto-data-tool",

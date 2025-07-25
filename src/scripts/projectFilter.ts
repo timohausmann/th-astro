@@ -8,7 +8,7 @@ import type { ProjectCategory } from "../types/projects";
 
 // TODO: when tiles fade in and others fade out, there can be a timing mismatch
 
-const filterConfig = {
+export const filterConfig = {
     visibleValue: "visible",
     inValue: "in",
     outValue: "out",
@@ -44,20 +44,12 @@ function initProjectFilter() {
     // Subscribe to store changes for reactive updates
     unsubscribe = subscribe((state) => {
         // Apply filter whenever the store's currentFilter changes
-        if (state.currentFilter) {
-            applyFilter(state.currentFilter);
-        } else {
-            showAllProjects();
-        }
+        applyFilter(state.currentFilter);
     });
 
     // Apply initial filter from store
     const { currentFilter } = getState();
-    if (currentFilter) {
-        applyFilter(currentFilter);
-    } else {
-        showAllProjects();
-    }
+    applyFilter(currentFilter);
 }
 
 // Handle filter radio button change
@@ -111,7 +103,6 @@ function showProject(tile: HTMLElement) {
         tile.setAttribute("data-visibility", filterConfig.inValue);
     }
     if (tileAnimations.has(tile)) {
-        console.log("cancelling animation");
         tileAnimations.get(tile)?.cancel();
     }
     const preview = tile.querySelector(".link") as HTMLElement;
@@ -131,15 +122,14 @@ function showProject(tile: HTMLElement) {
             { type: "spring", stiffness: 200 }
         );
 
+        tileAnimations.set(tile, animation);
+
         animation.then(() => {
-            console.log("animation complete");
             // Only set to visible if the filter hasn't changed during animation
             if (currentFilterId === animationFilterId) {
                 tile.setAttribute("data-visibility", filterConfig.visibleValue);
             }
         });
-
-        tileAnimations.set(tile, animation);
     }
 }
 
@@ -165,13 +155,6 @@ function hideProject(tile: HTMLElement) {
         });*/
         tile.setAttribute("data-visibility", filterConfig.hiddenValue);
     }
-}
-
-// Show all projects (used for "all" filter)
-function showAllProjects() {
-    projectTiles.forEach((tile) => {
-        showProject(tile);
-    });
 }
 
 // Clean up event listeners and reset state

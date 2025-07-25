@@ -1,10 +1,14 @@
 ---
 import Logo from "./Logo.astro";
 import ProjectFilter from "./ProjectFilter.astro";
+import { IconMenu } from "@tabler/icons-react";
 ---
 
 <header class="header">
     <Logo />
+    <!-- <button class="button frost-bg">
+        <IconMenu />
+    </button> -->
 </header>
 
 <style>
@@ -15,23 +19,25 @@ import ProjectFilter from "./ProjectFilter.astro";
         align-items: center;
         gap: 2rem;
         top: 2rem;
-        left: var(--screen-gutter); 
+        left: 0;
+        width: 100%;
+        padding: 0 var(--screen-gutter);
         z-index: 100;
         color: var(--color-blue);
     }
     .button {
         border: none;
-        background: none;
         display: flex;
         justify-content: center;
         align-items: center;
         margin: 0;
-        width: 3rem;
-        height: 3rem;
+        width: 4rem;
+        height: 4rem;
         cursor: pointer;
         color: var(--color-blue);
         transition: background-color 0.2s ease;
         border-radius: 9999px;
+        box-shadow: 0 2px 16px 0 rgba(0, 0, 0, 0.05);
     }
     .button:hover {
         background-color: var(--color-blue-5);

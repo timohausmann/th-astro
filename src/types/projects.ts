@@ -1,4 +1,5 @@
 export type ProjectCategory =
+    | "all"
     | "spotlight"
     | "solutions"
     | "arts & culture"
@@ -6,6 +7,7 @@ export type ProjectCategory =
     | "studies";
 
 export const projectCategories: ProjectCategory[] = [
+    "all",
     "spotlight",
     "solutions",
     "arts & culture",
