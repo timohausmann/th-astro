@@ -90,6 +90,12 @@ const categories = project.categories.map((category) => {
     }
 
     /* Visibility states */
+    .item[data-visibility="in"],
+    .item[data-visibility="out"],
+    .item[data-visibility="hidden"] {
+        pointer-events: none;
+    }
+
     .item[data-visibility="hidden"] {
         display: none;
     }

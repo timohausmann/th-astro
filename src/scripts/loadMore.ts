@@ -45,6 +45,7 @@ function handleLoadMore() {
 function updateProjectVisibility(visibleCount: number) {
     projectTiles.forEach((tile, index) => {
         if (index < visibleCount) {
+            const offset = index % 6;
             if (
                 tile.getAttribute("data-visibility") ===
                 filterConfig.visibleValue
@@ -69,7 +70,7 @@ function updateProjectVisibility(visibleCount: number) {
                             "perspective(1000px) scale(1) rotateX(0deg)",
                         ],
                     },
-                    { type: "spring", stiffness: 200 }
+                    { type: "spring", stiffness: 200, delay: 0.1 * offset }
                 ).then(() => {
                     tile.setAttribute(
                         "data-visibility",

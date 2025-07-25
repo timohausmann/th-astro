@@ -17,7 +17,11 @@ import Button from "./Button.astro";
                     blank
                     label="LinkedIn"
                 >
-                    <IconBrandLinkedin size={24} stroke={1.25} slot="iconBefore" />
+                    <IconBrandLinkedin
+                        size={24}
+                        stroke={1.25}
+                        slot="iconBefore"
+                    />
                 </Button>
                 <Button
                     class="footer-link frost-bg"
@@ -25,7 +29,11 @@ import Button from "./Button.astro";
                     blank
                     label="GitHub"
                 >
-                    <IconBrandGithub size={24} stroke={1.25} slot="iconBefore" />
+                    <IconBrandGithub
+                        size={24}
+                        stroke={1.25}
+                        slot="iconBefore"
+                    />
                 </Button>
                 <Button
                     class="footer-link frost-bg"
@@ -111,7 +119,7 @@ import Button from "./Button.astro";
         .footer-content {
             flex-direction: row-reverse;
             justify-content: space-between;
-            align-items: center;
+            align-items: baseline;
         }
 
         .secondary {
