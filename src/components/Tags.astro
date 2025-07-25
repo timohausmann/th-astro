@@ -1,7 +1,7 @@
 ---
 interface Props {
     tags: string[];
-    size?: 'normal'|'sm'|'xs';
+    size?: "normal" | "sm" | "xs";
 }
 
 const { tags, size }: Props = Astro.props;
@@ -23,6 +23,7 @@ const { tags, size }: Props = Astro.props;
         font-size: 13px;
         padding: 0.5rem 1rem;
         border-radius: 1rem;
+        backdrop-filter: blur(16px);  
     }
     .sm .tag {
         padding: 0.375rem 0.75rem;

@@ -52,32 +52,8 @@ const categories = project.categories.map((category) => {
 <script src="../scripts/3dcards.ts"></script>
 
 <style>
-    .preview {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        align-items: center;
-        gap: 1rem;
-        transition: transform 0.4s;
-        width: 100%;
-    }
-    .preview:hover {
-        transform: scale(1.05);
-        cursor: pointer;
-    }
-
-    .link {
-        /* this needs to hug the img */
-        display: inline-flex;
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 1rem;
-        /* link is 3d for in/out filter animations */
-        transform: perspective(1000px) scale(1);
-    }
-
     .item {
-        transform-style: preserve-3d;
+        /* transform-style: preserve-3d; */
         will-change: transform;
         display: flex;
         gap: 4rem;
@@ -98,6 +74,27 @@ const categories = project.categories.map((category) => {
 
     .item[data-visibility="hidden"] {
         display: none;
+    }
+    .preview {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        transition: transform 0.4s;
+        width: 100%;
+    }
+    .preview:hover {
+        transform: scale(1.05);
+        cursor: pointer;
+    }
+
+    .link {
+        /* this needs to hug the img */
+        display: inline-flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+        /* link is 3d for in/out filter animations */
+        transform: perspective(1000px) scale(1);
     }
 
     @media (--projects-small) {

@@ -3,7 +3,9 @@ import { IconArrowsRightLeft } from "@tabler/icons-react";
 ---
 
 <h1 class="headline">
-    <span class="marker">Ich entwickle digitale Lösungen und Erlebnisse</span>
+    <span class="marker"
+        >Ich entwickle digitale Lösungen und Erlebnisse</span
+    >
     <span class="marker">
         im Spannungs&shy;feld Web-Entwicklung
         <IconArrowsRightLeft
@@ -22,7 +24,7 @@ import { IconArrowsRightLeft } from "@tabler/icons-react";
         margin-left: -1rem;
         font-size: 14px;
         color: var(--color-blue);
-        line-height: 1.4;
+        line-height: 1.4; 
         display: flex;
         flex-direction: column;
         align-items: flex-start;
@@ -36,6 +38,7 @@ import { IconArrowsRightLeft } from "@tabler/icons-react";
         text-align: center;
         z-index: 0;
         opacity: 0;
+        backdrop-filter: blur(16px);
         animation: marker var(--duration) calc(var(--delay) * var(--index))
             forwards;
         animation-timing-function: var(--ease-out-back);
