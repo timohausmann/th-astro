@@ -1,0 +1,15 @@
+[
+  {
+    "slug": "dashnet",
+    "title": "Dashnet",
+    "suptitle": "Social Network",
+    "year": 2018,
+    "img": "/src/assets/projects/preview-dashnet.png",
+    "alt": "Screenshot der Dashnet Web App zeigt den AI-Channel mit Kommentaren und Bildern",
+    "tech": ["React", "Gulp", "Express", "Node.js", "MongoDB", "GraphlQL", "Apollo", "JWT", "Postfix"],
+    "roles": ["Konzept", "Design", "Programmierung"],
+    "categories": ["studies"],
+    "description": "Mein erstes React-Projekt: ein Social Network für unseren Freundeskreis, in dem man sich verabreden und zu unterschiedlichen Themen austauschen kann. Text- und Bildbeiträge können kommentiert und geliked werden. Es gibt eine integrierte Notiz-App sowie ein E-Mail-Postfach. Das Backend ist ein selfhosted Express Server mit Thumbnailgenerierung, Webscraper, GraphQL-API und einem automatischen, wöchentlichen Newsletter. Die erste Version entstand bereits 2007 mit PHP und jQuery.",
+    "layout": "wide"
+  }
+]
