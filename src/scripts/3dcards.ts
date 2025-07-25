@@ -132,7 +132,7 @@ function animate() {
 }
 
 function initRotate() {
-    items = Array.from(document.querySelectorAll("[data-module='3dcard']"));
+    items = Array.from(document.querySelectorAll("[data-module*='3dcard']"));
     if (!items.length) return;
 
     // Initialize item states
@@ -147,7 +147,9 @@ function initRotate() {
     // use a timeout to prevent view-transition glitches
     window.setTimeout(() => {
         document.addEventListener("mousemove", handleMouseMove);
-        document.addEventListener("touchmove", handleTouchMove, { passive: true });
+        document.addEventListener("touchmove", handleTouchMove, {
+            passive: true,
+        });
         window.addEventListener("scroll", handleScroll);
         document.addEventListener("mouseleave", handleMouseLeave);
         document.addEventListener("touchend", handleTouchEnd);
@@ -155,7 +157,6 @@ function initRotate() {
         // Start animation loop
         animate();
     }, 500);
-
 }
 
 function cleanupRotate() {
@@ -169,7 +170,7 @@ function cleanupRotate() {
     document.removeEventListener("touchend", handleTouchEnd);
 
     // reset transform to prevent view-transition glitches
-    items.forEach(elem => {
+    items.forEach((elem) => {
         (elem as HTMLElement).style.transform = `translateZ(0)`;
     });
 

@@ -1,17 +1,23 @@
 :root {
     --color-purple: #5c00d5;
     --color-blue-5: rgba(26, 25, 136, 0.05);
+    --color-blue-10: rgba(26, 25, 136, 0.1);
+    --color-blue-20: rgba(26, 25, 136, 0.2);
     --color-cyan: #72f8ff;
     --color-blue: #04008f;
 
     --screen-max: 1280px;
-    --screen-gutter: 2.5rem;
-    --screen-padding: 2rem;
+    --screen-gutter: 1rem;
+    --screen-padding: 1rem;
 
     --ease-out-back: cubic-bezier(0.34, 1.56, 0.64, 1);
 
-    @media (--xs) {
-        --screen-gutter: 1rem;
-        --screen-padding: 1rem;
+    @media (--md) {
+        --screen-gutter: 1.5rem;
+        --screen-padding: 1.5rem;
+    }
+    @media (--xl) {
+        --screen-gutter: 2rem;
+        --screen-padding: 2rem;
     }
 }

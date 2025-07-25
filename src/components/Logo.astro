@@ -1,10 +1,9 @@
 ---
 import DecoderText from "./DecoderText.astro";
-// Logo component that displays the site title and subtitle
 ---
 
 <hgroup>
-    <a class="logo" href="/">
+    <a class="logo frost-bg" href="/">
         <h1 class="caps" aria-label="Timo Hausmann">
             <DecoderText text="Timo Hausmann" />
         </h1>
@@ -20,9 +19,16 @@ import DecoderText from "./DecoderText.astro";
 <style>
     .logo {
         display: flex;
+        flex-direction: column;
         align-items: baseline;
         justify-content: center;
-        gap: 1rem;
+        gap: 0.5rem;
+        display: flex;
+        align-items: center;
+        padding: 1rem calc(var(--screen-padding) * 2);
+        border-radius: 9999px;
+        box-shadow: 0 2px 16px rgba(0, 0, 0, 0.05);
+        font-size: 14px;
     }
     h1,
     h2,
@@ -31,31 +37,31 @@ import DecoderText from "./DecoderText.astro";
         line-height: 1;
         font-size: inherit;
     }
+    h1 {
+        letter-spacing: 0.19em;
+    }
     .divider {
+        display: none;
         letter-spacing: 0;
     }
 
-    @media (--xs) {
+    @media (--sm) {
         .divider {
-            display: none;
+            display: block;
         }
         .logo {
-            font-size: 13px;
-            flex-direction: column;
-            gap: 0.25rem;
+            height: 4rem;
+            flex-direction: row;
+            gap: 1rem;
         }
         h1 {
-            letter-spacing: 0.2em;
+            letter-spacing: 0.075em;
         }
     }
-    @media (--sm) {
-        .logo {
-            font-size: 14px;
-        }
-    }
-    @media (--lg) {
+    @media (--md) {
         .logo {
             font-size: 15px;
+            padding: 1rem var(--screen-padding);
         }
     }
 </style>

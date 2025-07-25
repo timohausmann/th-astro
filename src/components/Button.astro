@@ -1,0 +1,122 @@
+---
+export interface Props {
+    label: string;
+    href?: string;
+    blank?: boolean;
+    class?: string;
+    type?: "button" | "submit" | "reset";
+    module?: string;
+}
+
+const {
+    label,
+    href,
+    blank = false,
+    class: className,
+    type = "button",
+    module,
+} = Astro.props;
+
+// Determine if this should render as a link or button
+const isLink = !!href;
+---
+
+{
+    isLink ? (
+        <a
+            class={`button ${className}`}
+            href={href}
+            target={blank ? "_blank" : "_self"}
+            rel={blank ? "noopener noreferrer" : undefined}
+            data-module={module}
+        >
+            <slot name="iconBefore" />
+            <span class="label">{label}</span>
+            <slot name="iconAfter" />
+        </a>
+    ) : (
+        <button class={`button ${className}`} type={type} data-module={module}>
+            <slot name="iconBefore" />
+            <span class="label">{label}</span>
+            <slot name="iconAfter" />
+        </button>
+    )
+}
+
+<style>
+    .button {
+        position: relative;
+        color: var(--color-blue);
+        display: inline-flex;
+        align-items: center;
+        gap: 0.875rem;
+        padding: 0.75rem 2rem;
+        min-height: 3rem;
+        text-decoration: none;
+        line-height: 1;
+        z-index: 1;
+        transition: all 0.3s ease;
+        border: none;
+        border-radius: 9999px;
+        cursor: pointer;
+        font-family: inherit;
+    }
+
+    /* frost-bg styles */
+    .button::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        backdrop-filter: blur(16px);
+        background-color: rgba(255, 255, 255, 0.4);
+        background-image: linear-gradient(
+            0deg,
+            rgba(255, 255, 255, 0.1) 0%,
+            rgba(255, 255, 255, 0.4) 25%,
+            rgba(255, 255, 255, 0.4) 75%,
+            rgba(255, 255, 255, 0.1) 100%
+        );
+        text-shadow:
+            3px 0px 8px rgba(255, 255, 255, 0.66),
+            -3px -0px 8px rgba(255, 255, 255, 0.66),
+            0px -3px 8px rgba(255, 255, 255, 0.66),
+            0px 3px 8px rgba(255, 255, 255, 0.66);
+        border-radius: 9999px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        z-index: -1;
+        transition: transform 0.2s ease;
+    }
+
+    /* Hover scale effect */
+    .button:hover::before {
+        transform: scale(1.066);
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    }
+
+    .button:has([slot="iconBefore"]) {
+        padding-left: 1.75rem;
+    }
+
+    .button:has([slot="iconAfter"]) {
+        padding-right: 1.75rem;
+    }
+
+    .label {
+        font-size: 14px;
+        font-style: normal;
+    }
+
+    .button:focus {
+        outline: none;
+    } 
+    .button:focus::before {
+        outline: 1px solid var(--color-blue);
+    }
+
+    .button:active::before {
+        transform: scale(0.95);
+    }
+</style>

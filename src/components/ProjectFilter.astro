@@ -1,0 +1,62 @@
+---
+import ProjectFilterTag from "./ProjectFilterTag.astro";
+import { projectCategories } from "../types/projects";
+import { getProjects } from "../scripts/getProjects";
+import { getState } from "../scripts/projectStore";
+import { slugify } from "../utils/slugify";
+
+const projects = getProjects();
+const { currentFilter } = getState();
+
+// Create array with slugified category names and counts
+const categoryData = projectCategories.map((category) => {
+    const count = projects.filter((project) =>
+        project.categories.includes(category)
+    ).length;
+
+    return {
+        category,
+        count,
+    };
+});
+---
+
+<section class="filter">
+    <h1 class="visually-hidden">Filter</h1>
+    <ul class="filter-list">
+        {
+            categoryData.map(({ category, count }) => {
+                const categorySlug = slugify(category);
+                const isChecked = currentFilter === categorySlug;
+
+                return (
+                    <li>
+                        <ProjectFilterTag
+                            category={category}
+                            count={count}
+                            checked={isChecked}
+                        />
+                    </li>
+                );
+            })
+        }
+    </ul>
+</section>
+
+<style>
+    .filter {
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        padding-left: 0.5rem;
+        height: 4rem;
+        padding: 0.5rem 1rem;
+        border-radius: 32px;
+    }
+
+    .filter-list {
+        display: flex;
+        gap: 1rem;
+        justify-content: flex-end;
+    }
+</style>

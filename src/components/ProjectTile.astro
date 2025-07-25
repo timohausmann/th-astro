@@ -1,20 +1,33 @@
 ---
-import type { Project } from "../types/projects";
+import type { Project, ProjectTileVisibility } from "../types/projects";
 import { IconArrowUpRight } from "@tabler/icons-react";
 import ProjectLink from "./ProjectLink.astro";
 import ProjectImageCard from "./ProjectImageCard.astro";
+import Tags from "./Tags.astro";
+import { slugify } from "../utils/slugify";
 
 interface Props {
     project: Project;
+    defaultVisibility?: ProjectTileVisibility;
 }
 
-const { project } = Astro.props;
+const { project, defaultVisibility = "visible" } = Astro.props;
+const tags = project.tech.slice(0, 3);
+if (tags.length < project.tech.length) {
+    tags.push(`+${project.tech.length - 3}`);
+}
+
+const categories = project.categories.map((category) => {
+    return slugify(category);
+});
 ---
 
 <li
     class="item"
     data-slug={project.slug}
-    data-module="3dcard"
+    data-module="3dcard, project-filter"
+    data-categories={categories.join(",")}
+    data-visibility={defaultVisibility}
     id={project.slug}
 >
     <div class="preview">
@@ -28,6 +41,9 @@ const { project } = Astro.props;
                 <ProjectLink text={project.title} suptitle={project.suptitle}>
                     <IconArrowUpRight />
                 </ProjectLink>
+                <div class="tags">
+                    <Tags size={"sm"} tags={tags} />
+                </div>
             </div>
         </a>
     </div>
@@ -40,8 +56,10 @@ const { project } = Astro.props;
         display: flex;
         flex-direction: column;
         align-items: flex-start;
+        align-items: center;
         gap: 1rem;
         transition: transform 0.4s;
+        width: 100%;
     }
     .preview:hover {
         transform: scale(1.05);
@@ -49,10 +67,13 @@ const { project } = Astro.props;
     }
 
     .link {
-        display: flex;
+        /* this needs to hug the img */
+        display: inline-flex;
         flex-direction: column;
         align-items: flex-start;
         gap: 1rem;
+        /* link is 3d for in/out filter animations */
+        transform: perspective(1000px) scale(1);
     }
 
     .item {
@@ -63,6 +84,20 @@ const { project } = Astro.props;
         align-items: center;
         justify-content: center;
         scroll-margin-top: 12rem;
+        transition:
+            opacity 0.3s ease,
+            transform 0.3s ease;
+    }
+
+    /* Visibility states */
+    .item[data-visibility="in"],
+    .item[data-visibility="out"],
+    .item[data-visibility="hidden"] {
+        pointer-events: none;
+    }
+
+    .item[data-visibility="hidden"] {
+        display: none;
     }
 
     @media (--projects-small) {
@@ -72,12 +107,9 @@ const { project } = Astro.props;
             scroll-margin-top: 8rem;
         }
     }
-    @media (--projects-large) {
-        .content {
-            width: 33vw;
-        }
-        .item.is-open .href-desktop {
-            display: block;
-        }
+
+    .tags {
+        padding-left: 3rem;
+        padding-top: 0.75rem;
     }
 </style>
