@@ -26,6 +26,8 @@ export class SpiralEffect implements CanvasEffect {
     private readonly maxRings = 32;
     private readonly ringGrowthRate = 10;
     private size: number = 0;
+    private width: number = 0;
+    private height: number = 0;
     private maxRingSize: number = 0;
     private pixelRatio: number = 1;
     private ringColor: string = "0, 64, 255";
@@ -36,21 +38,18 @@ export class SpiralEffect implements CanvasEffect {
 
         // Get device pixel ratio
         this.pixelRatio = window.devicePixelRatio || 1;
-
-        // Set display size
-        this.canvas.style.width = `${width}px`;
-        this.canvas.style.height = `${height}px`;
-
-        // Set actual size in memory (scaled to account for extra pixel density)
-        this.canvas.width = Math.floor(width * this.pixelRatio);
-        this.canvas.height = Math.floor(height * this.pixelRatio);
-
-        // Normalize coordinate system to use CSS pixels
-        this.ctx?.scale(this.pixelRatio, this.pixelRatio);
-
-        // Update size-dependent properties
+        this.width = width;
+        this.height = height;
         this.size = Math.min(width, height);
         this.maxRingSize = this.size * 0.95;
+
+        // Set actual size (scaled to pixel density)
+        this.canvas.width = Math.round(width * this.pixelRatio);
+        this.canvas.height = Math.round(height * this.pixelRatio);
+
+        // Reset transformation matrix and apply scale
+        this.ctx?.setTransform(1, 0, 0, 1, 0, 0);
+        this.ctx?.scale(this.pixelRatio, this.pixelRatio);
 
         // Reinitialize spawn points with new dimensions
         this.initializeSpawnPoints();
@@ -59,8 +58,8 @@ export class SpiralEffect implements CanvasEffect {
     private initializeSpawnPoints() {
         if (!this.canvas) return;
 
-        const centerX = this.canvas.width / (2 * this.pixelRatio);
-        const centerY = this.canvas.height / (2 * this.pixelRatio);
+        const centerX = this.width / 2;
+        const centerY = this.height / 2;
 
         // Initialize spawn points
         const spawnCount = 2;
@@ -104,7 +103,16 @@ export class SpiralEffect implements CanvasEffect {
     }
 
     resize(width: number, height: number) {
-        this.updateDimensions(width, height);
+        if (!this.canvas) return;
+
+        const widthDiff = Math.abs(width - this.width);
+        const heightDiff = Math.abs(height - this.height);
+
+        // Only act when dimensions changed
+        // Have a 20px height tolerance for iOS Safari
+        if (widthDiff !== 0 || heightDiff > 20) {
+            this.updateDimensions(width, height);
+        }
     }
 
     loop(currentTime: number) {
@@ -114,12 +122,7 @@ export class SpiralEffect implements CanvasEffect {
         this.lastTime = currentTime;
 
         // Clear canvas
-        this.ctx.clearRect(
-            0,
-            0,
-            this.canvas.width / this.pixelRatio,
-            this.canvas.height / this.pixelRatio
-        );
+        this.ctx.clearRect(0, 0, this.width, this.height);
 
         // Update and draw rings
         this.spawns.forEach((spawn) => {
@@ -147,8 +150,8 @@ export class SpiralEffect implements CanvasEffect {
                 if (ring.scale >= this.maxRingSize) {
                     ring.scale = 0;
                     spawn.angle += Math.PI / this.maxRings;
-                    const centerX = this.canvas!.width / (2 * this.pixelRatio);
-                    const centerY = this.canvas!.height / (2 * this.pixelRatio);
+                    const centerX = this.width / 2;
+                    const centerY = this.height / 2;
                     ring.x = centerX + Math.cos(spawn.angle) * spawn.radius;
                     ring.y = centerY + Math.sin(spawn.angle) * spawn.radius;
                 }
