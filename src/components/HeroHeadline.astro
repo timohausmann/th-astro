@@ -2,93 +2,52 @@
 import { IconArrowsRightLeft } from "@tabler/icons-react";
 ---
 
-<h1 class="headline">
-    <span class="marker"
-        >Ich entwickle digitale Lösungen und Erlebnisse</span
-    >
-    <span class="marker">
-        im Spannungs&shy;feld Web-Entwicklung
+<div class="wrap">
+    <p class="headline">
+        <span
+            >Ich entwickle digitale Lösungen und Erlebnisse im
+            Spannungs&shy;feld Web-Entwicklung</span
+        >
         <IconArrowsRightLeft
+            className="icon"
             size={16}
             stroke={1.5}
             aria-hidden="true"
             role="presentation"
         />
-        <wbr />
-        Interface-Design.
-    </span>
-</h1>
+        <span>Interface-Design.</span>
+    </p>
+</div>
 <style>
-    .headline {
+    .wrap {
+        position: relative;
+        z-index: 1;
         padding: 1rem 0;
-        margin-left: -1rem;
+        width: 100%;
+        max-width: 550px;
+        margin-left: -0.5rem;
+    }
+    .headline {
+        display: inline;
         font-size: 14px;
         color: var(--color-blue);
-        line-height: 1.4; 
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0.25rem;
-        --delay: 0.3s;
-        --duration: 1s;
-    }
-    .marker {
-        position: relative;
-        padding: 0.125rem 1rem;
-        text-align: center;
-        z-index: 0;
-        opacity: 0;
+        line-height: 1.4;
+        background-color: #e7e7ef;
         backdrop-filter: blur(16px);
-        animation: marker var(--duration) calc(var(--delay) * var(--index))
-            forwards;
-        animation-timing-function: var(--ease-out-back);
+        padding: 0.125rem 0.5rem;
+        border-radius: 0.25rem;
+        box-decoration-break: clone;
     }
-    @media (--sm) {
-        .marker {
-            text-align: left;
-        }
+    .icon {
+        transform: translateY(15%) scale(0.9);
     }
     @media (--md) {
+        .wrap {
+            margin-left: -0.75rem;
+        }
         .headline {
             font-size: 15px;
-        }
-    }
-    .marker:nth-child(1) {
-        --index: 1;
-    }
-    .marker:nth-child(2) {
-        --index: 2;
-    }
-    .marker::after {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background: var(--color-blue-5);
-        border-radius: 0.25rem;
-        z-index: -1;
-        transform-origin: left center;
-        animation: markerBg var(--duration) ease-out forwards;
-        animation-delay: inherit;
-    }
-    .marker svg {
-        transform: translateY(12.5%) scale(0.9);
-    }
-    @keyframes marker {
-        0% {
-            opacity: 0;
-            transform: translateY(0%) rotate(-2deg) scale(0.66);
-        }
-        100% {
-            opacity: 1;
-            transform: translateY(0) rotate(0deg);
-        }
-    }
-    @keyframes markerBg {
-        0% {
-            transform: scaleX(0.2);
-        }
-        100% {
-            transform: scaleX(1);
+            padding: 0.125rem 0.75rem;
         }
     }
 </style>
