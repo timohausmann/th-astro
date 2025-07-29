@@ -1,5 +1,5 @@
 ---
-interface Props {
+export interface Props {
     tags: string[];
     size?: "normal" | "sm" | "xs";
 }
@@ -7,23 +7,149 @@ interface Props {
 const { tags, size }: Props = Astro.props;
 ---
 
-<ul class={`tags ${size}`}>
-    {tags.map((technology: string) => <li class="tag">{technology}</li>)}
+<ul class={`tags ${size}`} data-tags-container>
+    {tags.map((tag: string) => (
+        <li class="tag" data-tag>{tag}</li>
+    ))}
+    <li class="tag tag--count" data-tag-count style="display: none;">+0</li>
 </ul>
+
+<script>
+    let containers: NodeListOf<HTMLElement> | null = null;
+    let resizeHandler: (() => void) | null = null;
+    let observer: IntersectionObserver | null = null;
+
+    function adjustVisibleTags(container: HTMLElement) {
+        if (!container) return;
+
+        const tags = container.querySelectorAll('[data-tag]') as NodeListOf<HTMLElement>;
+        const countTag = container.querySelector('[data-tag-count]') as HTMLElement;
+        
+        if (!countTag) return;
+        
+        const allTags = Array.from(tags);
+        
+        // Reset all tags to visible
+        allTags.forEach(tag => {
+            tag.style.display = 'block';
+        });
+        countTag.style.display = 'none';
+
+        const containerWidth = container.clientWidth;
+        if (containerWidth === 0) return;
+        
+        let visibleCount = 0;
+        let totalWidth = 0;
+        
+        // Get computed gap from CSS
+        const computedStyle = window.getComputedStyle(container);
+        const gap = parseFloat(computedStyle.gap) || 12;
+
+        for (let i = 0; i < allTags.length; i++) {
+            const tag = allTags[i];
+            const tagWidth = tag.offsetWidth;
+            
+            // Check if this tag would fit in the content area
+            if (totalWidth + tagWidth <= containerWidth) {
+                totalWidth += tagWidth + gap;
+                visibleCount++;
+            } else {
+                // Hide this tag and remaining tags
+                for (let j = i; j < allTags.length; j++) {
+                    allTags[j].style.display = 'none';
+                }
+                break;
+            }
+        }
+
+        // Show count indicator if there are hidden tags
+        const hiddenCount = allTags.length - visibleCount;
+        if (hiddenCount > 0) {
+            countTag.textContent = `+${hiddenCount}`;
+            countTag.style.display = 'block';
+            
+            // Check if count tag fits
+            const countTagWidth = countTag.offsetWidth;
+            if (totalWidth + countTagWidth > containerWidth) {
+                // Remove last visible tag to make room for count
+                if (visibleCount > 0) {
+                    allTags[visibleCount - 1].style.display = 'none';
+                    visibleCount--;
+                    countTag.textContent = `+${hiddenCount + 1}`;
+                }
+            }
+        }
+    }
+
+    // Initialize tags functionality
+    function initTags() {
+        // Get containers
+        containers = document.querySelectorAll('[data-tags-container]') as NodeListOf<HTMLElement>;
+        
+        // Run on load for all containers
+        containers?.forEach(container => {
+            adjustVisibleTags(container);
+        });
+        
+        // Set up resize handler
+        resizeHandler = () => {
+            containers?.forEach(container => {
+                adjustVisibleTags(container);
+            });
+        };
+        
+        // Run on resize for all containers
+        window.addEventListener('resize', resizeHandler);
+        
+        // Set up intersection observer for filtered items
+        observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    adjustVisibleTags(entry.target as HTMLElement);
+                }
+            });
+        });
+        
+        containers.forEach(container => {
+            observer?.observe(container);
+        });
+    }
+
+    // Clean up event listeners and observers
+    function cleanupTags() {
+        if (resizeHandler) {
+            window.removeEventListener('resize', resizeHandler);
+            resizeHandler = null;
+        }
+        
+        if (observer) {
+            observer.disconnect();
+            observer = null;
+        }
+        
+        containers = null;
+    }
+
+    // Initialize on page load and cleanup on page change
+    document.addEventListener('astro:page-load', initTags);
+    document.addEventListener('astro:before-preparation', cleanupTags);
+</script>
 
 <style>
     .tags {
         display: flex;
-        flex-wrap: wrap;
+        flex-wrap: nowrap;
         gap: 0.75rem;
+        overflow: hidden;
     }
     .tag {
         display: block;
-        background-color: var(--color-blue-5);
         font-size: 13px;
         padding: 0.5rem 1rem;
         border-radius: 1rem;
-        backdrop-filter: blur(16px);  
+        background: var(--color-blue-5);
+        flex-shrink: 0;
+        white-space: nowrap;
     }
     .sm .tag {
         padding: 0.375rem 0.75rem;

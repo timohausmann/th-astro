@@ -12,10 +12,6 @@ interface Props {
 }
 
 const { project, defaultVisibility = "visible" } = Astro.props;
-const tags = project.tech.slice(0, 3);
-if (tags.length < project.tech.length) {
-    tags.push(`+${project.tech.length - 3}`);
-}
 
 const categories = project.categories.map((category) => {
     return slugify(category);
@@ -42,7 +38,7 @@ const categories = project.categories.map((category) => {
                     <IconArrowUpRight />
                 </ProjectLink>
                 <div class="tags">
-                    <Tags size={"sm"} tags={tags} />
+                    <Tags size="sm" tags={project.tech} />
                 </div>
             </div>
         </a>
@@ -88,11 +84,7 @@ const categories = project.categories.map((category) => {
     }
 
     .link {
-        /* this needs to hug the img */
-        display: inline-flex;
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 1rem;
+        padding-bottom: 115px;
         /* link is 3d for in/out filter animations */
         transform: perspective(1000px) scale(1);
     }
@@ -103,6 +95,14 @@ const categories = project.categories.map((category) => {
             gap: 1rem;
             scroll-margin-top: 8rem;
         }
+    }
+
+    .cta {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 1rem 0;
     }
 
     .tags {
