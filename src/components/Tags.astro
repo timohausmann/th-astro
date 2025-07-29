@@ -2,12 +2,13 @@
 export interface Props {
     tags: string[];
     size?: "normal" | "sm" | "xs";
+    truncate?: boolean;
 }
 
-const { tags, size }: Props = Astro.props;
+const { tags, size, truncate = false }: Props = Astro.props;
 ---
 
-<ul class={`tags ${size}`} data-tags-container>
+<ul class={`tags ${size} ${truncate ? 'tags--truncate' : ''}`} data-tags-container data-truncate={truncate}>
     {tags.map((tag: string) => (
         <li class="tag" data-tag>{tag}</li>
     ))}
@@ -21,6 +22,10 @@ const { tags, size }: Props = Astro.props;
 
     function adjustVisibleTags(container: HTMLElement) {
         if (!container) return;
+
+        // Only apply truncation logic if truncate is enabled
+        const shouldTruncate = container.getAttribute('data-truncate') === 'true';
+        if (!shouldTruncate) return;
 
         const tags = container.querySelectorAll('[data-tag]') as NodeListOf<HTMLElement>;
         const countTag = container.querySelector('[data-tag-count]') as HTMLElement;
@@ -138,8 +143,11 @@ const { tags, size }: Props = Astro.props;
 <style>
     .tags {
         display: flex;
-        flex-wrap: nowrap;
+        flex-wrap: wrap;
         gap: 0.75rem;
+    }
+    .tags--truncate {
+        flex-wrap: nowrap;
         overflow: hidden;
     }
     .tag {
