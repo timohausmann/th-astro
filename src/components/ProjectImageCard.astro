@@ -18,14 +18,10 @@ if (!images[project.img])
     throw new Error(`"${project.img}" does not exist (ProjectImageCard)`);
 
 const img = await images[project.img]().then((img) => img.default);
-const imageAspectRatio = img.width / img.height;
-
-let imageClass = "project-image ";
-imageClass += imageAspectRatio < 1 ? "tall" : "wide";
 ---
 
 <div class="card" transition:name={`project-card-${project.id}`}>
-    <Image src={img} format="avif" alt={project.alt} class={imageClass} />
+    <Image src={img} format="avif" alt={project.alt} class="project-image" />
 </div>
 <style>
     .card {
@@ -37,14 +33,7 @@ imageClass += imageAspectRatio < 1 ? "tall" : "wide";
         position: relative;
         box-shadow: 0 4px 48px rgba(0, 0, 0, 0.1);
     }
-    img.tall {
-        max-width: var(--limit, 320px);
-        max-height: 90vw;
-        height: auto;
-        width: auto;
-        aspect-ratio: 4 / 7;
-    }
-    img.wide {
+    img {
         max-height: var(--limit, 320px);
         width: auto;
         aspect-ratio: 7 / 4;
